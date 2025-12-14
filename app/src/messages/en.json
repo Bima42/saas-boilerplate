@@ -1,0 +1,12 @@
+{
+    "Hero": {
+        "title": "Real boilerplate for <strike>vibecoder</strike> <highlight>devs</highlight>",
+        "subtitle": "Build your SaaS in just a few days"
+    },
+    "LanguageSwitcher": {
+        "changeLanguage": "Language"
+    },
+    "NavBar": {
+        "back": "Back"
+    }
+}

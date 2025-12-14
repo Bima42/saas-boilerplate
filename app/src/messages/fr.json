@@ -1,0 +1,12 @@
+{
+    "Hero": {
+        "title": "Un vrai modèle pour <strike>vibecoder</strike> <highlight>développeur</highlight>",
+        "subtitle": "Construis ton SaaS en quelques jours"
+    },
+    "LanguageSwitcher": {
+        "changeLanguage": "Langue"
+    },
+    "NavBar": {
+        "back": "Retour"
+    }
+}
