@@ -8,5 +8,30 @@
     },
     "NavBar": {
         "back": "Back"
+    },
+    "Billing": {
+        "title": "Billing & Plans",
+        "subtitle": "Manage your access and billing details",
+        "success": "Payment successful! You now have lifetime access.",
+        "redirectingPortal": "Redirecting to billing portal ...",
+        "backToDashboard": "← Back to Dashboard",
+        "hasAccess": "You have unlocked all premium features forever. Thank you for your support!",
+        "noAccess": "Upgrade to the Pro plan to unlock unlimited projects, advanced analytics, and priority support.",
+        "freePlan": "Free Plan",
+        "lifetimeAccess": "Lifetime Pro Access",
+        "unlimitedProjects": "Unlimited Projects",
+        "prioritySupport": "Priority Support",
+        "loading": "Loading billing info...",
+        "manageBilling": "Manage Billing",
+        "getAccess": "Get Lifetime Access",
+        "securePayment": "Secure payment via Stripe",
+        "lifetimeLicense": "Lifetime License",
+        "viewInvoices": "View invoices & receipts",
+        "oneTimePayment": "One-time payment",
+        "error": {
+            "checkout": "Fail to initiate your session. Try again later.",
+            "payment": "Payment failed. Please try again or contact support.",
+            "portal": "Fail to open your customer portal. Please try again or contact support."
+        }
     }
 }

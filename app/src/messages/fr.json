@@ -8,5 +8,30 @@
     },
     "NavBar": {
         "back": "Retour"
+    },
+    "Billing": {
+        "title": "Facturation et Forfaits",
+        "subtitle": "Gérez votre accès et vos détails de facturation",
+        "success": "Paiement réussi ! Vous avez maintenant un accès à vie.",
+        "redirectingPortal": "Redirection vers le portail de facturation...",
+        "backToDashboard": "← Retour au tableau de bord",
+        "hasAccess": "Vous avez débloqué toutes les fonctionnalités premium pour toujours. Merci pour votre soutien !",
+        "noAccess": "Passez au forfait Pro pour débloquer des projets illimités, des analyses avancées et un support prioritaire.",
+        "freePlan": "Forfait Gratuit",
+        "lifetimeAccess": "Accès Pro à Vie",
+        "unlimitedProjects": "Projets Illimités",
+        "prioritySupport": "Support Prioritaire",
+        "loading": "Chargement des informations de facturation...",
+        "manageBilling": "Gérer la facturation",
+        "getAccess": "Obtenir l'accès à vie",
+        "securePayment": "Paiement sécurisé via Stripe",
+        "lifetimeLicense": "Licence à Vie",
+        "viewInvoices": "Voir les factures et reçus",
+        "oneTimePayment": "Paiement unique",
+        "error": {
+            "checkout": "Échec de l'initialisation de votre session. Réessayez plus tard.",
+            "payment": "Le paiement a échoué. Veuillez réessayer ou contacter le support.",
+            "portal": "Échec de l'ouverture de votre portail client. Veuillez réessayer ou contacter le support."
+        }
     }
 }

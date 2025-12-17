@@ -48,14 +48,22 @@ export default function DashboardPage() {
                 <header className="flex justify-between items-center bg-white p-6 rounded-xl shadow-sm border border-gray-100">
                     <div>
                         <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-                        <p className="text-gray-500 text-sm">Welcome back to Boilerplate</p>
+                        <p className="text-gray-500 text-sm">Welcome back to Framae</p>
                     </div>
-                    <button
-                        onClick={handleSignOut}
-                        className="px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg hover:bg-gray-50 hover:text-red-600 transition-colors text-sm font-medium"
-                    >
-                        Sign Out
-                    </button>
+                    <div className="flex items-center gap-3">
+                        <button
+                            onClick={() => router.push('/dashboard/billing')}
+                            className="px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors text-sm font-medium"
+                        >
+                            Billing & Plans
+                        </button>
+                        <button
+                            onClick={handleSignOut}
+                            className="px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg hover:bg-gray-50 hover:text-red-600 transition-colors text-sm font-medium"
+                        >
+                            Sign Out
+                        </button>
+                    </div>
                 </header>
 
                 {/* Main Content Grid */}
