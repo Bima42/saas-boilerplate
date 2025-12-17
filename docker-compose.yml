@@ -10,7 +10,7 @@ services:
       - ./app:/home/next/app
       - next-node-modules:/home/next/app/node_modules
     env_file:
-      - app/.env
+      - .env
     depends_on:
       postgres:
         condition: service_healthy
@@ -33,6 +33,20 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+    networks:
+      - app-network
+
+  stripe:
+    image: stripe/stripe-cli
+    command:
+      - "listen"
+      - "--api-key"
+      - "${STRIPE_SECRET_KEY}"
+      - "--forward-to"
+      - "${STRIPE_CLI_WEBHOOK_URL}"
+      - "--latest"
+    depends_on:
+      - app
     networks:
       - app-network
 

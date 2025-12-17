@@ -2,7 +2,7 @@ import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { magicLink } from 'better-auth/plugins';
 import { Resend } from 'resend';
-import { db } from '@/db';
+import { db } from '@/server/db';
 import { env } from '@/config/env';
 
 const resend = new Resend(env.RESEND_API_KEY);
