@@ -1,31 +1,29 @@
-# ---- Base Stage ----
-# Use a slim image as a base for a smaller final image.
 FROM node:20-slim AS base
 
 # ---- Builder Stage ----
-# This stage installs dependencies and builds the Next.js application.
 FROM base AS builder
 WORKDIR /app
 
-COPY ./app/package*.json ./
-RUN pnpm ci
+COPY ./framae/package*.json ./
+RUN npm ci
 
-COPY ./app ./
+COPY ./framae ./
 
+ARG NEXT_PUBLIC_APP_URL
+ARG NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+
+ENV SKIP_ENV_VALIDATION=1
 ENV NODE_ENV=production
 
-# Add your ARGs here if your project needs them for the build process,
-# especially for NEXT_PUBLIC_ variables that need to be available client-side.
-# Example:
-# ARG NEXT_PUBLIC_SITE_URL
-# ARG DATABASE_URL
-# ARG OPENAI_API_KEY
+RUN npm run build
 
-# The build command generates the optimized production build.
-RUN pnpm run build
+# Compile migration script to standalone JS
+RUN npx esbuild src/server/db/migrate.ts \
+    --bundle \
+    --platform=node \
+    --outfile=migrate.js
 
 # ---- Runner Stage ----
-# This is the final stage that will be used to create the production image.
 FROM base AS runner
 WORKDIR /app
 
@@ -39,19 +37,17 @@ COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-# Copy the migration runner and install its specific dependencies.
-COPY --from=builder --chown=nextjs:nodejs /app/drizzle/migrations ./drizzle/migrations
-COPY --from=builder --chown=nextjs:nodejs /app/drizzle/migrate ./drizzle/migrate
-RUN cd drizzle/migrate && pnpm i
+# Copy migration files and compiled runner
+COPY --from=builder --chown=nextjs:nodejs /app/drizzle ./drizzle
+COPY --from=builder --chown=nextjs:nodejs /app/migrate.js ./migrate.js
 
-COPY --chown=nextjs:nodejs ./docker/next/prod/run.sh ./run.sh
-RUN chmod +x ./run.sh
+COPY --chown=nextjs:nodejs ./docker/next/prod/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 USER nextjs
 
 EXPOSE 3000
-
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
-CMD ["./run.sh"]
+ENTRYPOINT ["/entrypoint.sh"]

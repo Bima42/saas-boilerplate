@@ -5,33 +5,43 @@ import { Resend } from 'resend';
 import { db } from '@/server/db';
 import { env } from '@/config/env';
 
-const resend = new Resend(env.RESEND_API_KEY);
+let resendInstance: Resend | null = null;
+function getResend() {
+    if (!resendInstance) {
+        resendInstance = new Resend(env.RESEND_API_KEY);
+    }
+    return resendInstance;
+}
 
-export const auth = betterAuth({
-    secret: env.BETTER_AUTH_SECRET,
-    baseURL: env.NEXT_PUBLIC_APP_URL,
-    rateLimit: {
-        window: 60,
-        max: 10
-    },
-    database: drizzleAdapter(db, {
-        provider: 'pg'
-    }),
-    socialProviders: {
-        google: {
-            clientId: env.GOOGLE_CLIENT_ID,
-            clientSecret: env.GOOGLE_CLIENT_SECRET
-        }
-    },
-    plugins: [
-        magicLink({
-            sendMagicLink: async ({ email, token, url }) => {
-                try {
-                    await resend.emails.send({
-                        from: 'Boilerplate <onboarding@resend.dev>', // TODO: Update with your verified domain
-                        to: email,
-                        subject: 'Sign in to Boilerplate',
-                        html: `
+let authInstance: ReturnType<typeof betterAuth> | null = null;
+
+export function getAuth() {
+    if (!authInstance) {
+        authInstance = betterAuth({
+            secret: env.BETTER_AUTH_SECRET,
+            baseURL: env.NEXT_PUBLIC_APP_URL,
+            rateLimit: {
+                window: 60,
+                max: 10
+            },
+            database: drizzleAdapter(db, {
+                provider: 'pg'
+            }),
+            socialProviders: {
+                google: {
+                    clientId: env.GOOGLE_CLIENT_ID,
+                    clientSecret: env.GOOGLE_CLIENT_SECRET
+                }
+            },
+            plugins: [
+                magicLink({
+                    sendMagicLink: async ({ email, token, url }) => {
+                        try {
+                            await getResend().emails.send({
+                                from: 'Boilerplate <onboarding@resend.dev>', // TODO: Update with your verified domain
+                                to: email,
+                                subject: 'Sign in to Boilerplate',
+                                html: `
                             <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
                                 <h1>Welcome to Boilerplate</h1>
                                 <p>Click the link below to sign in to your account:</p>
@@ -43,13 +53,16 @@ export const auth = betterAuth({
                                 </p>
                             </div>
                         `
-                    });
-                } catch (error) {
-                    console.error('Failed to send magic link email:', error);
-                    // We don't throw here to prevent leaking email existence,
-                    // but in dev we might want to know.
-                }
-            }
-        })
-    ]
-});
+                            });
+                        } catch (error) {
+                            console.error('Failed to send magic link email:', error);
+                            // We don't throw here to prevent leaking email existence,
+                            // but in dev we might want to know.
+                        }
+                    }
+                })
+            ]
+        });
+    }
+    return authInstance;
+}

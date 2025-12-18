@@ -12,7 +12,6 @@ export const env = createEnv({
         STRIPE_CUSTOMER_PORTAL_LINK: z.string().url(),
         STRIPE_SECRET_KEY: z.string().min(1).startsWith('sk_'),
         STRIPE_WEBHOOK_SECRET: z.string().min(1).startsWith('whsec_'),
-        STRIPE_CLI_WEBHOOK_URL: z.string().url(),
         STRIPE_PRICE_ID: z.string().min(1)
     },
     client: {
@@ -29,7 +28,6 @@ export const env = createEnv({
         STRIPE_CUSTOMER_PORTAL_LINK: process.env.STRIPE_CUSTOMER_PORTAL_LINK,
         STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
         STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
-        STRIPE_CLI_WEBHOOK_URL: process.env.STRIPE_CLI_WEBHOOK_URL,
         STRIPE_PRICE_ID: process.env.STRIPE_PRICE_ID,
 
         // Client

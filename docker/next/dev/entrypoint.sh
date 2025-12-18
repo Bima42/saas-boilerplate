@@ -1,4 +1,5 @@
 #!/bin/sh
+# docker/next/dev/entrypoint.sh
 
 set -e
 
@@ -16,16 +17,18 @@ wait_for_postgres() {
   echo "PostgreSQL is up and running!"
 }
 
+# Wait for the database
 wait_for_postgres
 
+# Using the same script sequence as the original codebase for development
 echo "Generating database schemas..."
-pnpm run db:generate
+npm run db:generate
 
 echo "Pushing migrations to database..."
-pnpm run db:migrate
+npm run db:migrate
 
 #echo "Seeding database..."
-#pnpm run db:seed
+#npm run db:seed
 
 echo "Starting development server..."
-exec pnpm run dev
+exec npm run dev

@@ -1,5 +1,5 @@
 import { createTRPCRouter, protectedProcedure } from '@/server/api/trpc';
-import { stripe } from '@/lib/stripe';
+import { getStripe } from '@/lib/stripe';
 import { env } from '@/config/env';
 import { TRPCError } from '@trpc/server';
 import { getUserCompletedPurchase } from '@/server/services/purchase';
@@ -27,7 +27,7 @@ export const stripeRouter = createTRPCRouter({
         let customerId = dbUser.stripeCustomerId;
 
         if (!customerId) {
-            const customer = await stripe.customers.create({
+            const customer = await getStripe().customers.create({
                 email: dbUser.email,
                 name: dbUser.name,
                 metadata: {
@@ -39,7 +39,7 @@ export const stripeRouter = createTRPCRouter({
             await updateUserStripeCustomerId({ userId: dbUser.id, stripeCustomerId: customerId });
         }
 
-        const session = await stripe.checkout.sessions.create({
+        const session = await getStripe().checkout.sessions.create({
             customer: customerId,
             line_items: [
                 {
