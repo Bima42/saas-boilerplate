@@ -1,39 +1,150 @@
 'use client';
 
+import * as React from 'react';
 import Link from 'next/link';
+import { Menu } from 'lucide-react';
+
+// UI Components
+import { Button } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import {
+    NavigationMenu,
+    NavigationMenuItem,
+    NavigationMenuLink,
+    NavigationMenuList,
+    navigationMenuTriggerStyle
+} from '@/components/ui/navigation-menu';
+
 import { LanguageSwitcher } from '@/components/ui/language-switcher';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { LoginButton } from '@/components/login/login-button';
 
+const navLinks = [
+    { title: 'Features', href: '#features' },
+    { title: 'Pricing', href: '#pricing' },
+    { title: 'Testimonials', href: '#testimonials' },
+    { title: 'FAQ', href: '#faq' }
+];
+
 export function Header() {
     return (
-        <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-            <div className="container mx-auto px-4 h-14 flex items-center justify-between max-w-6xl">
-                {/* Logo / Home */}
-                <div className="flex items-center gap-6">
-                    <Link href="/" className="flex items-center gap-2 font-bold text-xl">
-                        <div className="w-6 h-6 bg-primary rounded-md"></div>
-                        <span>Boilerplate</span>
-                    </Link>
-
-                    {/* Desktop Nav */}
-                    <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-muted-foreground">
-                        <Link href="/blog" className="hover:text-foreground transition-colors">
-                            Blog
-                        </Link>
-                    </nav>
+        <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+            <div className="container mx-auto px-4 h-16 flex items-center justify-between max-w-7xl">
+                {/* Left: Logo & Desktop Nav */}
+                <div className="flex items-center gap-8">
+                    <Logo />
+                    <div className="hidden md:block">
+                        <DesktopNav />
+                    </div>
                 </div>
 
-                {/* Right Side Actions */}
-                <div className="flex items-center gap-2">
-                    <ThemeToggle />
-                    <LanguageSwitcher />
+                {/* Right: Actions & Mobile Menu */}
+                <div className="flex items-center gap-3">
+                    <div className="hidden sm:flex items-center gap-2">
+                        <ThemeToggle />
+                        <LanguageSwitcher />
+                        <div className="h-6 w-px bg-border mx-2" />
+                        <LoginButton />
+                    </div>
 
-                    <div className="h-6 w-px bg-border mx-2 hidden sm:block" />
-
-                    <LoginButton />
+                    {/* Mobile Menu Trigger */}
+                    <div className="md:hidden">
+                        <MobileNav />
+                    </div>
                 </div>
             </div>
         </header>
+    );
+}
+
+// --- Sub-Components ---
+
+function Logo() {
+    return (
+        <Link href="/" className="flex items-center gap-2 font-bold text-xl">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="h-5 w-5"
+                >
+                    <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" />
+                </svg>
+            </div>
+            <span>Boilerplate</span>
+        </Link>
+    );
+}
+
+function DesktopNav() {
+    return (
+        <NavigationMenu>
+            <NavigationMenuList>
+                {navLinks.map((link) => (
+                    <NavigationMenuItem key={link.title}>
+                        <Link href={link.href} legacyBehavior passHref>
+                            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                                {link.title}
+                            </NavigationMenuLink>
+                        </Link>
+                    </NavigationMenuItem>
+                ))}
+            </NavigationMenuList>
+        </NavigationMenu>
+    );
+}
+
+function MobileNav() {
+    return (
+        <Sheet>
+            <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="md:hidden">
+                    <Menu className="h-5 w-5" />
+                    <span className="sr-only">Toggle menu</span>
+                </Button>
+            </SheetTrigger>
+            <SheetContent side="right">
+                <SheetHeader>
+                    <SheetTitle>
+                        <Logo />
+                    </SheetTitle>
+                </SheetHeader>
+                <div className="flex flex-col gap-6 mt-8 px-4">
+                    {/* Mobile Links */}
+                    <nav className="flex flex-col gap-4">
+                        {navLinks.map((link) => (
+                            <Link
+                                key={link.title}
+                                href={link.href}
+                                className="text-lg font-medium text-foreground/80 hover:text-foreground transition-colors"
+                            >
+                                {link.title}
+                            </Link>
+                        ))}
+                    </nav>
+
+                    <div className="h-px bg-border" />
+
+                    {/* Mobile Actions */}
+                    <div className="flex flex-col gap-4">
+                        <div className="flex items-center justify-between">
+                            <span className="text-sm font-medium">Theme</span>
+                            <ThemeToggle />
+                        </div>
+                        <div className="flex items-center justify-between">
+                            <span className="text-sm font-medium">Language</span>
+                            <LanguageSwitcher />
+                        </div>
+                        <div className="h-px bg-border" />
+                        <LoginButton />
+                    </div>
+                </div>
+            </SheetContent>
+        </Sheet>
     );
 }

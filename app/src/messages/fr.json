@@ -1,7 +1,143 @@
 {
+    "Auth": {
+        "login": "Se connecter",
+        "title": "Connectez-vous à votre compte",
+        "subtitle": "Bon retour ! Veuillez entrer vos détails.",
+        "google": "Continuer avec Google",
+        "email": "Continuer avec Email",
+        "or": "OU",
+        "emailLabel": "Email",
+        "emailPlaceholder": "nom@exemple.com",
+        "checkEmail": "Vérifiez votre email",
+        "sentLink": "Nous avons envoyé un lien de connexion à <bold>{email}</bold>",
+        "useDifferentEmail": "Utiliser un autre email",
+        "validation": {
+            "email": "Veuillez entrer une adresse email valide"
+        },
+        "toast": {
+            "magicLinkSent": "Lien magique envoyé à votre email",
+            "googleError": "Échec de la connexion avec Google"
+        }
+    },
     "Hero": {
-        "title": "Un vrai modèle pour <strike>vibecoder</strike> <highlight>développeur</highlight>",
-        "subtitle": "Construis ton SaaS en quelques jours"
+        "title": "Un vrai modèle pour <strike>vibecoder</strike> <highlight>développeurs</highlight>",
+        "subtitle": "Construisez votre SaaS en quelques jours",
+        "badge": "Vient de sortir v1.0.0",
+        "description": "Boilerplate SaaS Next.js open-source. Authentification, Stripe, i18n et Shadcn UI prêts à l'emploi. Arrêtez de configurer, commencez à livrer.",
+        "cta": "Commencer",
+        "demo": "Voir la démo"
+    },
+    "Features": {
+        "title": "Tout ce dont vous avez besoin",
+        "auth": {
+            "title": "Authentification",
+            "description": "Gestion sécurisée des utilisateurs avec intégration BetterAuth."
+        },
+        "payments": {
+            "title": "Paiements",
+            "description": "Intégration Stripe pour abonnements, paiements uniques et portail client."
+        },
+        "i18n": {
+            "title": "Internationalisation",
+            "description": "Support multi-langues complet configuré avec next-intl et middleware."
+        },
+        "db": {
+            "title": "Base de données & ORM",
+            "description": "Interactions type-safe avec Drizzle et Postgres."
+        },
+        "ui": {
+            "title": "Shadcn UI",
+            "description": "Composants beaux et accessibles pré-configurés avec Tailwind CSS."
+        },
+        "emails": {
+            "title": "Système d'Email",
+            "description": "Emails transactionnels configurés avec React Email et Resend."
+        }
+    },
+    "Testimonials": {
+        "title": "Approuvé par les développeurs",
+        "subtitle": "Open source et communautaire",
+        "1": {
+            "text": "Enfin un boilerplate qui ne cache pas le code derrière un paywall. Architecture propre.",
+            "author": "Alex D.",
+            "role": "Dev Fullstack"
+        },
+        "2": {
+            "text": "M'a fait gagner environ 2 semaines de config. L'intégration Stripe a fonctionné instantanément.",
+            "author": "Sarah J.",
+            "role": "Indie Hacker"
+        },
+        "3": {
+            "text": "La config i18n est souvent un cauchemar, mais ici ça marche tout seul. Je recommande.",
+            "author": "Marc L.",
+            "role": "Lead Frontend"
+        }
+    },
+    "FAQ": {
+        "title": "Questions Fréquentes",
+        "subtitle": "Tout ce que vous devez savoir sur le boilerplate.",
+        "items": {
+            "1": {
+                "question": "Ce modèle est-il vraiment gratuit ?",
+                "answer": "Oui, il est 100% open-source et gratuit pour les projets personnels et commerciaux sous licence MIT."
+            },
+            "2": {
+                "question": "Quelle est la stack technique ?",
+                "answer": "Il est construit avec Next.js 14 (App Router), Tailwind CSS, Shadcn UI, Prisma et NextAuth."
+            },
+            "3": {
+                "question": "Comment le déployer ?",
+                "answer": "Vous pouvez le déployer facilement sur Vercel, Netlify ou tout VPS supportant Node.js/Docker."
+            },
+            "4": {
+                "question": "Offrez-vous du support ?",
+                "answer": "Comme c'est un projet gratuit, le support est communautaire via les Issues GitHub et notre serveur Discord."
+            }
+        }
+    },
+    "Contact": {
+        "section": "Contactez-nous",
+        "title": "Restons en contact",
+        "subtitle": "Une question ou un bug ? Dites-le nous.",
+        "email": {
+            "title": "Email",
+            "desc": "Pour partenariats ou demandes privées.",
+            "label": "hello@saas-boilerplate.com"
+        },
+        "github": {
+            "title": "GitHub",
+            "desc": "Signaler des bugs ou demander des fonctionnalités.",
+            "label": "Ouvrir une Issue"
+        },
+        "community": {
+            "title": "Communauté",
+            "desc": "Rejoignez notre serveur Discord.",
+            "label": "Rejoindre Discord"
+        }
+    },
+    "Footer": {
+        "brand": {
+            "desc": "Le kit de démarrage SaaS ultime pour le développement web moderne."
+        },
+        "columns": {
+            "product": "Produit",
+            "resources": "Ressources",
+            "legal": "Légal"
+        },
+        "links": {
+            "features": "Fonctionnalités",
+            "pricing": "Tarifs",
+            "docs": "Documentation",
+            "blog": "Blog",
+            "privacy": "Confidentialité",
+            "terms": "Conditions"
+        },
+        "newsletter": {
+            "title": "S'inscrire à la newsletter",
+            "placeholder": "Entrez votre email",
+            "button": "S'abonner"
+        },
+        "rights": "Tous droits réservés."
     },
     "LanguageSwitcher": {
         "changeLanguage": "Langue"

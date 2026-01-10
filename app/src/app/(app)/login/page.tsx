@@ -1,30 +1,51 @@
 'use client';
 
 import { useState } from 'react';
-import { authClient } from '@/lib/better-auth/auth-client';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { Loader2, CheckCircle2 } from 'lucide-react';
 import { toast } from 'sonner';
-import { GoogleAuthButton } from '@/components/login/google-auth-button';
-import { Loader2, Mail, CheckCircle2 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Separator } from '@/components/ui/separator';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { authClient } from '@/lib/better-auth/auth-client';
+import { GoogleLogo } from '@/components/login/google-logo';
 
 export default function LoginPage() {
-    const [email, setEmail] = useState('');
+    const t = useTranslations('Auth');
     const [isLoading, setIsLoading] = useState(false);
     const [isEmailSent, setIsEmailSent] = useState(false);
+    const [email, setEmail] = useState('');
 
-    const handleMagicLink = async (e: React.FormEvent) => {
-        e.preventDefault();
+    const formSchema = z.object({
+        email: z.string().email({ message: t('validation.email') })
+    });
+
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            email: ''
+        }
+    });
+
+    const onSubmit = async (data: z.infer<typeof formSchema>) => {
         setIsLoading(true);
+        setEmail(data.email);
 
         await authClient.signIn.magicLink(
             {
-                email,
+                email: data.email,
                 callbackURL: '/dashboard'
             },
             {
                 onSuccess: () => {
                     setIsEmailSent(true);
                     setIsLoading(false);
-                    toast.success('Magic link sent to your email');
+                    toast.success(t('toast.magicLinkSent'));
                 },
                 onError: (ctx) => {
                     toast.error(ctx.error.message);
@@ -34,105 +55,117 @@ export default function LoginPage() {
         );
     };
 
+    const handleGoogleSignIn = async () => {
+        setIsLoading(true);
+        await authClient.signIn.social(
+            {
+                provider: 'google',
+                callbackURL: '/dashboard'
+            },
+            {
+                onError: (ctx) => {
+                    toast.error(ctx.error.message || t('toast.googleError'));
+                    setIsLoading(false);
+                }
+            }
+        );
+    };
+
     return (
-        <div className="min-h-screen flex">
-            {/* Left Side - Decorative (Hidden on mobile) */}
-            <div className="hidden lg:flex lg:w-1/2 bg-black text-white p-12 flex-col justify-between relative overflow-hidden">
-                <div className="z-10">
-                    <div className="flex items-center gap-2 font-bold text-2xl">
-                        <div className="w-8 h-8 bg-white rounded-lg"></div>
-                        Boilerplate
-                    </div>
-                </div>
-
-                <div className="z-10 max-w-md">
-                    <h2 className="text-4xl font-bold mb-6">Start building your next big idea today.</h2>
-                    <p className="text-gray-400 text-lg">
-                        Secure, scalable, and type-safe foundation for your modern web applications.
-                    </p>
-                </div>
-
-                <div className="z-10 text-sm text-gray-500">© {new Date().getFullYear()} Bima Inc.</div>
-
-                {/* Abstract Background Pattern */}
-                <div className="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none">
-                    <div className="absolute right-0 top-0 w-96 h-96 bg-blue-500 rounded-full blur-[100px] transform translate-x-1/2 -translate-y-1/2"></div>
-                    <div className="absolute left-0 bottom-0 w-96 h-96 bg-purple-500 rounded-full blur-[100px] transform -translate-x-1/2 translate-y-1/2"></div>
-                </div>
-            </div>
-
-            {/* Right Side - Auth Form */}
-            <div className="flex w-full items-center justify-center bg-white p-8 lg:w-1/2">
-                <div className="mx-auto w-full max-w-sm space-y-6">
-                    <div className="flex flex-col space-y-2 text-center">
-                        <h1 className="text-2xl font-semibold tracking-tight">
-                            {isEmailSent ? 'Check your email' : 'Welcome back'}
-                        </h1>
-                        <p className="text-sm text-zinc-500">
-                            {isEmailSent
-                                ? `We sent a login link to ${email}`
-                                : 'Enter your email to sign in to your account'}
-                        </p>
-                    </div>
-
-                    {isEmailSent ? (
-                        <div className="flex flex-col items-center justify-center space-y-4 py-6">
-                            <div className="rounded-full bg-green-100 p-3">
-                                <CheckCircle2 className="h-8 w-8 text-green-600" />
-                            </div>
-                            <button
-                                onClick={() => setIsEmailSent(false)}
-                                className="text-sm text-zinc-500 hover:text-zinc-900 hover:underline"
-                            >
-                                Use a different email
-                            </button>
+        <div className="min-h-screen flex items-center justify-center bg-background">
+            <div className="w-full h-full min-h-screen grid lg:grid-cols-2">
+                {/* Left Side: Form */}
+                <div className="relative flex flex-col items-center justify-center p-8 outline-0 sm:outline-2 outline-border/40 dark:outline-border/80 outline-offset-0.5">
+                    <div className="w-full max-w-sm relative z-10">
+                        <div className="flex items-center gap-2 font-bold text-xl mb-8">
+                            <div className="w-6 h-6 bg-primary rounded-md"></div>
+                            <span>Boilerplate</span>
                         </div>
-                    ) : (
-                        <div className="space-y-4">
-                            <form onSubmit={handleMagicLink} className="space-y-4">
+
+                        {isEmailSent ? (
+                            <div className="flex flex-col items-center justify-center space-y-6 py-6 text-center animate-in fade-in zoom-in duration-300">
+                                <div className="rounded-full bg-green-100 p-3 dark:bg-green-900/30">
+                                    <CheckCircle2 className="h-12 w-12 text-green-600 dark:text-green-400" />
+                                </div>
                                 <div className="space-y-2">
-                                    <label
-                                        htmlFor="email"
-                                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                                    >
-                                        Email
-                                    </label>
-                                    <input
-                                        id="email"
-                                        type="email"
-                                        placeholder="name@example.com"
-                                        required
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        className="flex h-9 w-full rounded-md border border-zinc-200 bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-zinc-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-950 disabled:cursor-not-allowed disabled:opacity-50"
-                                    />
+                                    <h3 className="text-2xl font-semibold tracking-tight">{t('checkEmail')}</h3>
+                                    <p className="text-muted-foreground">
+                                        {t.rich('sentLink', {
+                                            email: () => <span className="font-medium text-foreground">{email}</span>,
+                                            bold: (chunks) => (
+                                                <span className="font-medium text-foreground">{chunks}</span>
+                                            )
+                                        })}
+                                    </p>
                                 </div>
-                                <button
-                                    type="submit"
-                                    disabled={isLoading}
-                                    className="inline-flex h-9 w-full items-center justify-center rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-zinc-50 shadow hover:bg-zinc-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-950 disabled:pointer-events-none disabled:opacity-50"
+                                <Button
+                                    variant="ghost"
+                                    onClick={() => setIsEmailSent(false)}
+                                    className="text-muted-foreground hover:text-foreground"
                                 >
-                                    {isLoading ? (
-                                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                    ) : (
-                                        <Mail className="mr-2 h-4 w-4" />
-                                    )}
-                                    Sign in with Email
-                                </button>
-                            </form>
-
-                            <div className="relative">
-                                <div className="absolute inset-0 flex items-center">
-                                    <span className="w-full border-t border-zinc-200" />
-                                </div>
-                                <div className="relative flex justify-center text-xs uppercase">
-                                    <span className="bg-white px-2 text-zinc-500">Or continue with</span>
-                                </div>
+                                    {t('useDifferentEmail')}
+                                </Button>
                             </div>
+                        ) : (
+                            <>
+                                <div className="mb-8">
+                                    <h1 className="text-2xl font-semibold tracking-tight">{t('title')}</h1>
+                                    <p className="text-sm text-muted-foreground mt-2">{t('subtitle')}</p>
+                                </div>
 
-                            <GoogleAuthButton />
-                        </div>
-                    )}
+                                <Button
+                                    variant="outline"
+                                    className="w-full gap-3 h-11 font-medium"
+                                    onClick={handleGoogleSignIn}
+                                    disabled={isLoading}
+                                >
+                                    <GoogleLogo />
+                                    {t('google')}
+                                </Button>
+
+                                <div className="my-7 w-full flex items-center justify-center overflow-hidden">
+                                    <Separator className="shrink" />
+                                    <span className="text-xs text-muted-foreground font-medium px-4 uppercase">
+                                        {t('or')}
+                                    </span>
+                                    <Separator className="shrink" />
+                                </div>
+
+                                <Form {...form}>
+                                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                                        <FormField
+                                            control={form.control}
+                                            name="email"
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <FormLabel>{t('emailLabel')}</FormLabel>
+                                                    <FormControl>
+                                                        <Input
+                                                            type="email"
+                                                            placeholder={t('emailPlaceholder')}
+                                                            className="h-11"
+                                                            {...field}
+                                                        />
+                                                    </FormControl>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                        />
+
+                                        <Button type="submit" className="w-full h-11" disabled={isLoading}>
+                                            {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                                            {t('email')}
+                                        </Button>
+                                    </form>
+                                </Form>
+                            </>
+                        )}
+                    </div>
+                </div>
+
+                {/* Right Side: Image/Pattern */}
+                <div className="hidden lg:block bg-muted relative overflow-hidden border-l border-border">
+                    <div className="absolute inset-0 bg-zinc-900/5 dark:bg-zinc-900/50" />
                 </div>
             </div>
         </div>
