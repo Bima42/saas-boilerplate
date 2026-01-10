@@ -4,10 +4,10 @@ FROM node:20-slim AS base
 FROM base AS builder
 WORKDIR /app
 
-COPY ./framae/package*.json ./
+COPY ./app/package*.json ./
 RUN npm ci
 
-COPY ./framae ./
+COPY ./app ./
 
 ARG NEXT_PUBLIC_APP_URL
 ARG NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY

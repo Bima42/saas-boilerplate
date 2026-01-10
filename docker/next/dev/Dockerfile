@@ -14,14 +14,14 @@ WORKDIR /home/next/app
 
 # Copy package files and install dependencies
 # This leverages Docker's layer caching
-COPY --chown=next:next ./framae/package*.json ./
+COPY --chown=next:next ./app/package*.json ./
 RUN npm install
 
 # Switch to the non-root user
 USER next
 
 # Copy the rest of the application code
-COPY --chown=next:next ./framae/ /home/next/app/
+COPY --chown=next:next ./app/ /home/next/app/
 
 # Copy the entrypoint script and make it executable
 COPY --chown=next:next ./docker/next/dev/entrypoint.sh /entrypoint
