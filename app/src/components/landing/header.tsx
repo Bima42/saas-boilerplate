@@ -23,7 +23,8 @@ const navLinks = [
     { title: 'Features', href: '#features' },
     { title: 'Pricing', href: '#pricing' },
     { title: 'Testimonials', href: '#testimonials' },
-    { title: 'FAQ', href: '#faq' }
+    { title: 'FAQ', href: '#faq' },
+    { title: 'Blog', href: '/blog' }
 ];
 
 export function Header() {

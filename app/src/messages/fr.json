@@ -19,6 +19,16 @@
             "googleError": "Échec de la connexion avec Google"
         }
     },
+    "Blog": {
+        "title": "Dernières Mises à Jour",
+        "subtitle": "Réflexions, stratégies et annonces.",
+        "noPosts": "Aucun article trouvé.",
+        "readMore": "Lire la suite",
+        "noImage": "Aucune image",
+        "noDescription": "Aucune description disponible.",
+        "rawContent": "Données brutes (En attente du moteur de rendu) :",
+        "minRead": "min de lecture"
+    },
     "Hero": {
         "title": "Un vrai modèle pour <strike>vibecoder</strike> <highlight>développeurs</highlight>",
         "subtitle": "Construisez votre SaaS en quelques jours",

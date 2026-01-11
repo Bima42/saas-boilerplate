@@ -19,6 +19,16 @@
             "googleError": "Failed to sign in with Google"
         }
     },
+    "Blog": {
+        "title": "Latest Updates",
+        "subtitle": "Thoughts, strategies, and announcements.",
+        "noPosts": "No posts found.",
+        "readMore": "Read more",
+        "noImage": "No Image",
+        "noDescription": "No description available.",
+        "rawContent": "Raw Content Data (Waiting for Renderer):",
+        "minRead": "min read"
+    },
     "Hero": {
         "title": "Real boilerplate for <strike>vibecoder</strike> <highlight>devs</highlight>",
         "subtitle": "Build your SaaS in just a few days",
