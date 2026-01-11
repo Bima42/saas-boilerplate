@@ -32,7 +32,7 @@
     "Hero": {
         "title": "Un vrai modèle pour <strike>vibecoder</strike> <highlight>développeurs</highlight>",
         "subtitle": "Construisez votre SaaS en quelques jours",
-        "badge": "Vient de sortir v1.0.0",
+        "badge": "Released v1.0.0",
         "description": "Boilerplate SaaS Next.js open-source. Authentification, Stripe, i18n et Shadcn UI prêts à l'emploi. Arrêtez de configurer, commencez à livrer.",
         "cta": "Commencer",
         "demo": "Voir la démo"

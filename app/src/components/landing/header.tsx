@@ -88,7 +88,7 @@ function DesktopNav() {
             <NavigationMenuList>
                 {navLinks.map((link) => (
                     <NavigationMenuItem key={link.title}>
-                        <Link href={link.href} legacyBehavior passHref>
+                        <Link href={link.href}>
                             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                                 {link.title}
                             </NavigationMenuLink>
