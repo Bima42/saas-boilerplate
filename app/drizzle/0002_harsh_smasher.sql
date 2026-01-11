@@ -1,0 +1,1 @@
+ALTER TABLE "user" ADD COLUMN "has_purchased" boolean DEFAULT false NOT NULL;

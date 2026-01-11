@@ -4,7 +4,7 @@ import { getStripe } from '@/lib/stripe';
 import { env } from '@/config/env';
 import type Stripe from 'stripe';
 import { insertCompletedPurchase } from '@/server/services/purchase';
-import { updateUserStripeCustomerId } from '@/server/services/user';
+import { updateUser } from '@/server/services/user';
 
 export async function POST(req: Request) {
     const body = await req.text();
@@ -24,6 +24,7 @@ export async function POST(req: Request) {
             case 'checkout.session.completed': {
                 const session = event.data.object as Stripe.Checkout.Session;
 
+                // We need the userId to link the purchase.
                 // We will pass this in 'metadata' when creating the session.
                 const userId = session.metadata?.userId;
                 console.log(`Processing checkout.session.completed for userId: ${userId}`);
@@ -34,13 +35,15 @@ export async function POST(req: Request) {
                 }
 
                 if (session.customer && typeof session.customer === 'string') {
-                    await updateUserStripeCustomerId({ userId, stripeCustomerId: session.customer });
+                    await updateUser({ userId, updates: { stripeCustomerId: session.customer } });
                 }
 
                 console.log(`Session ID: ${session.id}`);
 
                 // onConflictDoNothing to prevent duplicate inserts if Stripe retries the webhook
                 await insertCompletedPurchase({ userId, session });
+                await updateUser({ userId, updates: { hasPurchased: true } });
+
                 break;
             }
 

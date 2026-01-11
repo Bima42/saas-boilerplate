@@ -15,6 +15,13 @@
       "when": 1765962149858,
       "tag": "0001_slow_thena",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1768163224046,
+      "tag": "0002_harsh_smasher",
+      "breakpoints": true
     }
   ]
 }

@@ -3,7 +3,7 @@ import { getStripe } from '@/lib/stripe';
 import { env } from '@/config/env';
 import { TRPCError } from '@trpc/server';
 import { getUserCompletedPurchase } from '@/server/services/purchase';
-import { getUserById, updateUserStripeCustomerId } from '@/server/services/user';
+import { getUserById, updateUser } from '@/server/services/user';
 
 export const stripeRouter = createTRPCRouter({
     createCheckoutSession: protectedProcedure.mutation(async ({ ctx }) => {
@@ -36,7 +36,7 @@ export const stripeRouter = createTRPCRouter({
             });
             customerId = customer.id;
 
-            await updateUserStripeCustomerId({ userId: dbUser.id, stripeCustomerId: customerId });
+            await updateUser({ userId: dbUser.id, updates: { stripeCustomerId: customerId } });
         }
 
         const session = await getStripe().checkout.sessions.create({
