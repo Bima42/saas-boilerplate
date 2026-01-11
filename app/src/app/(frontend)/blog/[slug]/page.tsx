@@ -1,7 +1,7 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
 import { getPayloadClient } from '@/lib/payload';
-import { getTranslations } from 'next-intl/server';
+import { RichText } from '@/components/blog/rich-text';
 
 interface Props {
     params: Promise<{ slug: string }>;
@@ -21,14 +21,14 @@ export async function generateStaticParams() {
 export default async function BlogPost({ params }: Props) {
     const { slug } = await params;
     const payload = await getPayloadClient();
-    const t = await getTranslations('Blog');
 
     const result = await payload.find({
         collection: 'posts',
         where: {
             slug: { equals: slug }
         },
-        limit: 1
+        limit: 1,
+        depth: 2
     });
 
     const post = result.docs[0];
@@ -47,10 +47,7 @@ export default async function BlogPost({ params }: Props) {
             </header>
 
             <div className="prose prose-neutral dark:prose-invert max-w-none">
-                <div className="p-4 bg-muted rounded-md">
-                    <p className="font-mono text-xs text-muted-foreground mb-2">{t('rawContent')}</p>
-                    <pre className="overflow-auto text-xs">{JSON.stringify(post.content || post, null, 2)}</pre>
-                </div>
+                {post.content && <RichText data={post.content} />}
             </div>
         </article>
     );

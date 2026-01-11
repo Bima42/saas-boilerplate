@@ -10,7 +10,6 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
             <header className="border-b border-border bg-card">
                 <div className="max-w-4xl mx-auto px-4 py-6 flex items-center gap-4">
                     <SimpleButton
-                        text={t('back')}
                         icon={ArrowLeft}
                         href="/"
                         iconClassName="text-muted-foreground hover:text-foreground transition-colors"
