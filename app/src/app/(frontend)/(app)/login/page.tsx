@@ -14,6 +14,7 @@ import { Separator } from '@/components/ui/separator';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { authClient } from '@/lib/better-auth/auth-client';
 import { GoogleLogo } from '@/components/login/google-logo';
+import { Logo } from '@/components/logo';
 
 export default function LoginPage() {
     const t = useTranslations('Auth');
@@ -78,8 +79,7 @@ export default function LoginPage() {
                 <div className="relative flex flex-col items-center justify-center p-8 outline-0 sm:outline-2 outline-border/40 dark:outline-border/80 outline-offset-0.5">
                     <div className="w-full max-w-sm relative z-10">
                         <div className="flex items-center gap-2 font-bold text-xl mb-8">
-                            <div className="w-6 h-6 bg-primary rounded-md"></div>
-                            <span>Boilerplate</span>
+                            <Logo />
                         </div>
 
                         {isEmailSent ? (
