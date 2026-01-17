@@ -41,8 +41,8 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/drizzle ./drizzle
 COPY --from=builder --chown=nextjs:nodejs /app/migrate.js ./migrate.js
 
-COPY --chown=nextjs:nodejs ./docker/next/prod/entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+COPY --chown=nextjs:nodejs ./docker/next/prod/entrypoint /entrypoint
+RUN chmod +x /entrypoint
 
 USER nextjs
 
@@ -50,4 +50,4 @@ EXPOSE 3000
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint"]
