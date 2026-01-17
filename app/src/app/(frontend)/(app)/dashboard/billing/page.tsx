@@ -50,8 +50,8 @@ export default function BillingPage() {
 
     if (isStatusLoading) {
         return (
-            <div className="min-h-screen bg-muted/30 py-10 px-4 flex justify-center">
-                <Card className="w-full max-w-3xl">
+            <div className="min-h-screen py-10 px-4 flex justify-center">
+                <Card className="w-full max-w-5xl">
                     <CardHeader>
                         <Skeleton className="h-8 w-48 mb-2" />
                         <Skeleton className="h-4 w-64" />
@@ -67,8 +67,8 @@ export default function BillingPage() {
     const hasAccess = statusData?.hasAccess;
 
     return (
-        <div className="min-h-screen bg-muted/30 py-10 px-4">
-            <div className="max-w-3xl mx-auto space-y-6">
+        <div className="min-h-screen py-10 px-4">
+            <div className="max-w-5xl mx-auto space-y-6">
                 {/* Header */}
                 <div className="flex items-center gap-4">
                     <Button variant="ghost" size="icon" onClick={() => router.push('/dashboard')}>

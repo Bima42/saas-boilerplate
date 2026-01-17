@@ -191,5 +191,16 @@
         "connectionError": "Connection Error",
         "secureChannel": "Authenticated secure channel active",
         "connecting": "Connecting..."
+    },
+    "UserMenu": {
+        "upgrade": "Upgrade to Pro",
+        "account": "Account",
+        "billing": "Billing",
+        "notifications": "Notifications",
+        "theme": "Theme",
+        "themeDark": "Dark",
+        "themeLight": "Light",
+        "language": "Language",
+        "logout": "Log out"
     }
 }

@@ -191,5 +191,16 @@
         "connectionError": "Erreur de connexion",
         "secureChannel": "Canal sécurisé authentifié actif",
         "connecting": "Connexion en cours..."
+    },
+    "UserMenu": {
+        "upgrade": "Mettre à niveau",
+        "billing": "Facturation",
+        "account": "Compte",
+        "notifications": "Notifications",
+        "theme": "Thème",
+        "language": "Langue",
+        "logout": "Se déconnecter",
+        "themeDark": "Sombre",
+        "themeLight": "Clair"
     }
 }

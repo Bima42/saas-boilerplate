@@ -38,7 +38,7 @@ export default function DashboardPage() {
 
     if (isSessionLoading || (session && isTrpcLoading)) {
         return (
-            <div className="min-h-screen bg-muted/30 p-8">
+            <div className="min-h-screen p-8">
                 <div className="max-w-5xl mx-auto space-y-6">
                     <div className="flex justify-between items-center">
                         <Skeleton className="h-10 w-48" />
@@ -54,7 +54,7 @@ export default function DashboardPage() {
     }
 
     return (
-        <div className="min-h-screen bg-muted/30 py-10 px-4">
+        <div className="h-full w-full py-8 px-4">
             <div className="max-w-5xl mx-auto space-y-8">
                 {/* Header */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
