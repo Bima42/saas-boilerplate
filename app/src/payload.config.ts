@@ -38,8 +38,9 @@ export default buildConfig({
         pool: {
             connectionString: env.DATABASE_URL
         },
-        migrationDir: path.resolve(dirname, 'payload_migrations'),
-        push: false // WARNING: This force us to run migrations manually
+        migrationDir: path.resolve(dirname, 'payload_migrations')
+        // IMPORTANT: Uncomment the following line to disable automatic migrations
+        // push: false
     }),
     sharp,
     typescript: {
