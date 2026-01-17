@@ -22,7 +22,7 @@ export const env = createEnv({
         STRIPE_PRICE_ID: z.string().min(1)
     },
     client: {
-        NEXT_PUBLIC_APP_URL: z.string().url()
+        NEXT_PUBLIC_APP_URL: z.url()
     },
     runtimeEnv: {
         // Server

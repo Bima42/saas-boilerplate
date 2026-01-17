@@ -30,7 +30,7 @@
         "minRead": "min read"
     },
     "Hero": {
-        "title": "Real boilerplate for <strike>vibecoder</strike> <highlight>devs</highlight>",
+        "title": "Real boilerplate for <strike>vibecoders</strike> <highlight>devs</highlight>",
         "subtitle": "Build your SaaS in just a few days",
         "badge": "Just released v1.0.0",
         "description": "Open-source Next.js SaaS boilerplate. Authentication, Stripe, i18n, and Shadcn UI ready to go. Stop configuring, start shipping.",
@@ -157,27 +157,39 @@
     },
     "Billing": {
         "title": "Billing & Plans",
-        "subtitle": "Manage your access and billing details",
-        "success": "Payment successful! You now have lifetime access.",
-        "redirectingPortal": "Redirecting to billing portal ...",
-        "backToDashboard": "← Back to Dashboard",
-        "hasAccess": "You have unlocked all premium features forever. Thank you for your support!",
-        "noAccess": "Upgrade to the Pro plan to unlock unlimited projects, advanced analytics, and priority support.",
+        "subtitle": "Manage your subscription and billing information.",
+        "success": "Payment successful! Your account has been upgraded.",
+        "loading": "Loading billing information...",
+        "lifetimeAccess": "Lifetime Access",
         "freePlan": "Free Plan",
-        "lifetimeAccess": "Lifetime Pro Access",
+        "hasAccess": "You have full access to all features.",
+        "noAccess": "Upgrade to unlock all features.",
         "unlimitedProjects": "Unlimited Projects",
         "prioritySupport": "Priority Support",
-        "loading": "Loading billing info...",
-        "manageBilling": "Manage Billing",
+        "redirectingPortal": "Redirecting to billing portal...",
+        "oneTimePayment": "One-time payment",
         "getAccess": "Get Lifetime Access",
         "securePayment": "Secure payment via Stripe",
-        "lifetimeLicense": "Lifetime License",
-        "viewInvoices": "View invoices & receipts",
-        "oneTimePayment": "One-time payment",
+        "viewInvoices": "View invoices & history",
+        "manageBilling": "Manage Billing",
         "error": {
-            "checkout": "Fail to initiate your session. Try again later.",
-            "payment": "Payment failed. Please try again or contact support.",
-            "portal": "Fail to open your customer portal. Please try again or contact support."
+            "checkout": "Failed to start checkout session.",
+            "portal": "Failed to open billing portal."
         }
+    },
+    "Dashboard": {
+        "title": "Dashboard",
+        "subtitle": "Manage your account and view system status.",
+        "billing": "Billing",
+        "signOut": "Sign Out",
+        "signOutSuccess": "Signed out successfully",
+        "userProfile": "User Profile",
+        "userId": "User ID",
+        "role": "Role",
+        "roleUser": "User",
+        "systemHealth": "System Health (tRPC)",
+        "connectionError": "Connection Error",
+        "secureChannel": "Authenticated secure channel active",
+        "connecting": "Connecting..."
     }
 }

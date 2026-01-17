@@ -36,6 +36,7 @@ const t = initTRPC.context<typeof createTRPCContext>().create({
  * Reusable middleware that enforces authentication
  */
 const isAuthenticated = t.middleware(({ ctx, next }) => {
+    console.log('Session in middleware:', ctx.session);
     if (!ctx.session) {
         throw new TRPCError({ code: 'UNAUTHORIZED' });
     }

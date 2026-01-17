@@ -14,6 +14,7 @@ export const testRouter = createTRPCRouter({
             };
         }),
     getSecretMessage: protectedProcedure.query(({ ctx }) => {
+        console.log('User info in protected procedure:', ctx.user);
         return { message: `Welcome back, ${ctx.user.email}!` };
     })
 });

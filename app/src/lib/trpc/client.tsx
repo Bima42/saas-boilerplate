@@ -9,7 +9,7 @@ import superjson from 'superjson';
 import { env } from '@/config/env';
 import { AppRouter } from '@/server/api/root';
 
-export const trpc = createTRPCReact<AppRouter>();
+export const api = createTRPCReact<AppRouter>();
 
 let clientQueryClientSingleton: QueryClient;
 function getQueryClient() {
@@ -22,11 +22,10 @@ function getQueryClient() {
 }
 
 function getUrl() {
-    const base = (() => {
-        if (env.NEXT_PUBLIC_APP_URL) return `https://${env.NEXT_PUBLIC_APP_URL}`;
-        return 'http://localhost:3000';
-    })();
-    return `${base}/api/trpc`;
+    const url = env.NEXT_PUBLIC_APP_URL.startsWith('http')
+        ? env.NEXT_PUBLIC_APP_URL
+        : `https://${env.NEXT_PUBLIC_APP_URL}`;
+    return `${url}/api/trpc`;
 }
 
 export function TRPCProvider(
@@ -37,7 +36,7 @@ export function TRPCProvider(
     const queryClient = getQueryClient();
 
     const [trpcClient] = useState(() =>
-        trpc.createClient({
+        api.createClient({
             links: [
                 httpBatchLink({
                     transformer: superjson,
@@ -48,8 +47,8 @@ export function TRPCProvider(
     );
 
     return (
-        <trpc.Provider client={trpcClient} queryClient={queryClient}>
+        <api.Provider client={trpcClient} queryClient={queryClient}>
             <QueryClientProvider client={queryClient}>{props.children}</QueryClientProvider>
-        </trpc.Provider>
+        </api.Provider>
     );
 }

@@ -30,7 +30,7 @@
         "minRead": "min de lecture"
     },
     "Hero": {
-        "title": "Un vrai modèle pour <strike>vibecoder</strike> <highlight>développeurs</highlight>",
+        "title": "Un vrai modèle pour <strike>vibecodeurs</strike> <highlight>développeurs</highlight>",
         "subtitle": "Construisez votre SaaS en quelques jours",
         "badge": "Released v1.0.0",
         "description": "Boilerplate SaaS Next.js open-source. Authentification, Stripe, i18n et Shadcn UI prêts à l'emploi. Arrêtez de configurer, commencez à livrer.",
@@ -156,28 +156,40 @@
         "back": "Retour"
     },
     "Billing": {
-        "title": "Facturation et Forfaits",
-        "subtitle": "Gérez votre accès et vos détails de facturation",
-        "success": "Paiement réussi ! Vous avez maintenant un accès à vie.",
-        "redirectingPortal": "Redirection vers le portail de facturation...",
-        "backToDashboard": "← Retour au tableau de bord",
-        "hasAccess": "Vous avez débloqué toutes les fonctionnalités premium pour toujours. Merci pour votre soutien !",
-        "noAccess": "Passez au forfait Pro pour débloquer des projets illimités, des analyses avancées et un support prioritaire.",
-        "freePlan": "Forfait Gratuit",
-        "lifetimeAccess": "Accès Pro à Vie",
-        "unlimitedProjects": "Projets Illimités",
-        "prioritySupport": "Support Prioritaire",
-        "loading": "Chargement des informations de facturation...",
-        "manageBilling": "Gérer la facturation",
+        "title": "Facturation et Plans",
+        "subtitle": "Gérez votre abonnement et vos informations de facturation.",
+        "success": "Paiement réussi ! Votre compte a été mis à niveau.",
+        "loading": "Chargement des informations...",
+        "lifetimeAccess": "Accès à vie",
+        "freePlan": "Plan Gratuit",
+        "hasAccess": "Vous avez un accès complet à toutes les fonctionnalités.",
+        "noAccess": "Mettez à niveau pour tout débloquer.",
+        "unlimitedProjects": "Projets illimités",
+        "prioritySupport": "Support prioritaire",
+        "redirectingPortal": "Redirection vers le portail...",
+        "oneTimePayment": "Paiement unique",
         "getAccess": "Obtenir l'accès à vie",
         "securePayment": "Paiement sécurisé via Stripe",
-        "lifetimeLicense": "Licence à Vie",
-        "viewInvoices": "Voir les factures et reçus",
-        "oneTimePayment": "Paiement unique",
+        "viewInvoices": "Voir les factures et l'historique",
+        "manageBilling": "Gérer la facturation",
         "error": {
-            "checkout": "Échec de l'initialisation de votre session. Réessayez plus tard.",
-            "payment": "Le paiement a échoué. Veuillez réessayer ou contacter le support.",
-            "portal": "Échec de l'ouverture de votre portail client. Veuillez réessayer ou contacter le support."
+            "checkout": "Échec du démarrage du paiement.",
+            "portal": "Échec de l'ouverture du portail."
         }
+    },
+    "Dashboard": {
+        "title": "Tableau de bord",
+        "subtitle": "Gérez votre compte et l'état du système.",
+        "billing": "Facturation",
+        "signOut": "Se déconnecter",
+        "signOutSuccess": "Déconnexion réussie",
+        "userProfile": "Profil Utilisateur",
+        "userId": "ID Utilisateur",
+        "role": "Rôle",
+        "roleUser": "Utilisateur",
+        "systemHealth": "État du Système (tRPC)",
+        "connectionError": "Erreur de connexion",
+        "secureChannel": "Canal sécurisé authentifié actif",
+        "connecting": "Connexion en cours..."
     }
 }
