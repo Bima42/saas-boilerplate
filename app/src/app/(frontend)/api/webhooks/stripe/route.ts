@@ -27,8 +27,6 @@ export async function POST(req: Request) {
                 // We need the userId to link the purchase.
                 // We will pass this in 'metadata' when creating the session.
                 const userId = session.metadata?.userId;
-                console.log(`Processing checkout.session.completed for userId: ${userId}`);
-
                 if (!userId) {
                     console.error('Missing userId in session metadata');
                     return new NextResponse('Missing metadata', { status: 400 });
@@ -37,8 +35,6 @@ export async function POST(req: Request) {
                 if (session.customer && typeof session.customer === 'string') {
                     await updateUser({ userId, updates: { stripeCustomerId: session.customer } });
                 }
-
-                console.log(`Session ID: ${session.id}`);
 
                 // onConflictDoNothing to prevent duplicate inserts if Stripe retries the webhook
                 await insertCompletedPurchase({ userId, session });

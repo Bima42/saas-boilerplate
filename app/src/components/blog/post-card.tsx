@@ -19,7 +19,6 @@ export function PostCard({ post }: PostCardProps) {
     const { title, description, slug, coverImage, tags, readTime } = post;
 
     const image = coverImage as Media | undefined;
-    console.log(image);
 
     return (
         <Card className="shadow-none overflow-hidden rounded-md py-0 flex flex-col h-full">
