@@ -2,9 +2,8 @@
 
 import * as React from 'react';
 import Link from 'next/link';
-import { Menu } from 'lucide-react';
+import { Menu, Shield } from 'lucide-react';
 
-// UI Components
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import {
@@ -19,6 +18,17 @@ import { LanguageSwitcher } from '@/components/ui/language-switcher';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { LoginButton } from '@/components/login/login-button';
 import { Logo } from '@/components/logo';
+
+function AdminButton() {
+    return (
+        <Button asChild size="sm" className="gap-2" variant="outline">
+            <Link href="/admin/login">
+                <Shield className="w-4 h-4" />
+                Admin
+            </Link>
+        </Button>
+    );
+}
 
 const navLinks = [
     { title: 'Features', href: '#features' },
@@ -47,6 +57,7 @@ export function Header() {
                         <LanguageSwitcher />
                         <div className="h-6 w-px bg-border mx-2" />
                         <LoginButton />
+                        <AdminButton />
                     </div>
 
                     {/* Mobile Menu Trigger */}
@@ -65,11 +76,9 @@ function DesktopNav() {
             <NavigationMenuList>
                 {navLinks.map((link) => (
                     <NavigationMenuItem key={link.title}>
-                        <Link href={link.href}>
-                            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                                {link.title}
-                            </NavigationMenuLink>
-                        </Link>
+                        <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                            <Link href={link.href}>{link.title}</Link>
+                        </NavigationMenuLink>
                     </NavigationMenuItem>
                 ))}
             </NavigationMenuList>
@@ -120,6 +129,7 @@ function MobileNav() {
                         </div>
                         <div className="h-px bg-border" />
                         <LoginButton />
+                        <AdminButton />
                     </div>
                 </div>
             </SheetContent>

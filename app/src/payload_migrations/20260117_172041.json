@@ -331,6 +331,42 @@
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
+        },
+        "sizes_card_url": {
+          "name": "sizes_card_url",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "sizes_card_width": {
+          "name": "sizes_card_width",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "sizes_card_height": {
+          "name": "sizes_card_height",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "sizes_card_mime_type": {
+          "name": "sizes_card_mime_type",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "sizes_card_filesize": {
+          "name": "sizes_card_filesize",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "sizes_card_filename": {
+          "name": "sizes_card_filename",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
         }
       },
       "indexes": {
@@ -384,6 +420,21 @@
           "columns": [
             {
               "expression": "sizes_thumbnail_filename",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "media_sizes_card_sizes_card_filename_idx": {
+          "name": "media_sizes_card_sizes_card_filename_idx",
+          "columns": [
+            {
+              "expression": "sizes_card_filename",
               "isExpression": false,
               "asc": true,
               "nulls": "last"
@@ -499,6 +550,12 @@
           "type": "varchar",
           "primaryKey": false,
           "notNull": true
+        },
+        "description": {
+          "name": "description",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
         },
         "slug": {
           "name": "slug",
@@ -1269,6 +1326,6 @@
     "tables": {},
     "columns": {}
   },
-  "id": "2c408420-cbad-45d6-8697-228bb688204f",
+  "id": "2e6520e4-c2f6-4752-b156-7bcec452bd3b",
   "prevId": "00000000-0000-0000-0000-000000000000"
 }

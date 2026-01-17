@@ -42,7 +42,13 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"sizes_thumbnail_height" numeric,
   	"sizes_thumbnail_mime_type" varchar,
   	"sizes_thumbnail_filesize" numeric,
-  	"sizes_thumbnail_filename" varchar
+  	"sizes_thumbnail_filename" varchar,
+  	"sizes_card_url" varchar,
+  	"sizes_card_width" numeric,
+  	"sizes_card_height" numeric,
+  	"sizes_card_mime_type" varchar,
+  	"sizes_card_filesize" numeric,
+  	"sizes_card_filename" varchar
   );
   
   CREATE TABLE "posts_tags" (
@@ -55,6 +61,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE TABLE "posts" (
   	"id" serial PRIMARY KEY NOT NULL,
   	"title" varchar NOT NULL,
+  	"description" varchar,
   	"slug" varchar NOT NULL,
   	"cover_image_id" integer,
   	"content" jsonb,
@@ -129,6 +136,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX "media_created_at_idx" ON "media" USING btree ("created_at");
   CREATE UNIQUE INDEX "media_filename_idx" ON "media" USING btree ("filename");
   CREATE INDEX "media_sizes_thumbnail_sizes_thumbnail_filename_idx" ON "media" USING btree ("sizes_thumbnail_filename");
+  CREATE INDEX "media_sizes_card_sizes_card_filename_idx" ON "media" USING btree ("sizes_card_filename");
   CREATE INDEX "posts_tags_order_idx" ON "posts_tags" USING btree ("_order");
   CREATE INDEX "posts_tags_parent_id_idx" ON "posts_tags" USING btree ("_parent_id");
   CREATE UNIQUE INDEX "posts_slug_idx" ON "posts" USING btree ("slug");
