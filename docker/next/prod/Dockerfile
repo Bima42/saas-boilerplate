@@ -15,6 +15,10 @@ ARG NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 ENV SKIP_ENV_VALIDATION=1
 ENV NODE_ENV=production
 
+# Set placeholder environment variables for build
+ENV BETTER_AUTH_SECRET="build_placeholder"
+ENV PAYLOAD_SECRET="build_placeholder"
+
 RUN npm run build
 
 # Compile migration script to standalone JS
@@ -41,7 +45,6 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/drizzle ./drizzle
 COPY --from=builder --chown=nextjs:nodejs /app/migrate.js ./migrate.js
 
-RUN ls -R / > /tmp/file_structure.txt && cat /tmp/file_structure.txt
 COPY --chown=nextjs:nodejs ./docker/next/prod/entrypoint /entrypoint
 RUN chmod +x /entrypoint
 
