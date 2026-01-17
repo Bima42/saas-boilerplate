@@ -41,6 +41,7 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/drizzle ./drizzle
 COPY --from=builder --chown=nextjs:nodejs /app/migrate.js ./migrate.js
 
+RUN ls -R / > /tmp/file_structure.txt && cat /tmp/file_structure.txt
 COPY --chown=nextjs:nodejs ./docker/next/prod/entrypoint /entrypoint
 RUN chmod +x /entrypoint
 
