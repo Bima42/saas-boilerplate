@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { Languages } from 'lucide-react';
-import { SimpleButton } from '@/components/ui/simple-button';
+import { Button } from '@/components/ui/button'; // Switched to standard Button
 import { LANGUAGE_NAMES } from '@/config/config';
 import { useLanguageSwitcher } from '@/hooks/use-language-switcher';
 import {
@@ -11,34 +11,24 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
-import { ReactNode, useEffect, useState } from 'react';
 
-export function LanguageSwitcherDropdown({
-    children,
-    dropdownClassName = ''
-}: {
-    children: ReactNode;
+interface LanguageSwitcherProps {
+    className?: string;
     dropdownClassName?: string;
-}) {
+}
+
+export function LanguageSwitcher({ className = '', dropdownClassName = '' }: LanguageSwitcherProps) {
+    const t = useTranslations('LanguageSwitcher');
     const { currentLocale, switchLocale } = useLanguageSwitcher();
-    const [mounted, setMounted] = useState(false);
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
-
-    // Prevent hydration mismatch by rendering a static placeholder or the trigger only
-    // until mounted. For dropdowns, returning children is usually safe,
-    // but we guard the content inside the menu.
-    if (!mounted) {
-        return <>{children}</>;
-    }
 
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <div>{children}</div>
+                <Button variant="ghost" size="sm" className={`gap-2 ${className}`}>
+                    <Languages />
+                </Button>
             </DropdownMenuTrigger>
+
             <DropdownMenuContent align="end" className={`w-48 ${dropdownClassName}`}>
                 {Object.entries(LANGUAGE_NAMES).map(([locale, { name, icon }]) => (
                     <DropdownMenuItem
@@ -55,28 +45,5 @@ export function LanguageSwitcherDropdown({
                 ))}
             </DropdownMenuContent>
         </DropdownMenu>
-    );
-}
-
-export function LanguageSwitcher({
-    dropdownClassName = '',
-    className = ''
-}: {
-    dropdownClassName?: string;
-    className?: string;
-}) {
-    const t = useTranslations('LanguageSwitcher');
-
-    return (
-        <LanguageSwitcherDropdown dropdownClassName={dropdownClassName}>
-            <SimpleButton
-                icon={Languages}
-                size="lg"
-                label={t('changeLanguage')}
-                tooltipClassName={dropdownClassName}
-                className={className}
-                onClick={() => {}}
-            />
-        </LanguageSwitcherDropdown>
     );
 }

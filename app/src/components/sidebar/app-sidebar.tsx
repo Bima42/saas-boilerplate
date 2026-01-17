@@ -5,7 +5,6 @@ import {
     AudioWaveform,
     BookOpen,
     Bot,
-    Command,
     Frame,
     GalleryVerticalEnd,
     Map,
@@ -24,7 +23,7 @@ const data = {
     user: {
         name: 'boilerplate',
         email: 'b@example.com',
-        avatar: '/avatars/shadcn.jpg'
+        avatar: '/avatars/avatar.jpg'
     },
     teams: [
         {

@@ -1,4 +1,4 @@
-import { buildConfig, CollectionConfig } from 'payload';
+import { buildConfig } from 'payload';
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import sharp from 'sharp';

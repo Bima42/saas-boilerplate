@@ -16,7 +16,7 @@ import { useRouter } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import { useTranslations } from 'next-intl';
 import { authClient } from '@/lib/better-auth/auth-client';
-import { LANGUAGE_NAMES } from '@/config/config';
+import { LANGUAGE_NAMES, LanguageCode } from '@/config/config';
 import { useLanguageSwitcher } from '@/hooks/use-language-switcher';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -148,7 +148,7 @@ export function NavUser({
                                         {Object.entries(LANGUAGE_NAMES).map(([locale, { name, icon }]) => (
                                             <DropdownMenuItem
                                                 key={locale}
-                                                onClick={() => switchLocale(locale as any)}
+                                                onClick={() => switchLocale(locale as LanguageCode)}
                                                 className="justify-between"
                                             >
                                                 <span className="flex items-center gap-2">

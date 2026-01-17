@@ -1,6 +1,7 @@
 {
     "Auth": {
         "login": "Se connecter",
+        "dashboard": "Tableau de bord",
         "title": "Connectez-vous à votre compte",
         "subtitle": "Bon retour ! Veuillez entrer vos détails.",
         "google": "Continuer avec Google",

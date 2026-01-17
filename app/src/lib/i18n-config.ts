@@ -1,6 +1,7 @@
 import { getRequestConfig } from 'next-intl/server';
 import { cookies, headers } from 'next/headers';
 import { locales, defaultLocale } from '@/config/locales';
+import { LanguageCode } from '@/config/config';
 
 const COOKIE_NAME = 'NEXT_LOCALE';
 
@@ -11,7 +12,7 @@ async function extractLanguageFromHeader(): Promise<string | null> {
     if (!acceptLanguage) return null;
 
     const primaryLanguage = acceptLanguage.split(',')[0].split('-')[0].toLowerCase();
-    return locales.includes(primaryLanguage as any) ? primaryLanguage : null;
+    return locales.includes(primaryLanguage as LanguageCode) ? primaryLanguage : null;
 }
 
 export default getRequestConfig(async () => {
@@ -21,7 +22,7 @@ export default getRequestConfig(async () => {
     const browserLocale = !localeCookie ? await extractLanguageFromHeader() : null;
 
     const locale = localeCookie || browserLocale || defaultLocale;
-    const safeLocale = locales.includes(locale as any) ? locale : defaultLocale;
+    const safeLocale = locales.includes(locale as LanguageCode) ? locale : defaultLocale;
 
     return {
         locale: safeLocale,

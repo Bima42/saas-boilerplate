@@ -33,7 +33,7 @@ export const auth = betterAuth({
     },
     plugins: [
         magicLink({
-            sendMagicLink: async ({ email, token, url }) => {
+            sendMagicLink: async ({ email, url }) => {
                 try {
                     await getResend().emails.send({
                         from: 'Boilerplate <onboarding@resend.dev>',

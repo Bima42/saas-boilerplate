@@ -1,4 +1,5 @@
-export const LANGUAGE_NAMES = {
+export type LanguageCode = 'en' | 'fr';
+export const LANGUAGE_NAMES: Record<LanguageCode, { name: string; icon: string }> = {
     en: {
         name: 'English',
         icon: '🇬🇧'

@@ -1,10 +1,8 @@
 import React from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { SimpleButton } from '@/components/ui/simple-button';
-import { useTranslations } from 'next-intl';
 
 export default function BlogLayout({ children }: { children: React.ReactNode }) {
-    const t = useTranslations('NavBar');
     return (
         <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
             <header className="border-b border-border bg-card">

@@ -1,6 +1,7 @@
 {
     "Auth": {
         "login": "Login",
+        "dashboard": "Dashboard",
         "title": "Log in to your account",
         "subtitle": "Welcome back! Please enter your details.",
         "google": "Continue with Google",
