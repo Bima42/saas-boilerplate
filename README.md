@@ -92,7 +92,7 @@ This project wouldn't exist without the incredible open-source community. A huge
 
 ---
 
-If you like this boilerplate, please consider giving it a star ⭐ on GitHub. It helps me know that this work is valuable to the community!
+If you like this boilerplate, please consider giving it a star ⭐. It helps me know that this work is valuable to the community!
 
 ---
 
