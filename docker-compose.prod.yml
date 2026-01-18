@@ -7,8 +7,6 @@ services:
         NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL}
         NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}
     restart: unless-stopped
-    ports:
-      - "3000:3000"
     env_file:
       - .env
     environment:
