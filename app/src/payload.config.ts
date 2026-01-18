@@ -7,6 +7,7 @@ import { fileURLToPath } from 'url';
 import { env } from '@/config/env';
 import { Media } from '@/payload_collections/media';
 import { Post } from '@/payload_collections/post';
+import { seoPlugin } from '@payloadcms/plugin-seo';
 // import { s3Storage } from '@payloadcms/storage-s3';
 
 const filename = fileURLToPath(import.meta.url);
@@ -45,7 +46,15 @@ export default buildConfig({
     sharp,
     typescript: {
         outputFile: path.resolve(dirname, 'payload-types.ts')
-    }
+    },
+    plugins: [
+        seoPlugin({
+            collections: ['posts'],
+            uploadsCollection: 'media',
+            generateTitle: ({ doc }) => `My SaaS | ${doc.title}`,
+            generateDescription: ({ doc }) => doc.description
+        })
+    ]
     // Uncomment the following to enable S3 / R2 storage for media uploads
     // plugins: [
     //     s3Storage({
