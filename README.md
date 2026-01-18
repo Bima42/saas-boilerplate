@@ -65,14 +65,25 @@ src/
 └── payload.config.ts     # CMS Configuration
 ```
 
-## Common Commands
+---
 
-| Command | Description |
-| :--- | :--- |
-| `npm run db:generate` | Generate SQL migrations from Drizzle schema changes. |
-| `npm run db:push` | Push schema changes directly to DB (Dev only). |
-| `docker compose exec app npx payload migrate:create` | Create a new CMS migration file. |
-| `docker compose exec app npx payload migrate` | Apply pending CMS migrations. |
+## Deploy in Production
+
+Since this project is fully Dockerized, you can technically host it anywhere (AWS, VPS, DigitalOcean). However, I have strong preferences when it comes to shipping without headaches.
+
+### The "Self-Hosted" Choice: Dokploy
+I personally use and love **[Dokploy](https://dokploy.com/)**. It gives you the Heroku/Vercel experience on your own VPS (Hetzner, AWS, etc.), giving you full control over your infrastructure and costs.
+
+If you are not comfortable with setting this up, I wrote a simple, bite-sized article to guide you through it:
+👉 **[How to deploy a Compose stack with Dokploy](https://tanguypauvret.me/blog/deploy-a-compose-with-dokploy)**
+
+You can also check the [official Dokploy documentation](https://docs.dokploy.com/), which is crystal clear.
+
+### The "Managed" Choice: Railway
+Before switching to self-hosting, I was a heavy user of **[Railway](https://railway.app/)**. It is a good platform that handles everything for you.
+
+While I prefer the full control Dokploy offers today, Railway is a fantastic alternative if you don't want to manage a server at all.
+*A tutorial to deploy this boilerplate on Railway is coming soon.*
 
 ---
 
