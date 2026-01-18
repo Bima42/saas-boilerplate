@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
+import { BackButton } from '@/components/back-button';
 
 export default function BillingPage() {
     const router = useRouter();
@@ -71,9 +72,7 @@ export default function BillingPage() {
             <div className="max-w-5xl mx-auto space-y-6">
                 {/* Header */}
                 <div className="flex items-center gap-4">
-                    <Button variant="ghost" size="icon" onClick={() => router.push('/dashboard')}>
-                        <ArrowLeft className="h-4 w-4" />
-                    </Button>
+                    <BackButton path={'/dashboard'} />
                     <div>
                         <h1 className="text-2xl font-bold tracking-tight">{t('title')}</h1>
                         <p className="text-muted-foreground text-sm">{t('subtitle')}</p>

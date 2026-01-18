@@ -3,9 +3,8 @@
 import { useRouter } from 'next/navigation';
 import { authClient } from '@/lib/better-auth/auth-client';
 import { api } from '@/lib/trpc/client';
-import { toast } from 'sonner';
 import { useTranslations } from 'next-intl';
-import { LogOut, CreditCard, User, Server, ShieldCheck, AlertCircle, Loader2 } from 'lucide-react';
+import { CreditCard, User, Server, ShieldCheck, AlertCircle, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -24,17 +23,6 @@ export default function DashboardPage() {
         enabled: !!session,
         retry: false
     });
-
-    const handleSignOut = async () => {
-        await authClient.signOut({
-            fetchOptions: {
-                onSuccess: () => {
-                    toast.success(t('signOutSuccess'));
-                    router.push('/login');
-                }
-            }
-        });
-    };
 
     if (isSessionLoading || (session && isTrpcLoading)) {
         return (
@@ -66,14 +54,6 @@ export default function DashboardPage() {
                         <Button variant="outline" onClick={() => router.push('/dashboard/billing')}>
                             <CreditCard className="mr-2 h-4 w-4" />
                             {t('billing')}
-                        </Button>
-                        <Button
-                            variant="ghost"
-                            onClick={handleSignOut}
-                            className="text-muted-foreground hover:text-destructive"
-                        >
-                            <LogOut className="mr-2 h-4 w-4" />
-                            {t('signOut')}
                         </Button>
                     </div>
                 </div>
