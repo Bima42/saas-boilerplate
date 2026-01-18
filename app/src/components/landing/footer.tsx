@@ -21,7 +21,7 @@ export default function Footer() {
             title: t('columns.resources'),
             links: [
                 { label: t('links.blog'), href: '/blog' },
-                { label: 'GitHub', href: 'https://github.com' },
+                { label: 'GitHub', href: 'https://github.com/Bima42/saas-boilerplate' },
                 { label: 'Discord', href: 'https://discord.com' }
             ]
         },
@@ -76,13 +76,13 @@ export default function Footer() {
 
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
                     <p>
-                        &copy; {new Date().getFullYear()} Boilerplate Inc. {t('rights')}
+                        &copy; {new Date().getFullYear()} - {t('madeWith')}
                     </p>
                     <div className="flex gap-4">
                         <Link href="#">
                             <Twitter className="h-5 w-5" />
                         </Link>
-                        <Link href="#">
+                        <Link href="https://github.com/Bima42/saas-boilerplate">
                             <Github className="h-5 w-5" />
                         </Link>
                         <Link href="#">

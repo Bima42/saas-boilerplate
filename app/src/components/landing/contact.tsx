@@ -9,12 +9,12 @@ export default function Contact() {
         {
             icon: Mail,
             key: 'email',
-            link: 'mailto:hello@saas-boilerplate.com'
+            link: 'mailto:tanpau.pro@gmail.com'
         },
         {
             icon: Github,
             key: 'github',
-            link: 'https://github.com'
+            link: 'https://github.com/Bima42/saas-boilerplate'
         },
         {
             icon: MessageCircle,

@@ -18,6 +18,7 @@ import { LanguageSwitcher } from '@/components/ui/language-switcher';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { LoginButton } from '@/components/login/login-button';
 import { Logo } from '@/components/logo';
+import GithubStars from '@/components/landing/github-stars';
 
 function AdminButton() {
     return (
@@ -58,6 +59,8 @@ export function Header() {
                         <div className="h-6 w-px bg-border mx-2" />
                         <LoginButton />
                         <AdminButton />
+                        <div className="h-6 w-px bg-border mx-2" />
+                        <GithubStars />
                     </div>
 
                     {/* Mobile Menu Trigger */}

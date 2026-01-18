@@ -65,6 +65,51 @@
             "description": "Emails transactionnels configurés avec React Email et Resend."
         }
     },
+    "Pricing": {
+        "title": "Nos Offres",
+        "subtitle": "Choisissez le plan adapté à vos besoins et commencez dès aujourd'hui",
+        "monthly": "Mensuel",
+        "yearly": "Annuel (Économisez {discount}%)",
+        "mostPopular": "Le plus populaire",
+        "perMonth": "/mois",
+        "cta": {
+            "start": "Commencer",
+            "advanced": "Choisir Avancé",
+            "premium": "Choisir Premium"
+        },
+        "plans": {
+            "starter": {
+                "name": "Starter",
+                "description": "Obtenez 20 portraits IA avec 2 styles uniques.",
+                "features": {
+                    "turnaround": "Délai de 5 heures",
+                    "portraits": "20 portraits IA",
+                    "styles": "Choix de 2 styles",
+                    "retouch": "2 crédits de retouche"
+                }
+            },
+            "advanced": {
+                "name": "Avancé",
+                "description": "Obtenez 50 portraits IA avec 5 styles uniques.",
+                "features": {
+                    "turnaround": "Délai de 3 heures",
+                    "portraits": "50 portraits IA",
+                    "styles": "Choix de 5 styles",
+                    "retouch": "5 crédits de retouche"
+                }
+            },
+            "premium": {
+                "name": "Premium",
+                "description": "Obtenez 100 portraits IA avec 10 styles uniques.",
+                "features": {
+                    "turnaround": "Délai de 1 heure",
+                    "portraits": "100 portraits IA",
+                    "styles": "Choix de 10 styles",
+                    "retouch": "10 crédits de retouche"
+                }
+            }
+        }
+    },
     "Testimonials": {
         "title": "Approuvé par les développeurs",
         "subtitle": "Open source et communautaire",
@@ -98,7 +143,7 @@
             },
             "3": {
                 "question": "Comment le déployer ?",
-                "answer": "Vous pouvez le déployer facilement sur Vercel, Netlify ou tout VPS supportant Node.js/Docker."
+                "answer": "Vous pouvez le déployer facilement sur Railway ou Dokploy."
             },
             "4": {
                 "question": "Offrez-vous du support ?",
@@ -113,12 +158,12 @@
         "email": {
             "title": "Email",
             "desc": "Pour partenariats ou demandes privées.",
-            "label": "hello@saas-boilerplate.com"
+            "label": "tanpau.pro@gmail.com"
         },
         "github": {
             "title": "GitHub",
-            "desc": "Signaler des bugs ou demander des fonctionnalités.",
-            "label": "Ouvrir une Issue"
+            "desc": "Signaler des bugs ou soutenir.",
+            "label": "Star le projet ♥️"
         },
         "community": {
             "title": "Communauté",
@@ -148,7 +193,7 @@
             "placeholder": "Entrez votre email",
             "button": "S'abonner"
         },
-        "rights": "Tous droits réservés."
+        "madeWith": "Fait pour toi, avec beaucoup de 🥜."
     },
     "LanguageSwitcher": {
         "changeLanguage": "Langue"

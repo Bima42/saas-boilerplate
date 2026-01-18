@@ -65,6 +65,51 @@
             "description": "Transactional emails setup with React Email and Resend."
         }
     },
+    "Pricing": {
+        "title": "Our Plans",
+        "subtitle": "Choose the plan that fits your needs and get started today",
+        "monthly": "Monthly",
+        "yearly": "Yearly (Save {discount}%)",
+        "mostPopular": "Most Popular",
+        "perMonth": "/month",
+        "cta": {
+            "start": "Get Started",
+            "advanced": "Get Advanced",
+            "premium": "Get Premium"
+        },
+        "plans": {
+            "starter": {
+                "name": "Starter",
+                "description": "Get 20 AI-generated portraits with 2 unique styles.",
+                "features": {
+                    "turnaround": "5 hours turnaround time",
+                    "portraits": "20 AI portraits",
+                    "styles": "Choice of 2 styles",
+                    "retouch": "2 retouch credits"
+                }
+            },
+            "advanced": {
+                "name": "Advanced",
+                "description": "Get 50 AI-generated portraits with 5 unique styles.",
+                "features": {
+                    "turnaround": "3 hours turnaround time",
+                    "portraits": "50 AI portraits",
+                    "styles": "Choice of 5 styles",
+                    "retouch": "5 retouch credits"
+                }
+            },
+            "premium": {
+                "name": "Premium",
+                "description": "Get 100 AI-generated portraits with 10 unique styles.",
+                "features": {
+                    "turnaround": "1-hour turnaround time",
+                    "portraits": "100 AI portraits",
+                    "styles": "Choice of 10 styles",
+                    "retouch": "10 retouch credits"
+                }
+            }
+        }
+    },
     "Testimonials": {
         "title": "Loved by Developers",
         "subtitle": "Open source and community driven",
@@ -98,7 +143,7 @@
             },
             "3": {
                 "question": "How do I deploy this?",
-                "answer": "You can deploy it easily on Vercel, Netlify, or any VPS that supports Node.js/Docker."
+                "answer": "You can deploy it easily on Railway or Dokploy."
             },
             "4": {
                 "question": "Do you offer support?",
@@ -113,12 +158,12 @@
         "email": {
             "title": "Email",
             "desc": "For partnerships or private inquiries.",
-            "label": "hello@saas-boilerplate.com"
+            "label": "tanpau.pro@gmail.com"
         },
         "github": {
             "title": "GitHub",
-            "desc": "Report bugs or request features.",
-            "label": "Open an Issue"
+            "desc": "Report bugs or come support.",
+            "label": "Star project ♥️"
         },
         "community": {
             "title": "Community",
@@ -148,7 +193,7 @@
             "placeholder": "Enter your email",
             "button": "Subscribe"
         },
-        "rights": "All rights reserved."
+        "madeWith": "Made for you, with lot of 🥜."
     },
     "LanguageSwitcher": {
         "changeLanguage": "Language"
