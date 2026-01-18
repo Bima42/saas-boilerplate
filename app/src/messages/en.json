@@ -139,7 +139,7 @@
             },
             "2": {
                 "question": "What is the tech stack?",
-                "answer": "It is built with Next.js 14 (App Router), Tailwind CSS, Shadcn UI, Prisma, and NextAuth."
+                "answer": "It is built with Next.js 15, Tailwind CSS, Shadcn UI, Prisma, and NextAuth."
             },
             "3": {
                 "question": "How do I deploy this?",

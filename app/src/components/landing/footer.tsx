@@ -4,6 +4,7 @@ import { Separator } from '@/components/ui/separator';
 import { Github, Twitter, Twitch } from 'lucide-react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
+import { Logo } from '@/components/logo';
 
 export default function Footer() {
     const t = useTranslations('Footer');
@@ -40,8 +41,7 @@ export default function Footer() {
                 <div className="flex flex-col md:flex-row justify-between gap-12">
                     <div className="space-y-4">
                         <div className="font-bold text-2xl flex items-center gap-2">
-                            <div className="w-6 h-6 bg-primary rounded-md"></div>
-                            Boilerplate
+                            <Logo />
                         </div>
                         <p className="text-muted-foreground max-w-xs">{t('brand.desc')}</p>
                     </div>
