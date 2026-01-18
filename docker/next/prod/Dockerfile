@@ -43,7 +43,7 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 # Copy migration files and compiled runner
 COPY --from=builder --chown=nextjs:nodejs /app/drizzle ./drizzle
-COPY --from=builder --chown=nextjs:nodejs /app/migrate.js ./migrate.cjs
+COPY --from=builder --chown=nextjs:nodejs /app/migrate.cjs ./migrate.cjs
 
 COPY --chown=nextjs:nodejs ./docker/next/prod/entrypoint /entrypoint
 RUN chmod +x /entrypoint
