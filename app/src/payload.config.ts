@@ -39,7 +39,7 @@ export default buildConfig({
             connectionString: env.DATABASE_URL
         },
         migrationDir: path.resolve(dirname, 'payload_migrations'),
-        // IMPORTANT: comment the following line to disable automatic migrations
+        // IMPORTANT: Uncomment the following line to disable automatic migrations
         push: false
     }),
     sharp,
