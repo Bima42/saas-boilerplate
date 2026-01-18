@@ -15,6 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         depth: 1,
         select: {
             title: true,
+            description: true,
             meta: true
         }
     });
@@ -25,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     // Fallback logic
     const title = post.meta?.title || post.title;
-    const description = post.meta?.description || '';
+    const description = post.meta?.description || post.description || '';
 
     const ogImage =
         typeof post.meta?.image === 'object' && post.meta.image?.url ? post.meta.image.url : '/images/og-default.jpg';
