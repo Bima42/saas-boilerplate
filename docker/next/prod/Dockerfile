@@ -15,13 +15,17 @@ ARG NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 ENV SKIP_ENV_VALIDATION=1
 ENV NODE_ENV=production
 
+# Set placeholder environment variables for build
+ENV BETTER_AUTH_SECRET="build_placeholder"
+ENV PAYLOAD_SECRET="build_placeholder"
+
 RUN npm run build
 
 # Compile migration script to standalone JS
 RUN npx esbuild src/server/db/migrate.ts \
     --bundle \
     --platform=node \
-    --outfile=migrate.js
+    --outfile=migrate.cjs
 
 # ---- Runner Stage ----
 FROM base AS runner
@@ -39,10 +43,10 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 # Copy migration files and compiled runner
 COPY --from=builder --chown=nextjs:nodejs /app/drizzle ./drizzle
-COPY --from=builder --chown=nextjs:nodejs /app/migrate.js ./migrate.js
+COPY --from=builder --chown=nextjs:nodejs /app/migrate.cjs ./migrate.cjs
 
-COPY --chown=nextjs:nodejs ./docker/next/prod/entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+COPY --chown=nextjs:nodejs ./docker/next/prod/entrypoint /entrypoint
+RUN chmod +x /entrypoint
 
 USER nextjs
 
@@ -50,4 +54,4 @@ EXPOSE 3000
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint"]
