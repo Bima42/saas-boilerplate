@@ -25,7 +25,7 @@ RUN npm run build
 RUN npx esbuild src/server/db/migrate.ts \
     --bundle \
     --platform=node \
-    --outfile=migrate.js
+    --outfile=migrate.cjs
 
 # ---- Runner Stage ----
 FROM base AS runner
@@ -43,7 +43,7 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 # Copy migration files and compiled runner
 COPY --from=builder --chown=nextjs:nodejs /app/drizzle ./drizzle
-COPY --from=builder --chown=nextjs:nodejs /app/migrate.js ./migrate.js
+COPY --from=builder --chown=nextjs:nodejs /app/migrate.js ./migrate.cjs
 
 COPY --chown=nextjs:nodejs ./docker/next/prod/entrypoint /entrypoint
 RUN chmod +x /entrypoint
