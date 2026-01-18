@@ -4,19 +4,6 @@ Welcome! This is a robust, full-stack SaaS boilerplate built around **Next.js**.
 
 I built this because I love shipping products, but I hate configuring the same infrastructure over and over again. It’s not "the ultimate" boilerplate, it’s just a really solid foundation standing on the shoulders of giants. It combines a strictly typed backend with a headless CMS in a single monorepo-style application.
 
-## Standing on the Shoulders of Giants ♥️
-
-This project wouldn't exist without the incredible open-source community. A huge shout-out and thanks to the maintainers of these packages. If you use this boilerplate, please consider starring their repos:
-
-*   **Framework:** [Next.js 15](https://nextjs.org/) (App Router & Server Actions)
-*   **API Layer:** [tRPC v11](https://trpc.io/) (End-to-end type safety)
-*   **Database:** [PostgreSQL](https://www.postgresql.org/) & [Drizzle ORM](https://orm.drizzle.team/)
-*   **CMS:** [Payload CMS 3.0](https://payloadcms.com/) (Headless, code-first)
-*   **Auth:** [Better-Auth](https://www.better-auth.com/)
-*   **UI/UX:** [Tailwind CSS v4](https://tailwindcss.com/) & [Shadcn/UI](https://ui.shadcn.com/)
-*   **Payments:** [Stripe](https://stripe.com/)
-*   **Deployment:** Ready for [Dokploy](https://dokploy.com/)
-
 ---
 
 ## Quick Start
@@ -61,7 +48,7 @@ I have written detailed documentation to help you (or your AI assistant) underst
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 A quick look at where things live:
 
@@ -78,7 +65,7 @@ src/
 └── payload.config.ts     # CMS Configuration
 ```
 
-## 🛠️ Common Commands
+## Common Commands
 
 | Command | Description |
 | :--- | :--- |
@@ -86,6 +73,22 @@ src/
 | `npm run db:push` | Push schema changes directly to DB (Dev only). |
 | `docker compose exec app npx payload migrate:create` | Create a new CMS migration file. |
 | `docker compose exec app npx payload migrate` | Apply pending CMS migrations. |
+
+---
+
+## Standing on the Shoulders of Giants ♥️
+
+This project wouldn't exist without the incredible open-source community. A huge shout-out and thanks to the maintainers of these packages. If you use this boilerplate, please consider starring their repos:
+
+*   **Framework:** [Next.js 15](https://nextjs.org/) (App Router & Server Actions)
+*   **API Layer:** [tRPC v11](https://trpc.io/) (End-to-end type safety)
+*   **Database:** [PostgreSQL](https://www.postgresql.org/) & [Drizzle ORM](https://orm.drizzle.team/)
+*   **CMS:** [Payload CMS 3.0](https://payloadcms.com/) (Headless, code-first)
+*   **Auth:** [Better-Auth](https://www.better-auth.com/)
+*   **UI/UX:** [Tailwind CSS v4](https://tailwindcss.com/) & [Shadcn/UI](https://ui.shadcn.com/)
+*   **Payments:** [Stripe](https://stripe.com/)
+*   **Deployment:** Ready for [Dokploy](https://dokploy.com/)
+
 
 ---
 
