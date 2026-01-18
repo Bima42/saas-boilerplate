@@ -5,7 +5,7 @@ import { api } from '@/lib/trpc/client';
 import { toast } from 'sonner';
 import { useEffect } from 'react';
 import { useTranslations } from 'next-intl';
-import { Check, ArrowLeft, Loader2, Sparkles, CreditCard, ShieldCheck } from 'lucide-react';
+import { Check, Loader2, Sparkles, CreditCard, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
