@@ -41,7 +41,7 @@ export default buildConfig({
         },
         migrationDir: path.resolve(dirname, 'payload_migrations'),
         // IMPORTANT: Uncomment the following line to disable automatic migrations
-        push: false
+        push: env.NODE_ENV === 'production'
     }),
     sharp,
     typescript: {
