@@ -79,12 +79,12 @@ Payload automatically generates types when the dev server is running. If types a
 ### 4. Migrations (Payload Specific)
 Payload manages its own internal migrations separately from Drizzle.
 *   Migrations are stored in `src/payload_migrations`.
-*   When the app starts, Payload checks for schema changes.
-*   If `push: false` is set in config , you must run Payload migration commands manually.
+*   The dev entrypoint runs migrations automatically on startup.
+*   If `push: false` is set in config, you must run Payload migration commands manually.
 
 There is 2 main commands to know:
-- `docker compose exec app npx payload migrate:create` : Creates a new migration file.
-- `docker compose exec app npx payload migrate` : Applies all pending migrations.
+- `docker compose exec app npx payload migrate:create` || `npm run payload:create` : Creates a new migration file.
+- `docker compose exec app npx payload migrate` || `npm run payload:create` : Applies all pending migrations.
 
 But you can find more about it in the [Payload Migrations Docs](https://payloadcms.com/docs/database/migrations).
 
