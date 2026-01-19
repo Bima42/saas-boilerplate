@@ -8,6 +8,7 @@ import { env } from '@/config/env';
 import { Media } from '@/payload_collections/media';
 import { Post } from '@/payload_collections/post';
 import { seoPlugin } from '@payloadcms/plugin-seo';
+import { migrations } from './payload_migrations';
 // import { s3Storage } from '@payloadcms/storage-s3';
 
 const filename = fileURLToPath(import.meta.url);
@@ -41,7 +42,8 @@ export default buildConfig({
         },
         migrationDir: path.resolve(dirname, 'payload_migrations'),
         // IMPORTANT: Uncomment the following line to disable automatic migrations
-        push: env.NODE_ENV === 'production'
+        push: env.NODE_ENV === 'production',
+        prodMigrations: migrations
     }),
     sharp,
     typescript: {
