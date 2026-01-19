@@ -9,7 +9,7 @@ import { Media } from '@/payload_collections/media';
 import { Post } from '@/payload_collections/post';
 import { seoPlugin } from '@payloadcms/plugin-seo';
 import { migrations } from './payload_migrations';
-// import { s3Storage } from '@payloadcms/storage-s3';
+import { s3Storage } from '@payloadcms/storage-s3';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -41,7 +41,8 @@ export default buildConfig({
             connectionString: env.DATABASE_URL
         },
         migrationDir: path.resolve(dirname, 'payload_migrations'),
-        // IMPORTANT: Uncomment the following line to disable automatic migrations
+        // IMPORTANT: Comment the following line to disable automatic migrations
+        // IMPORTANT: In dev, you need to run migration by yourself
         push: env.NODE_ENV === 'production',
         prodMigrations: migrations
     }),
@@ -55,24 +56,27 @@ export default buildConfig({
             uploadsCollection: 'media',
             generateTitle: ({ doc }) => `My SaaS | ${doc.title}`,
             generateDescription: ({ doc }) => doc.description
+        }),
+        // Comment the following plugin if you want to try uploading file locally
+        s3Storage({
+            collections: {
+                media: {
+                    generateFileURL: (args) => {
+                        return `${env.R2_PUBLIC_URL}/${args.filename}`;
+                    }
+                }
+            },
+            bucket: env.S3_BUCKET,
+            config: {
+                endpoint: `https://${env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
+                credentials: {
+                    accessKeyId: env.S3_ACCESS_KEY_ID,
+                    secretAccessKey: env.S3_SECRET_ACCESS_KEY
+                },
+                region: 'auto',
+                forcePathStyle: true
+            }
         })
     ]
     // Uncomment the following to enable S3 / R2 storage for media uploads
-    // plugins: [
-    //     s3Storage({
-    //         collections: {
-    //             media: true
-    //         },
-    //         bucket: env.S3_BUCKET,
-    //         config: {
-    //             endpoint: `https://${env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
-    //             credentials: {
-    //                 accessKeyId: env.S3_ACCESS_KEY_ID,
-    //                 secretAccessKey: env.S3_SECRET_ACCESS_KEY
-    //             },
-    //             region: 'auto',
-    //             forcePathStyle: true
-    //         }
-    //     })
-    // ]
 });
