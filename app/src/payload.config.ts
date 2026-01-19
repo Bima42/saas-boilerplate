@@ -78,5 +78,4 @@ export default buildConfig({
             }
         })
     ]
-    // Uncomment the following to enable S3 / R2 storage for media uploads
 });
