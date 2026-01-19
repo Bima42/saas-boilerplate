@@ -90,3 +90,6 @@ But you can find more about it in the [Payload Migrations Docs](https://payloadc
 
 ## Reach the panel
 Once everything is set up, you can reach the admin panel at `http://localhost:3000/admin` and log in with the admin credentials you set during the initial setup.
+
+## What's Next?
+Payload offers you so many possibilities. It's a big sandbox where you can do a lot of things. Please refer to the documentation.
