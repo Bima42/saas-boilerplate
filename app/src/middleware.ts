@@ -6,6 +6,7 @@ export async function middleware(request: NextRequest) {
 
     const isProtectedRoute = pathname.startsWith('/dashboard');
     const isAuthRoute = pathname === '/login';
+    const isAdminRoute = pathname.startsWith('/test-admin');
 
     const sessionCookie =
         request.cookies.get('better-auth.session_token') || request.cookies.get('__Secure-better-auth.session_token');

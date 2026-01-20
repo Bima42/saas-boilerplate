@@ -50,9 +50,33 @@ const isAuthenticated = t.middleware(({ ctx, next }) => {
 });
 
 /**
+ * ADMIN PROCEDURE
+ * Reusable middleware that enforces admin role
+ */
+const isAdmin = t.middleware(({ ctx, next }) => {
+    if (!ctx.session) {
+        throw new TRPCError({ code: 'UNAUTHORIZED' });
+    }
+
+    const user = ctx.session.user;
+
+    if (user.role !== 'admin') {
+        throw new TRPCError({ code: 'FORBIDDEN', message: 'Admin access required' });
+    }
+
+    return next({
+        ctx: {
+            session: ctx.session,
+            user: ctx.session.user
+        }
+    });
+});
+
+/**
  * ROUTER & PROCEDURE (THE EXPORTED PUBLIC API)
  */
 export const createTRPCRouter = t.router;
 export const createCallerFactory = t.createCallerFactory;
 export const publicProcedure = t.procedure;
 export const protectedProcedure = t.procedure.use(isAuthenticated);
+export const adminProcedure = t.procedure.use(isAdmin);
