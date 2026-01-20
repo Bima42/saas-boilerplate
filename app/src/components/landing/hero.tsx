@@ -1,3 +1,5 @@
+'use client';
+
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ArrowUpRight, CirclePlay } from 'lucide-react';
@@ -7,6 +9,10 @@ import { useTranslations } from 'next-intl';
 
 export default function Hero() {
     const t = useTranslations('Hero');
+
+    const openWindowToRepo = () => {
+        window.open('https://github.com/Bima42/saas-boilerplate', '_blank');
+    };
 
     return (
         <div className="relative min-h-[90vh] flex items-center justify-center px-6 overflow-hidden">
@@ -28,7 +34,7 @@ export default function Hero() {
                 </h1>
                 <p className="mt-6 md:text-lg text-foreground/80 max-w-2xl mx-auto">{t('description')}</p>
                 <div className="mt-12 flex items-center justify-center gap-4">
-                    <Button size="lg" className="rounded-full text-base">
+                    <Button size="lg" className="rounded-full text-base" onClick={openWindowToRepo}>
                         {t('cta')} <ArrowUpRight className="ml-2 h-5 w-5" />
                     </Button>
                     <Button variant="outline" size="lg" className="rounded-full text-base shadow-none">
