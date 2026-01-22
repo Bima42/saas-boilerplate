@@ -1,25 +1,44 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { env } from '@/config/env';
 
 export async function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl;
 
-    const isProtectedRoute = pathname.startsWith('/dashboard');
+    const response = await fetch(`${env.NEXT_PUBLIC_APP_URL}/api/auth/get-session`, {
+        headers: {
+            cookie: request.headers.get('cookie') || ''
+        }
+    });
+    const session = await response.json();
+
+    const isLoggedIn = !!session;
+    const isAdmin = session?.user?.role === 'admin';
+
+    // Define route types
+    const isAdminRoute = pathname.includes('/admin');
     const isAuthRoute = pathname === '/login';
-    const isAdminRoute = pathname.startsWith('/test-admin');
+    const needAuthRoute = pathname === '/dashboard';
 
-    const sessionCookie =
-        request.cookies.get('better-auth.session_token') || request.cookies.get('__Secure-better-auth.session_token');
-
-    if (isProtectedRoute && !sessionCookie) {
+    const cannotAccessAdmin = isAdminRoute && !isAdmin;
+    if (cannotAccessAdmin) {
         const url = request.nextUrl.clone();
-        url.pathname = '/login';
+        url.pathname = '/';
+        url.searchParams.set('error', 'unauthorized_admin');
         return NextResponse.redirect(url);
     }
 
-    if (isAuthRoute && sessionCookie) {
+    const alreadyAuthenticated = isAuthRoute && isLoggedIn;
+    if (alreadyAuthenticated) {
         const url = request.nextUrl.clone();
-        url.pathname = '/dashboard';
+        url.pathname = '/';
+        return NextResponse.redirect(url);
+    }
+
+    const needAuthButNotLoggedIn = needAuthRoute && !isLoggedIn;
+    if (needAuthButNotLoggedIn) {
+        const url = request.nextUrl.clone();
+        url.pathname = '/login';
         return NextResponse.redirect(url);
     }
 

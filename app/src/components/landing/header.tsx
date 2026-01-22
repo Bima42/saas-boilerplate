@@ -23,7 +23,7 @@ import GithubStars from '@/components/landing/github-stars';
 function AdminButton() {
     return (
         <Button asChild size="sm" className="gap-2" variant="outline">
-            <Link href="/admin/login">
+            <Link href="/login">
                 <Shield className="w-4 h-4" />
                 Admin
             </Link>

@@ -104,4 +104,3 @@ The database is managed by two separate entities:
 *   **Router Example:** `src/server/api/routers/stripe-router.ts`
 *   **Schema Example:** `src/server/db/schema/auth-schema.ts`
 *   **Service Example:** `src/server/services/purchase.ts`
-*   **CMS Config:** `src/payload.config.ts`

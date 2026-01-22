@@ -1,97 +1,61 @@
 import React from 'react';
-import { notFound } from 'next/navigation';
-import { getPayloadClient } from '@/lib/payload';
-import { RichText } from '@/components/blog/rich-text';
 import { Metadata } from 'next';
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-    const { slug } = await params;
-    const payload = await getPayloadClient();
-
-    const result = await payload.find({
-        collection: 'posts',
-        where: { slug: { equals: slug } },
-        limit: 1,
-        depth: 1,
-        select: {
-            title: true,
-            description: true,
-            meta: true
-        }
-    });
-
-    const post = result.docs[0];
-
-    if (!post) return { title: '404' };
-
-    // Fallback logic
-    const title = post.meta?.title || post.title;
-    const description = post.meta?.description || post.description || '';
-
-    const ogImage =
-        typeof post.meta?.image === 'object' && post.meta.image?.url ? post.meta.image.url : '/images/og-default.jpg';
-
-    return {
-        title,
-        description,
-        openGraph: {
-            title,
-            description,
-            url: `/blog/${slug}`,
-            images: [{ url: ogImage }]
-        }
-    };
-}
+import { ArrowLeft } from 'lucide-react';
+import Link from 'next/link';
+import { api, trpc } from '@/lib/trpc/server';
+import { BlogPostViewer } from '@/components/blog/blog-post-viewer';
+import { Button } from '@/components/ui/button';
 
 interface Props {
     params: Promise<{ slug: string }>;
 }
 
-export default async function BlogPost({ params }: Props) {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = await params;
-    const payload = await getPayloadClient();
 
-    const result = await payload.find({
-        collection: 'posts',
-        where: {
-            slug: { equals: slug }
-        },
-        limit: 1,
-        depth: 2
-    });
+    try {
+        const post = await trpc.post.getBySlug({ slug });
 
-    const post = result.docs[0];
-
-    const jsonLd = {
-        '@context': 'https://schema.org',
-        '@type': 'BlogPosting',
-        headline: post.title,
-        description: post.description,
-        image: typeof post.coverImage === 'object' ? post.coverImage?.url : undefined,
-        datePublished: post.createdAt,
-        author: {
-            '@type': 'Organization',
-            name: 'Boilerplate'
-        }
-    };
-
-    if (!post) {
-        return notFound();
+        return {
+            title: post.title,
+            description: post.description || undefined,
+            openGraph: {
+                title: post.title,
+                description: post.description || undefined,
+                type: 'article',
+                publishedTime: post.publishedAt?.toISOString(),
+                authors: [post.author.name],
+                images: post.coverImage ? [{ url: post.coverImage }] : undefined
+            }
+        };
+    } catch (error) {
+        return {
+            title: 'Post Not Found'
+        };
     }
+}
+
+export default async function BlogPostPage({ params }: Props) {
+    const { slug } = await params;
+
+    const post = await trpc.post.getBySlug({ slug });
 
     return (
-        <article className="max-w-3xl mx-auto space-y-8">
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-            <header className="space-y-4 text-center border-b border-border pb-8">
-                <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl">{post.title}</h1>
-                {post.createdAt && (
-                    <time className="text-muted-foreground block">{new Date(post.createdAt).toLocaleDateString()}</time>
-                )}
-            </header>
-
-            <div className="prose prose-neutral dark:prose-invert max-w-none">
-                {post.content && <RichText data={post.content} />}
+        <main className="min-h-screen bg-background">
+            <div className="container mx-auto max-w-3xl px-4 pt-8 sm:px-6 lg:px-8">
+                <Button
+                    asChild
+                    variant="ghost"
+                    size="sm"
+                    className="mb-4 gap-2 text-muted-foreground hover:text-foreground"
+                >
+                    <Link href="/">
+                        <ArrowLeft size="s" />
+                        Back to all posts
+                    </Link>
+                </Button>
             </div>
-        </article>
+            <BlogPostViewer post={post} />
+        </main>
     );
 }

@@ -27,9 +27,6 @@ npm run db:generate
 echo "Pushing migrations to database..."
 npm run db:migrate
 
-#echo "Pushing Payload CMS migrations to database..."
-#npm run payload:migrate
-
 #echo "Seeding database..."
 #npm run db:seed
 

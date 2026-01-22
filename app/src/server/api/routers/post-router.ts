@@ -1,50 +1,35 @@
 import { z } from 'zod';
 import { createTRPCRouter, publicProcedure, adminProcedure } from '@/server/api/trpc';
-import { post } from '@/server/db/schema';
-import { db } from '@/server/db';
-import { eq, desc, isNotNull, and } from 'drizzle-orm';
 import { TRPCError } from '@trpc/server';
+import {
+    getPublishedPosts,
+    getPublishedPostBySlug,
+    getAdminPosts,
+    getPostById,
+    getPostBySlug,
+    createPost,
+    updatePost,
+    deletePost
+} from '@/server/services/post';
 
 const updateSchema = z.object({
     id: z.string(),
     title: z.string().optional(),
     slug: z.string().optional(),
     description: z.string().optional(),
-    content: z.any().optional(), // Plate JSON structure
+    content: z.any().optional(),
     coverImage: z.string().optional(),
     published: z.boolean().optional(),
     publishedAt: z.date().nullable().optional()
 });
-type UpdatePostInput = z.infer<typeof updateSchema>;
 
 export const postRouter = createTRPCRouter({
     getAll: publicProcedure.query(async () => {
-        return await db.query.post.findMany({
-            where: isNotNull(post.publishedAt),
-            orderBy: [desc(post.publishedAt)],
-            with: {
-                author: {
-                    columns: {
-                        name: true,
-                        image: true
-                    }
-                }
-            }
-        });
+        return await getPublishedPosts();
     }),
 
     getBySlug: publicProcedure.input(z.object({ slug: z.string() })).query(async ({ input }) => {
-        const result = await db.query.post.findFirst({
-            where: and(eq(post.slug, input.slug), isNotNull(post.publishedAt)),
-            with: {
-                author: {
-                    columns: {
-                        name: true,
-                        image: true
-                    }
-                }
-            }
-        });
+        const result = await getPublishedPostBySlug(input.slug);
 
         if (!result) {
             throw new TRPCError({ code: 'NOT_FOUND', message: 'Post not found' });
@@ -54,22 +39,11 @@ export const postRouter = createTRPCRouter({
     }),
 
     adminList: adminProcedure.query(async () => {
-        return await db.query.post.findMany({
-            orderBy: [desc(post.createdAt)],
-            with: {
-                author: {
-                    columns: {
-                        name: true
-                    }
-                }
-            }
-        });
+        return await getAdminPosts();
     }),
 
     adminGetById: adminProcedure.input(z.object({ id: z.string() })).query(async ({ input }) => {
-        const result = await db.query.post.findFirst({
-            where: eq(post.id, input.id)
-        });
+        const result = await getPostById(input.id);
 
         if (!result) {
             throw new TRPCError({ code: 'NOT_FOUND' });
@@ -86,49 +60,41 @@ export const postRouter = createTRPCRouter({
             })
         )
         .mutation(async ({ ctx, input }) => {
-            // Check slug uniqueness
-            const existing = await db.query.post.findFirst({
-                where: eq(post.slug, input.slug)
-            });
+            const existing = await getPostBySlug(input.slug);
 
             if (existing) {
                 throw new TRPCError({ code: 'CONFLICT', message: 'Slug already exists' });
             }
 
-            const newPost = await db
-                .insert(post)
-                .values({
-                    id: crypto.randomUUID(),
-                    title: input.title,
-                    slug: input.slug,
-                    authorId: ctx.session.user.id,
-                    content: []
-                })
-                .returning();
-
-            return newPost[0];
+            return await createPost({
+                title: input.title,
+                slug: input.slug,
+                authorId: ctx.session.user.id
+            });
         }),
 
-    // ADMIN: Update a post
     update: adminProcedure.input(updateSchema).mutation(async ({ input }) => {
-        const updateData: UpdatePostInput = { ...input };
-        delete updateData.published;
+        const updateData: any = { ...input };
+        delete updateData.published; // Remove virtual field before sending to DB
 
-        // Handle publication logic
+        // Handle business logic for publishing dates in the router/controller layer
         if (input.published === true) {
             updateData.publishedAt = new Date();
         } else if (input.published === false) {
             updateData.publishedAt = null;
         }
 
-        const updated = await db.update(post).set(updateData).where(eq(post.id, input.id)).returning();
+        const updated = await updatePost(input.id, updateData);
 
-        return updated[0];
+        if (!updated) {
+            throw new TRPCError({ code: 'NOT_FOUND', message: 'Post not found during update' });
+        }
+
+        return updated;
     }),
 
-    // ADMIN: Delete a post
     delete: adminProcedure.input(z.object({ id: z.string() })).mutation(async ({ input }) => {
-        await db.delete(post).where(eq(post.id, input.id));
+        await deletePost(input.id);
         return { success: true };
     })
 });

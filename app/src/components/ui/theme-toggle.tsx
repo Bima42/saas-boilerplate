@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
-import { SimpleButton } from '@/components/ui/simple-button';
+import { BaseButton } from '@/components/buttons/base-button';
 
 export function ThemeToggle() {
     const { theme, setTheme } = useTheme();
@@ -18,12 +18,12 @@ export function ThemeToggle() {
     }
 
     return (
-        <SimpleButton
+        <BaseButton
+            variant="ghost"
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            icon={theme === 'dark' ? Moon : Sun}
-            size="lg"
-            label="Toggle theme"
-            noHover={false}
+            icon={theme === 'dark' ? <Moon /> : <Sun />}
+            tooltip="Toggle theme"
+            size="sm"
         />
     );
 }

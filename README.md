@@ -22,14 +22,7 @@ Start the application and the database.
 docker compose up -d --build
 ```
 
-### 3. ⚠️ Important: Run Migrations
-Payload CMS is configured with `push: false` to prevent accidental schema changes in production. **You must run this manually after the container starts:**
-
-```bash
-docker compose exec app npx payload migrate
-```
-
-### 4. You are live
+### 3. You are live
 *   **App:** [http://localhost:3000](http://localhost:3000)
 *   **CMS Admin:** [http://localhost:3000/admin](http://localhost:3000/admin)
 
@@ -44,7 +37,6 @@ I have written detailed documentation to help you (or your AI assistant) underst
 *   **[docs/LLM.md](./docs/LLM.md)**: **Start here.** The master context file containing architecture, patterns, and coding rules.
 *   **[docs/API.md](./docs/API.md)**: How tRPC works, how to add endpoints, and authentication logic.
 *   **[docs/DB.md](./docs/DB.md)**: Database schema, Drizzle ORM usage, and migration workflows.
-*   **[docs/PAYLOAD.md](./docs/PAYLOAD.md)**: How to manage the CMS, create collections, and handle Payload-specific migrations.
 
 ---
 
@@ -57,12 +49,10 @@ src/
 ├── app/                  # Next.js App Router
 ├── components/           # Shared UI (Shadcn)
 ├── lib/                  # Singleton clients (Stripe, Auth)
-├── payload_collections/  # CMS Content Definitions
 ├── server/               # Backend Logic
 │   ├── api/              # tRPC Routers
 │   ├── db/               # Drizzle Schema
 │   └── services/         # Business Logic (The "Service Layer")
-└── payload.config.ts     # CMS Configuration
 ```
 
 ---
@@ -94,7 +84,6 @@ This project wouldn't exist without the incredible open-source community. A huge
 *   **Framework:** [Next.js 15](https://nextjs.org/) (App Router & Server Actions)
 *   **API Layer:** [tRPC v11](https://trpc.io/) (End-to-end type safety)
 *   **Database:** [PostgreSQL](https://www.postgresql.org/) & [Drizzle ORM](https://orm.drizzle.team/)
-*   **CMS:** [Payload CMS 3.0](https://payloadcms.com/) (Headless, code-first)
 *   **Auth:** [Better-Auth](https://www.better-auth.com/)
 *   **UI/UX:** [Tailwind CSS v4](https://tailwindcss.com/) & [Shadcn/UI](https://ui.shadcn.com/)
 *   **Payments:** [Stripe](https://stripe.com/)

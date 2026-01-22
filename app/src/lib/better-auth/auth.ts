@@ -8,6 +8,9 @@ import { count } from 'drizzle-orm';
 import { user as UserTable } from '@/server/db/schema/auth-schema';
 
 export const auth = betterAuth({
+    advanced: {
+        cookiePrefix: 'boilerplate'
+    },
     secret: env.BETTER_AUTH_SECRET,
     baseURL: env.NEXT_PUBLIC_APP_URL,
     rateLimit: {

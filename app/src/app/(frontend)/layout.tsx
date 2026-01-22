@@ -1,23 +1,26 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import { getLocale } from 'next-intl/server';
-import { ThemesProvider } from '@/providers/theme-provider';
 import './globals.css';
+import { Toaster } from 'sonner';
+import { ThemesProvider } from '@/providers/theme-provider';
+// import { AuthErrorListener } from '@/components/auth-error-listener';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-    title: 'Boilerplate',
+    title: 'Blogs',
     description: 'A modern SaaS with TypeScript and Tailwind.'
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-    const locale = await getLocale();
-
     return (
-        <html lang={locale} suppressHydrationWarning>
+        <html lang="en" suppressHydrationWarning>
             <body className={inter.className}>
-                <ThemesProvider>{children}</ThemesProvider>
+                <ThemesProvider>
+                    <Toaster />
+                    {/*<AuthErrorListener />*/}
+                    {children}
+                </ThemesProvider>
             </body>
         </html>
     );
