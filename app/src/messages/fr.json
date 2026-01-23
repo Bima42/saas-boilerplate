@@ -34,7 +34,7 @@
         "title": "Un vrai modèle pour <strike>vibecodeurs</strike> <highlight>développeurs</highlight>",
         "subtitle": "Construisez votre SaaS en quelques jours",
         "badge": "Released v1.0.0",
-        "description": "Boilerplate SaaS Next.js open-source. Authentification, Stripe, i18n et Shadcn UI prêts à l'emploi. Arrêtez de configurer, commencez à livrer.",
+        "description": "Boilerplate SaaS Next.js open-source. Authentification, Stripe, Blocks et Blog, prêts à l'emploi. Arrêtez de configurer, commencez à livrer.",
         "cta": "Commencer",
         "demo": "Voir la démo"
     },
@@ -63,6 +63,10 @@
         "emails": {
             "title": "Système d'Email",
             "description": "Emails transactionnels configurés avec React Email et Resend."
+        },
+        "blog": {
+            "title": "Blog CMS",
+            "description": "Gérez et publiez facilement vos articles. Un éditeur rapide basé sur PlateJS, vous avez le contrôle total sur la gestion de contenu."
         }
     },
     "Pricing": {
@@ -143,9 +147,13 @@
             },
             "3": {
                 "question": "Comment le déployer ?",
-                "answer": "Vous pouvez le déployer facilement sur Railway ou Dokploy."
+                "answer": "Vous pouvez le déployer facilement sur Railway ou Dokploy. Un guide de déploiement est également disponible dans la documentation."
             },
             "4": {
+                "question": "Is blog data stored locally?",
+                "answer": "Oui, les articles de blog sont stockés dans la base de données. Vous gardez un contrôle total."
+            },
+            "5": {
                 "question": "Offrez-vous du support ?",
                 "answer": "Comme c'est un projet gratuit, le support est communautaire via les Issues GitHub et notre serveur Discord."
             }

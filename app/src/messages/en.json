@@ -34,7 +34,7 @@
         "title": "Real boilerplate for <strike>vibecoders</strike> <highlight>devs</highlight>",
         "subtitle": "Build your SaaS in just a few days",
         "badge": "Just released v1.0.0",
-        "description": "Open-source Next.js SaaS boilerplate. Authentication, Stripe, i18n, and Shadcn UI ready to go. Stop configuring, start shipping.",
+        "description": "Open-source Next.js SaaS boilerplate. Authentication, Stripe, i18n, Blocks and Blog ready to go. Stop configuring, start shipping.",
         "cta": "Get Started",
         "demo": "View Demo"
     },
@@ -63,6 +63,10 @@
         "emails": {
             "title": "Email System",
             "description": "Transactional emails setup with React Email and Resend."
+        },
+        "blog": {
+            "title": "Blog System",
+            "description": "Easily manage and publish your articles. With a fast editor based on PlateJS, you have complete control over content management."
         }
     },
     "Pricing": {
@@ -143,9 +147,13 @@
             },
             "3": {
                 "question": "How do I deploy this?",
-                "answer": "You can deploy it easily on Railway or Dokploy."
+                "answer": "You can deploy it easily on Railway or Dokploy. You can find deployment guides in the documentation."
             },
             "4": {
+                "question": "Can I customize the boilerplate?",
+                "answer": "Yes, blog posts are stored in the database. You retain complete control."
+            },
+            "5": {
                 "question": "Do you offer support?",
                 "answer": "Since it is a free project, support is community-based via GitHub Issues and our Discord server."
             }
