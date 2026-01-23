@@ -154,7 +154,7 @@ export function BlogPostForm({ form }: BlogPostProps) {
                                     onChange={(e) => setTagInput(e.target.value)}
                                     onKeyDown={handleAddTag}
                                     placeholder="Add tags... (Press Enter)"
-                                    className="border-0 bg-transparent p-0 shadow-none focus-visible:ring-0 placeholder:text-muted-foreground/50 h-auto"
+                                    className="border-0 bg-transparent p-2 shadow-none focus-visible:ring-0 placeholder:text-muted-foreground/50 h-auto"
                                 />
                             </div>
                         </FormControl>
