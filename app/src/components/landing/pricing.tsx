@@ -18,7 +18,7 @@ export default function Pricing() {
     const plans = [
         {
             name: t('plans.starter.name'),
-            price: 20,
+            price: 0,
             description: t('plans.starter.description'),
             features: [
                 { title: t('plans.starter.features.turnaround') },
@@ -30,7 +30,7 @@ export default function Pricing() {
         },
         {
             name: t('plans.advanced.name'),
-            price: 40,
+            price: 29,
             isRecommended: true,
             isPopular: true,
             description: t('plans.advanced.description'),
@@ -44,7 +44,7 @@ export default function Pricing() {
         },
         {
             name: t('plans.premium.name'),
-            price: 80,
+            price: 99,
             description: t('plans.premium.description'),
             features: [
                 { title: t('plans.premium.features.turnaround') },
@@ -58,6 +58,9 @@ export default function Pricing() {
 
     return (
         <div className="py-24 px-6 flex flex-col items-center justify-center bg-muted/30" id="pricing">
+            <Badge variant="outline" className="mb-4 text-muted-foreground">
+                Component Preview
+            </Badge>
             <h2 className="text-4xl md:text-5xl font-semibold text-center tracking-tight">{t('title')}</h2>
             <p className="mt-4 text-xl text-center text-muted-foreground max-w-lg">{t('subtitle')}</p>
 
@@ -76,7 +79,7 @@ export default function Pricing() {
                 {plans.map((plan) => (
                     <div
                         key={plan.name}
-                        className={cn('relative border bg-background rounded-xl p-6 shadow-sm', {
+                        className={cn('relative border bg-background rounded-xl p-6 shadow-sm flex flex-col', {
                             'border-2 border-primary shadow-md': plan.isPopular
                         })}
                     >
@@ -95,18 +98,20 @@ export default function Pricing() {
                         </p>
                         <p className="mt-4 text-sm text-muted-foreground">{plan.description}</p>
 
-                        <Button variant={plan.isPopular ? 'default' : 'outline'} size="lg" className="w-full mt-6">
-                            {plan.buttonText}
-                        </Button>
                         <Separator className="my-8" />
-                        <ul className="space-y-3">
+
+                        <ul className="space-y-3 flex-1">
                             {plan.features.map((feature) => (
                                 <li key={feature.title} className="flex items-center gap-2 text-sm">
-                                    <CircleCheck className="h-4 w-4 text-primary" />
+                                    <CircleCheck className="h-4 w-4 text-primary shrink-0" />
                                     {feature.title}
                                 </li>
                             ))}
                         </ul>
+
+                        <Button variant={plan.isPopular ? 'default' : 'outline'} size="lg" className="w-full mt-8">
+                            {plan.buttonText}
+                        </Button>
                     </div>
                 ))}
             </div>
