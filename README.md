@@ -2,7 +2,7 @@
 
 Welcome! This is a robust, full-stack SaaS boilerplate built around **Next.js**.
 
-I built this because I love shipping products, but I hate configuring the same infrastructure over and over again. It’s not "the ultimate" boilerplate, it’s just a really solid foundation standing on the shoulders of giants. It combines a strictly typed backend with a headless CMS in a single monorepo-style application.
+I built this because I love shipping products, but I hate configuring the same infrastructure over and over again. It’s not "the ultimate" boilerplate, it’s just a really solid foundation standing on the shoulders of giants. It combines a strictly typed backend with a **fully integrated Admin Dashboard and Blog system** in a single application.
 
 ---
 
@@ -24,7 +24,7 @@ docker compose up -d --build
 
 ### 3. You are live
 *   **App:** [http://localhost:3000](http://localhost:3000)
-*   **CMS Admin:** [http://localhost:3000/admin](http://localhost:3000/admin)
+*   **Admin Dashboard:** [http://localhost:3000/admin](http://localhost:3000/admin)
 
 ---
 
@@ -47,6 +47,9 @@ A quick look at where things live:
 ```text
 src/
 ├── app/                  # Next.js App Router
+│   ├── (admin)/          # Internal Admin Dashboard
+│   ├── (app)/            # Main SaaS Application
+│   └── blog/             # Public Blog Routes
 ├── components/           # Shared UI (Shadcn)
 ├── lib/                  # Singleton clients (Stripe, Auth)
 ├── server/               # Backend Logic
@@ -85,6 +88,7 @@ This project wouldn't exist without the incredible open-source community. A huge
 *   **API Layer:** [tRPC v11](https://trpc.io/) (End-to-end type safety)
 *   **Database:** [PostgreSQL](https://www.postgresql.org/) & [Drizzle ORM](https://orm.drizzle.team/)
 *   **Auth:** [Better-Auth](https://www.better-auth.com/)
+*   **Editor:** [PlateJS](https://platejs.org/) (Headless Rich Text)
 *   **UI/UX:** [Tailwind CSS v4](https://tailwindcss.com/) & [Shadcn/UI](https://ui.shadcn.com/)
 *   **Payments:** [Stripe](https://stripe.com/)
 *   **Deployment:** Ready for [Dokploy](https://dokploy.com/)
