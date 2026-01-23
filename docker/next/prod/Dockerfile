@@ -17,7 +17,6 @@ ENV NODE_ENV=production
 
 # Set placeholder environment variables for build
 ENV BETTER_AUTH_SECRET="build_placeholder"
-ENV PAYLOAD_SECRET="build_placeholder"
 
 RUN npm run build
 

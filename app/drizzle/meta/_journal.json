@@ -5,22 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1765575104538,
-      "tag": "0000_nostalgic_marrow",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1765962149858,
-      "tag": "0001_slow_thena",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1768163224046,
-      "tag": "0002_harsh_smasher",
+      "when": 1769204475202,
+      "tag": "0000_easy_lightspeed",
       "breakpoints": true
     }
   ]

@@ -1,14 +1,15 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Lock, CreditCard, Globe, Database, Layout, Mail } from 'lucide-react';
+import { Lock, CreditCard, Globe, Database, Layout, Mail, Newspaper } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 const featureKeys = [
     { key: 'auth', icon: Lock },
     { key: 'payments', icon: CreditCard },
-    { key: 'i18n', icon: Globe },
+    { key: 'blog', icon: Newspaper },
     { key: 'db', icon: Database },
     { key: 'ui', icon: Layout },
-    { key: 'emails', icon: Mail }
+    { key: 'emails', icon: Mail },
+    { key: 'i18n', icon: Globe }
 ];
 
 export default function Features() {

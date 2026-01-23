@@ -37,7 +37,12 @@ export default function Hero() {
                     <Button size="lg" className="rounded-full text-base" onClick={openWindowToRepo}>
                         {t('cta')} <ArrowUpRight className="ml-2 h-5 w-5" />
                     </Button>
-                    <Button variant="outline" size="lg" className="rounded-full text-base shadow-none">
+                    <Button
+                        variant="outline"
+                        size="lg"
+                        className="rounded-full text-base shadow-none"
+                        onClick={openWindowToRepo}
+                    >
                         <CirclePlay className="mr-2 h-5 w-5" /> {t('demo')}
                     </Button>
                 </div>

@@ -9,3 +9,5 @@ export const LANGUAGE_NAMES: Record<LanguageCode, { name: string; icon: string }
         icon: '🇫🇷'
     }
 } as const;
+
+export const LOGGED_HOME_PATH = '/dashboard';

@@ -1,5 +1,6 @@
 import { relations } from 'drizzle-orm';
 import { pgTable, text, timestamp, boolean, index } from 'drizzle-orm/pg-core';
+import { post } from './blog-schema';
 
 export const user = pgTable('user', {
     id: text('id').primaryKey(),
@@ -7,6 +8,10 @@ export const user = pgTable('user', {
     email: text('email').notNull().unique(),
     emailVerified: boolean('email_verified').default(false).notNull(),
     image: text('image'),
+    role: text('role').default('user').notNull(), // 'user' | 'admin'
+    banned: boolean('banned'),
+    banReason: text('ban_reason'),
+    banExpires: timestamp('ban_expires'),
     stripeCustomerId: text('stripe_customer_id').unique(),
     createdAt: timestamp('created_at').defaultNow().notNull(),
     updatedAt: timestamp('updated_at')
@@ -30,7 +35,8 @@ export const session = pgTable(
         userAgent: text('user_agent'),
         userId: text('user_id')
             .notNull()
-            .references(() => user.id, { onDelete: 'cascade' })
+            .references(() => user.id, { onDelete: 'cascade' }),
+        impersonatedBy: text('impersonated_by')
     },
     (table) => [index('session_userId_idx').on(table.userId)]
 );
@@ -77,7 +83,8 @@ export const verification = pgTable(
 
 export const userRelations = relations(user, ({ many }) => ({
     sessions: many(session),
-    accounts: many(account)
+    accounts: many(account),
+    posts: many(post)
 }));
 
 export const sessionRelations = relations(session, ({ one }) => ({

@@ -21,159 +21,166 @@
         }
     },
     "Blog": {
-        "title": "Dernières Mises à Jour",
-        "subtitle": "Réflexions, stratégies et annonces.",
+        "title": "Blog Engineering",
+        "subtitle": "Mises à jour sur l'architecture, les fonctionnalités et la roadmap.",
         "noPosts": "Aucun article trouvé.",
-        "readMore": "Lire la suite",
+        "readMore": "Lire l'article",
         "noImage": "Aucune image",
         "noDescription": "Aucune description disponible.",
         "rawContent": "Données brutes (En attente du moteur de rendu) :",
         "minRead": "min de lecture"
     },
     "Hero": {
-        "title": "Un vrai modèle pour <strike>vibecodeurs</strike> <highlight>développeurs</highlight>",
-        "subtitle": "Construisez votre SaaS en quelques jours",
-        "badge": "Released v1.0.0",
-        "description": "Boilerplate SaaS Next.js open-source. Authentification, Stripe, i18n et Shadcn UI prêts à l'emploi. Arrêtez de configurer, commencez à livrer.",
+        "title": "La stack pour les <strike>vibecoders</strike> <highlight>builders</highlight>",
+        "badge": "La v1.0.0 est sortie",
+        "description": "Arrêtez de configurer. Commencez à livrer maintenant avec le starter Next.js open-source avec Auth, Stripe, Drizzle et Blog intégrés.",
         "cta": "Commencer",
-        "demo": "Voir la démo"
+        "demo": "Voir la Démo"
     },
     "Features": {
-        "title": "Tout ce dont vous avez besoin",
+        "title": "Une architecture, pas juste un template",
         "auth": {
             "title": "Authentification",
-            "description": "Gestion sécurisée des utilisateurs avec intégration BetterAuth."
+            "description": "Gestion de session sécurisée avec BetterAuth. Routes protégées par middleware prêtes à l'emploi."
         },
         "payments": {
-            "title": "Paiements",
-            "description": "Intégration Stripe pour abonnements, paiements uniques et portail client."
+            "title": "Paiements Stripe",
+            "description": "Webhooks, sessions de paiement et portail client pré-configurés."
         },
         "i18n": {
             "title": "Internationalisation",
-            "description": "Support multi-langues complet configuré avec next-intl et middleware."
+            "description": "Configuration next-intl pour composants serveur et client. Routing optimisé SEO."
         },
         "db": {
-            "title": "Base de données & ORM",
-            "description": "Interactions type-safe avec Drizzle et Postgres."
+            "title": "Drizzle ORM",
+            "description": "SQL Type-safe avec PostgreSQL. Pas de cold starts, contrôle total sur vos requêtes."
         },
         "ui": {
-            "title": "Shadcn UI",
-            "description": "Composants beaux et accessibles pré-configurés avec Tailwind CSS."
+            "title": "Shadcn UI + Tailwind",
+            "description": "Le standard de l'industrie pour les composants React. Accessible et facile à personnaliser."
         },
         "emails": {
-            "title": "Système d'Email",
-            "description": "Emails transactionnels configurés avec React Email et Resend."
+            "title": "Emails Transactionnels",
+            "description": "Templates React Email envoyés via Resend. De beaux emails, sans la douleur du HTML."
+        },
+        "blog": {
+            "title": "CMS Intégré",
+            "description": "Pas de CMS externe requis. Écrivez avec PlateJS, stockez en JSON, rendu optimisé pour le SEO."
         }
     },
     "Pricing": {
-        "title": "Nos Offres",
-        "subtitle": "Choisissez le plan adapté à vos besoins et commencez dès aujourd'hui",
+        "title": "Monétisez votre SaaS",
+        "subtitle": "Ceci est une démo du composant de pricing.",
         "monthly": "Mensuel",
         "yearly": "Annuel (Économisez {discount}%)",
         "mostPopular": "Le plus populaire",
         "perMonth": "/mois",
         "cta": {
             "start": "Commencer",
-            "advanced": "Choisir Avancé",
-            "premium": "Choisir Premium"
+            "advanced": "Passer Pro",
+            "premium": "Passer à l'échelle"
         },
         "plans": {
             "starter": {
-                "name": "Starter",
-                "description": "Obtenez 20 portraits IA avec 2 styles uniques.",
+                "name": "Hobby",
+                "description": "Parfait pour les projets perso et MVP.",
                 "features": {
-                    "turnaround": "Délai de 5 heures",
-                    "portraits": "20 portraits IA",
-                    "styles": "Choix de 2 styles",
-                    "retouch": "2 crédits de retouche"
+                    "turnaround": "Jusqu'à 100 utilisateurs",
+                    "portraits": "Analytique de base",
+                    "styles": "Support communautaire",
+                    "retouch": "1 Membre d'équipe"
                 }
             },
             "advanced": {
-                "name": "Avancé",
-                "description": "Obtenez 50 portraits IA avec 5 styles uniques.",
+                "name": "Pro",
+                "description": "Pour les business en croissance.",
                 "features": {
-                    "turnaround": "Délai de 3 heures",
-                    "portraits": "50 portraits IA",
-                    "styles": "Choix de 5 styles",
-                    "retouch": "5 crédits de retouche"
+                    "turnaround": "Utilisateurs illimités",
+                    "portraits": "Analytique avancée",
+                    "styles": "Support Email Prioritaire",
+                    "retouch": "5 Membres d'équipe"
                 }
             },
             "premium": {
-                "name": "Premium",
-                "description": "Obtenez 100 portraits IA avec 10 styles uniques.",
+                "name": "Entreprise",
+                "description": "Contrôle total et intégrations custom.",
                 "features": {
-                    "turnaround": "Délai de 1 heure",
-                    "portraits": "100 portraits IA",
-                    "styles": "Choix de 10 styles",
-                    "retouch": "10 crédits de retouche"
+                    "turnaround": "Intégration SSO",
+                    "portraits": "Contrats personnalisés",
+                    "styles": "Support téléphone 24/7",
+                    "retouch": "Sièges illimités"
                 }
             }
         }
     },
     "Testimonials": {
-        "title": "Approuvé par les développeurs",
-        "subtitle": "Open source et communautaire",
+        "title": "Conçu par des Ingénieurs",
+        "subtitle": "Rejoignez les développeurs qui livrent en prod.",
         "1": {
-            "text": "Enfin un boilerplate qui ne cache pas le code derrière un paywall. Architecture propre.",
+            "text": "L'architecture est vraiment propre. Pas d'abstractions cachées, juste du bon code Next.js.",
             "author": "Alex D.",
-            "role": "Dev Fullstack"
+            "role": "Ingénieur Senior"
         },
         "2": {
-            "text": "M'a fait gagner environ 2 semaines de config. L'intégration Stripe a fonctionné instantanément.",
+            "text": "J'ai retiré le blog et j'avais un MVP SaaS qui tournait en un week-end. Drizzle change la donne.",
             "author": "Sarah J.",
             "role": "Indie Hacker"
         },
         "3": {
-            "text": "La config i18n est souvent un cauchemar, mais ici ça marche tout seul. Je recommande.",
+            "text": "Enfin un boilerplate qui gère l'i18n correctement sans casser l'App Router.",
             "author": "Marc L.",
             "role": "Lead Frontend"
         }
     },
     "FAQ": {
-        "title": "Questions Fréquentes",
-        "subtitle": "Tout ce que vous devez savoir sur le boilerplate.",
+        "title": "FAQ Technique",
+        "subtitle": "Comment ça marche sous le capot.",
         "items": {
             "1": {
-                "question": "Ce modèle est-il vraiment gratuit ?",
-                "answer": "Oui, il est 100% open-source et gratuit pour les projets personnels et commerciaux sous licence MIT."
+                "question": "Ce boilerplate est-il gratuit ?",
+                "answer": "Oui. Licence MIT. Vous pouvez le cloner, le modifier et vendre vos propres produits SaaS avec."
             },
             "2": {
                 "question": "Quelle est la stack technique ?",
-                "answer": "Il est construit avec Next.js 15, Tailwind CSS, Shadcn UI, Prisma et NextAuth."
+                "answer": "Next.js 15, Tailwind CSS, Shadcn UI, Drizzle ORM (Postgres) et BetterAuth."
             },
             "3": {
-                "question": "Comment le déployer ?",
-                "answer": "Vous pouvez le déployer facilement sur Railway ou Dokploy."
+                "question": "Comment gérer les migrations BDD ?",
+                "answer": "Nous utilisons Drizzle Kit. Lancez simplement `npm run db:generate` et `npm run db:migrate`."
             },
             "4": {
-                "question": "Offrez-vous du support ?",
-                "answer": "Comme c'est un projet gratuit, le support est communautaire via les Issues GitHub et notre serveur Discord."
+                "question": "Ai-je besoin d'un CMS externe ?",
+                "answer": "Non. Le système de blog est auto-hébergé. Le contenu est stocké dans votre BDD Postgres et géré via le dashboard Admin."
+            },
+            "5": {
+                "question": "Où puis-je déployer ?",
+                "answer": "C'est un conteneur Docker Next.js standard. Déployez partout : Vercel, Railway, VPS (Coolify/Dokploy) ou AWS."
             }
         }
     },
     "Contact": {
-        "section": "Contactez-nous",
-        "title": "Restons en contact",
-        "subtitle": "Une question ou un bug ? Dites-le nous.",
+        "section": "Contact",
+        "title": "Open Source & Communauté",
+        "subtitle": "Rejoignez la discussion sur GitHub ou Discord.",
         "email": {
             "title": "Email",
-            "desc": "Pour partenariats ou demandes privées.",
-            "label": "tanpau.pro@gmail.com"
+            "desc": "Demandes privées.",
+            "label": "contact@tanguypauvret.me"
         },
         "github": {
             "title": "GitHub",
-            "desc": "Signaler des bugs ou soutenir.",
-            "label": "Star le projet ♥️"
+            "desc": "Issues et PRs bienvenues.",
+            "label": "Star le repo"
         },
         "community": {
-            "title": "Communauté",
-            "desc": "Rejoignez notre serveur Discord.",
-            "label": "Rejoindre Discord"
+            "title": "Discord",
+            "desc": "Discutez avec d'autres builders.",
+            "label": "Rejoindre le serveur"
         }
     },
     "Footer": {
         "brand": {
-            "desc": "Le kit de démarrage SaaS ultime pour le développement web moderne."
+            "desc": "Le kit de démarrage SaaS open-source pour les équipes d'ingénierie modernes."
         },
         "columns": {
             "product": "Produit",
@@ -189,11 +196,11 @@
             "terms": "Conditions"
         },
         "newsletter": {
-            "title": "S'inscrire à la newsletter",
+            "title": "Restez à jour",
             "placeholder": "Entrez votre email",
             "button": "S'abonner"
         },
-        "madeWith": "Fait pour toi, avec beaucoup de 🥜."
+        "madeWith": "Livré avec beaucoup de 🥜"
     },
     "LanguageSwitcher": {
         "changeLanguage": "Langue"
@@ -239,6 +246,7 @@
         "connecting": "Connexion en cours..."
     },
     "UserMenu": {
+        "admin": "Blog Admin",
         "upgrade": "Mettre à niveau",
         "billing": "Facturation",
         "account": "Compte",
@@ -248,5 +256,18 @@
         "logout": "Se déconnecter",
         "themeDark": "Sombre",
         "themeLight": "Clair"
+    },
+    "Admin": {
+        "sidebar": {
+            "home": "Accueil",
+            "posts": "Articles",
+            "createPost": "Créer un article",
+            "backToSite": "Retour au site",
+            "logout": "Se déconnecter"
+        },
+        "toasts": {
+            "logoutSuccess": "Déconnexion réussie",
+            "logoutError": "Erreur lors de la déconnexion"
+        }
     }
 }

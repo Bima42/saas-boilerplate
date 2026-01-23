@@ -1,11 +1,16 @@
 import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
-import { magicLink } from 'better-auth/plugins';
+import { magicLink, admin } from 'better-auth/plugins';
 import { db } from '@/server/db';
 import { env } from '@/config/env';
 import { getResend } from '@/lib/resend';
+import { count } from 'drizzle-orm';
+import { user as UserTable } from '@/server/db/schema/auth-schema';
 
 export const auth = betterAuth({
+    advanced: {
+        cookiePrefix: 'boilerplate'
+    },
     secret: env.BETTER_AUTH_SECRET,
     baseURL: env.NEXT_PUBLIC_APP_URL,
     rateLimit: {
@@ -15,6 +20,30 @@ export const auth = betterAuth({
     database: drizzleAdapter(db, {
         provider: 'pg'
     }),
+    databaseHooks: {
+        user: {
+            create: {
+                before: async (user) => {
+                    // Check if any user exists in the database
+                    const [record] = await db.select({ count: count() }).from(UserTable);
+                    const userCount = record?.count ?? 0;
+
+                    if (userCount === 0) {
+                        return {
+                            data: {
+                                ...user,
+                                role: 'admin'
+                            }
+                        };
+                    }
+
+                    return {
+                        data: user
+                    };
+                }
+            }
+        }
+    },
     user: {
         additionalFields: {
             hasPurchased: {
@@ -32,6 +61,7 @@ export const auth = betterAuth({
         }
     },
     plugins: [
+        admin(),
         magicLink({
             sendMagicLink: async ({ email, url }) => {
                 try {

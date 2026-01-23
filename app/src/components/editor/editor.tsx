@@ -1,0 +1,47 @@
+'use client';
+
+import React from 'react';
+import { Plate, usePlateEditor } from 'platejs/react';
+import type { Value } from 'platejs';
+import { TooltipProvider } from '@/components/ui/tooltip';
+import { Editor, EditorContainer } from '@/components/ui/editor';
+import { EditorKit } from './editor-kit';
+
+interface PlateEditorProps {
+    initialValue?: Value;
+    onChange?: (value: Value) => void;
+    readOnly?: boolean;
+    placeholder?: string;
+}
+
+const defaultInitialValue: Value = [
+    {
+        type: 'p',
+        children: [{ text: '' }]
+    }
+];
+
+export function PlateEditor({
+    initialValue = defaultInitialValue,
+    onChange,
+    readOnly = false,
+    placeholder = 'Type your content here...'
+}: PlateEditorProps) {
+    const editor = usePlateEditor({
+        plugins: EditorKit,
+        value: initialValue,
+        readOnly
+    });
+
+    return (
+        <TooltipProvider>
+            <div className="w-full max-w-full min-w-0 overflow-x-hidden">
+                <Plate editor={editor} onValueChange={({ value }) => onChange && onChange(value)}>
+                    <EditorContainer className="w-full max-w-full">
+                        <Editor className="w-full max-w-full" placeholder={placeholder} />
+                    </EditorContainer>
+                </Plate>
+            </div>
+        </TooltipProvider>
+    );
+}

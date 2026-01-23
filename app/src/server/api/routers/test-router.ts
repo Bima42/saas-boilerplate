@@ -3,10 +3,6 @@ import { z } from 'zod';
 import { TRPCError } from '@trpc/server';
 
 export const testRouter = createTRPCRouter({
-    hello: publicProcedure.input(z.object({ text: z.string() })).query((opts) => {
-        return { greeting: `hello ${opts.input.text}` };
-    }),
-
     getSecretMessage: protectedProcedure.query(({ ctx }) => {
         return { message: `Welcome back, ${ctx.user.email}!` };
     }),

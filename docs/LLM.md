@@ -1,26 +1,25 @@
-
 # LLM Context & Technical Documentation
 
 ## 1. Project Overview
 **Type:** SaaS Boilerplate / Full Stack Application
 **Core Framework:** Next.js 15 (App Router)
 **Language:** TypeScript (Strict Mode)
-**Architecture:** Monorepo-style structure within a single Next.js app, integrating a Headless CMS (Payload) and a custom Backend (tRPC).
+**Architecture:** Unified Monolith. Custom Admin Dashboard, Blog, and App logic all run within a single Next.js instance using a shared database and type-safe API.
 
 ## 2. Technology Stack
 
-| Category | Technology      | Key Details |
-| :--- |:----------------| :--- |
-| **Framework** | Next.js 15      | App Router, Server Actions, React 19 (RC) |
-| **API Layer** | tRPC v11        | Type-safe client-server communication. No REST/GraphQL endpoints manually defined. |
-| **Database** | PostgreSQL      | Single instance shared by App and CMS. |
-| **ORM** | Drizzle ORM     | Used for App logic (`src/server/db`). |
-| **CMS** | Payload CMS 3.0 | Native Next.js integration. Manages its own tables (`src/payload.config.ts`). |
-| **Auth** | Better-Auth     | Middleware-based auth. Integrated with Drizzle. |
-| **Styling** | Tailwind CSS V4 | Utility-first. |
-| **UI Library** | Shadcn/UI       | Radix UI primitives. |
-| **Payments** | Stripe          | Webhooks and Checkout Sessions. |
-| **I18n** | next-intl       | Internationalization. |
+| Category | Technology | Key Details                                        |
+| :--- |:--- |:---------------------------------------------------|
+| **Framework** | Next.js 15 | App Router, Server Actions, React 19 (RC).         |
+| **API Layer** | tRPC v11 | Type-safe client-server communication.             |
+| **Database** | PostgreSQL | Single source of truth for App, Auth, and Content. |
+| **ORM** | Drizzle ORM | Manages all schemas (`src/server/db`).             |
+| **Auth** | Better-Auth | Middleware-based auth, integrated with Drizzle.    |
+| **Editor** | PlateJS | Headless rich-text editor. Stores content as JSON. |
+| **Storage** | S3 Compatible | AWS S3 / R2 for media uploads.                     |
+| **Styling** | Tailwind CSS V4 | Utility-first.                                     |
+| **UI Library** | Shadcn/UI | Radix UI primitives.                               |
+| **I18n** | next-intl | Internationalization.                              |
 
 ---
 
@@ -29,19 +28,22 @@
 ```text
 src/
 ├── app/
-│   ├── (frontend)/         # Public facing pages & Dashboard
-│   │   ├── (app)/          # Main application routes (dashboard, etc.)
-│   │   └── (payload)/      # Payload CMS Admin UI routes
-│   └── api/                # Next.js API Routes (tRPC, Webhooks, Auth)
-├── components/             # Shared UI components (Shadcn)
+│   ├── (admin)/            # Internal Admin Dashboard (CMS replacement)
+│   │   └── admin/          # Post management, analytics, etc.
+│   ├── (app)/              # Main SaaS Application (Dashboard, Login)
+│   ├── api/                # Next.js API Routes (tRPC, Webhooks, Auth)
+│   └── blog/               # Public Blog Routes (SEO optimized)
+├── components/
+│   ├── admin/              # Admin-specific UI (Tables, Editors)
+│   ├── blog/               # Public blog UI (Cards, Viewers)
+│   └── editor/             # PlateJS configuration & plugins
 ├── config/                 # Env vars, locale config
-├── lib/                    # Singleton clients (Stripe, Auth, tRPC Client)
-├── payload_collections/    # Payload CMS Content Definitions
+├── lib/                    # Singleton clients (S3, Stripe, Auth, tRPC)
 ├── server/                 # Backend Logic (Server-Only)
 │   ├── api/                # tRPC Routers & Root
 │   ├── db/                 # Drizzle Schema & Connection
 │   └── services/           # Business Logic (DB interactions)
-└── payload.config.ts       # Main CMS Configuration
+└── types/                  # Shared Zod schemas and TS types
 ```
 
 ---
@@ -50,19 +52,26 @@ src/
 
 ### A. The "Service Layer" Pattern
 **Rule:** API Routers (Controllers) should **never** write raw DB queries.
-*   **Bad:** `db.select().from(user)...` inside `router.ts`.
-*   **Good:** Call `getUserById(id)` from `src/server/services/user.ts`.
+*   **Bad:** `db.select().from(post)...` inside `post-router.ts`.
+*   **Good:** Call `postService.getBySlug(slug)` from `src/server/services/post.ts`.
 
-### B. tRPC (API Layer)
+### B. Content Management (Custom CMS)
+We do not use an external CMS. Content is managed via the `(admin)` route group.
+*   **Rich Text:** Stored as `jsonb` in Postgres.
+*   **Editor:** Uses **PlateJS**.
+*   **Rendering:** Use `<PlateViewer value={post.content} />` for display.
+*   **Media:** Uploaded to S3 via Presigned URLs or Server Actions, URL stored in DB.
+
+### C. tRPC (API Layer)
 *   **Public:** `publicProcedure` (No auth required).
 *   **Protected:** `protectedProcedure` (Checks `ctx.session`).
 *   **Context:** `ctx` contains `session`, `user`, and `headers`.
 *   **Client Usage:** `api.routerName.procedureName.useQuery()` or `.useMutation()`.
 
-### C. Database (Dual Management)
-The database is managed by two separate entities:
-1.  **App Data (Drizzle):** Tables defined in `src/server/db/schema`. Managed via `drizzle-kit`.
-2.  **CMS Data (Payload):** Collections defined in `src/payload_collections`. Managed via Payload's internal migration system.
+
+### D. Database (Unified)
+*   All tables (Auth, App, Blog) live in `src/server/db/schema`.
+*   Migrations are handled solely by `drizzle-kit`.
 
 ---
 
@@ -82,26 +91,22 @@ The database is managed by two separate entities:
 3.  Run `npm run db:migrate` (Applies to DB).
     *   *Dev Shortcut:* `npm run db:push` (Syncs directly, useful for prototyping).
 
-### Task: Add CMS Collection
-1.  Create `src/payload_collections/<CollectionName>.ts`.
-2.  Define fields (slug, access control, fields).
-3.  Import and add to `collections` array in `src/payload.config.ts`.
-4.  Payload auto-generates types into `src/payload-types.ts`.
+
+### Task: Add a new Blog Feature (e.g., Comments)
+1.  **Schema:** Update `src/server/db/schema/blog-schema.ts` to add a `comments` table.
+2.  **Migrate:** Run `npm run db:generate` && `npm run db:migrate`.
+3.  **Service:** Create `src/server/services/comment.ts` (create, delete, getByPostId).
+4.  **Router:** Create `src/server/api/routers/comment-router.ts`.
+5.  **UI:** Create components in `src/components/blog/comments/`.
 
 ---
 
 ## 6. Coding Rules for LLM Generation
 
-1.  **Strict Typing:** No `any`. Use Zod for validation. Use generated types from Drizzle and Payload.
-2.  **Server/Client Split:**
-    *   Files in `src/server/*` must be imported only by Server Components or API routes.
-    *   Use `'use client'` at the top of components using Hooks (React Query, State).
-3.  **Styling:** Use Tailwind classes. Avoid custom CSS files unless absolutely necessary.
-4.  **Async/Await:** Always handle Promises properly.
-5.  **Environment:** Access env vars via `src/config/env.ts`, not `process.env`.
-
-## 7. Key File References
-*   **Router Example:** `src/server/api/routers/stripe-router.ts`
-*   **Schema Example:** `src/server/db/schema/auth-schema.ts`
-*   **Service Example:** `src/server/services/purchase.ts`
-*   **CMS Config:** `src/payload.config.ts`
+1.  **Strict Typing:** No `any`. Use Zod for validation.
+2.  **Rich Text Typing:** When handling PlateJS content, cast DB `jsonb` to `Value` (from `platejs`) or `unknown` before passing to components.
+3.  **Server/Client Split:**
+    *   `'use client'` for interactive components (Forms, Editor, Viewers).
+    *   Server Components for fetching data via `trpc.caller`.
+4.  **Styling:** Use Tailwind classes. Avoid custom CSS files unless absolutely necessary.
+5.  **Environment:** Access env vars via `src/config/env.ts`.
