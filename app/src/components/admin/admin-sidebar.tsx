@@ -11,6 +11,7 @@ import { toast } from 'sonner';
 import { authClient } from '@/lib/better-auth/auth-client';
 import { cn } from '@/lib/utils';
 import { CreatePostDialog } from '@/components/admin/admin-create-post-dialog';
+import { useTranslations } from 'next-intl';
 import { LOGGED_HOME_PATH } from '@/config/config';
 
 interface SidebarItemProps {
@@ -64,13 +65,15 @@ function SidebarItem({
 }
 
 function MobileNavbar({ isPostsActive, handleLogout }: { isPostsActive: boolean; handleLogout: () => Promise<void> }) {
+    const t = useTranslations('Admin.sidebar');
+
     return (
         <nav className="lg:hidden fixed top-0 left-0 right-0 z-40 h-14 border-b bg-background">
             <div className="flex h-full items-center justify-between px-4">
                 <div className="flex items-center gap-1">
                     <SidebarItem
                         icon={FileText}
-                        label="Posts"
+                        label={t('posts')}
                         href="/admin/posts"
                         active={isPostsActive}
                         tooltipSide="bottom"
@@ -80,7 +83,7 @@ function MobileNavbar({ isPostsActive, handleLogout }: { isPostsActive: boolean;
                         <span>
                             <SidebarItem
                                 icon={Plus}
-                                label="Create New Post"
+                                label={t('createPost')}
                                 className="bg-primary text-white hover:bg-primary/80 hover:text-white shadow-sm"
                                 tooltipSide="bottom"
                             />
@@ -89,11 +92,11 @@ function MobileNavbar({ isPostsActive, handleLogout }: { isPostsActive: boolean;
                 </div>
 
                 <div className="flex items-center gap-1">
-                    <SidebarItem icon={Globe} label="Back to Site" href="/" tooltipSide="bottom" />
+                    <SidebarItem icon={Globe} label={t('backToSite')} href="/" tooltipSide="bottom" />
 
                     <SidebarItem
                         icon={LogOut}
-                        label="Logout"
+                        label={t('logout')}
                         onClick={handleLogout}
                         className="text-destructive hover:text-destructive hover:bg-destructive/10"
                         tooltipSide="bottom"
@@ -111,6 +114,8 @@ function DesktopSidebar({
     isPostsActive: boolean;
     handleLogout: () => Promise<void>;
 }) {
+    const t = useTranslations('Admin.sidebar');
+
     return (
         <aside className="hidden lg:flex fixed left-0 top-0 z-40 h-screen w-16 flex-col items-center border-r bg-background py-4">
             <div className="flex flex-col gap-2 w-full items-center">
@@ -119,7 +124,7 @@ function DesktopSidebar({
                     <span>
                         <SidebarItem
                             icon={Plus}
-                            label="Create New Post"
+                            label={t('createPost')}
                             className="bg-primary text-white hover:bg-primary/80 hover:text-white shadow-sm"
                             tooltipSide="right"
                         />
@@ -130,7 +135,7 @@ function DesktopSidebar({
 
                 <SidebarItem
                     icon={FileText}
-                    label="Posts"
+                    label={t('posts')}
                     href="/admin/posts"
                     active={isPostsActive}
                     tooltipSide="right"
@@ -141,8 +146,8 @@ function DesktopSidebar({
 
             <div className="flex flex-col gap-2 items-center">
                 <Separator className="w-8" />
-                <SidebarItem icon={Globe} label="Back to Site" href={LOGGED_HOME_PATH} tooltipSide="right" />
-                <SidebarItem icon={LogOut} label="Logout" onClick={handleLogout} tooltipSide="right" />
+                <SidebarItem icon={Globe} label={t('backToSite')} href={LOGGED_HOME_PATH} tooltipSide="right" />
+                <SidebarItem icon={LogOut} label={t('logout')} onClick={handleLogout} tooltipSide="right" />
             </div>
         </aside>
     );
@@ -151,16 +156,17 @@ function DesktopSidebar({
 export function AdminSidebar() {
     const pathname = usePathname();
     const router = useRouter();
+    const t = useTranslations('Admin.toasts');
 
     const isPostsActive = pathname.startsWith('/admin/posts');
 
     const handleLogout = async () => {
         try {
             await authClient.signOut();
-            toast.success('Logged out successfully');
+            toast.success(t('logoutSuccess'));
             router.push('/');
         } catch {
-            toast.error('Error logging out');
+            toast.error(t('logoutError'));
         }
     };
 
