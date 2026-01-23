@@ -5,22 +5,20 @@ import { getPluginTypes, KEYS } from 'platejs';
 
 import { BlockSelection } from '@/components/ui/block-selection';
 
+/* eslint-disable  @typescript-eslint/no-explicit-any */
 export const BlockSelectionKit = [
     BlockSelectionPlugin.configure(({ editor }) => ({
         options: {
             enableContextMenu: true,
             isSelectable: (element) =>
-                !getPluginTypes(editor, [KEYS.column, KEYS.codeLine, KEYS.td]).includes(
-                    element.type
-                ),
+                !getPluginTypes(editor, [KEYS.column, KEYS.codeLine, KEYS.td]).includes(element.type)
         },
         render: {
             belowRootNodes: (props) => {
-                if (!props.attributes.className?.includes('slate-selectable'))
-                    return null;
+                if (!props.attributes.className?.includes('slate-selectable')) return null;
 
                 return <BlockSelection {...(props as any)} />;
-            },
-        },
-    })),
+            }
+        }
+    }))
 ];

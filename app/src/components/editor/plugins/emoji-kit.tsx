@@ -5,9 +5,10 @@ import { EmojiInputPlugin, EmojiPlugin } from '@platejs/emoji/react';
 
 import { EmojiInputElement } from '@/components/ui/emoji-node';
 
+/* eslint-disable  @typescript-eslint/no-explicit-any */
 export const EmojiKit = [
     EmojiPlugin.configure({
-        options: { data: emojiMartData as any },
+        options: { data: emojiMartData as any }
     }),
-    EmojiInputPlugin.withComponent(EmojiInputElement),
+    EmojiInputPlugin.withComponent(EmojiInputElement)
 ];
