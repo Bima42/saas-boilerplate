@@ -146,7 +146,7 @@ function DesktopSidebar({
 
             <div className="flex flex-col gap-2 items-center">
                 <Separator className="w-8" />
-                <SidebarItem icon={Globe} label={t('backToSite')} href={LOGGED_HOME_PATH} tooltipSide="right" />
+                <SidebarItem icon={Globe} label={t('backToSite')} href={'/'} tooltipSide="right" />
                 <SidebarItem icon={LogOut} label={t('logout')} onClick={handleLogout} tooltipSide="right" />
             </div>
         </aside>

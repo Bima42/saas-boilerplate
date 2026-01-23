@@ -15,6 +15,7 @@ export function BlogHeader() {
         <header className="border-b border-border bg-card">
             <div className="max-w-4xl mx-auto px-4 py-6 flex items-center gap-4">
                 <Button
+                    variant="outline"
                     onClick={() => {
                         if (isPost) {
                             router.push('/blog');
