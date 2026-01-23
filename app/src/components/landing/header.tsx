@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import Link from 'next/link';
-import { Menu, Shield } from 'lucide-react';
+import { Menu, Newspaper } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
@@ -19,13 +19,19 @@ import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { LoginButton } from '@/components/login/login-button';
 import { Logo } from '@/components/logo';
 import GithubStars from '@/components/landing/github-stars';
+import { authClient } from '@/lib/better-auth/auth-client';
 
 function AdminButton() {
+    const { data: session } = authClient.useSession();
+    const targetPath = '/admin/posts';
+
+    const href = session ? targetPath : `/login?callbackURL=${encodeURIComponent(targetPath)}`;
+
     return (
         <Button asChild size="sm" className="gap-2" variant="outline">
-            <Link href="/login">
-                <Shield className="w-4 h-4" />
-                Admin
+            <Link href={href}>
+                <Newspaper className="w-4 h-4" />
+                Blog Admin
             </Link>
         </Button>
     );
@@ -54,13 +60,13 @@ export function Header() {
                 {/* Right: Actions & Mobile Menu */}
                 <div className="flex items-center gap-3">
                     <div className="hidden sm:flex items-center gap-2">
-                        <ThemeToggle />
-                        <LanguageSwitcher />
+                        <GithubStars />
                         <div className="h-6 w-px bg-border mx-2" />
                         <LoginButton />
                         <AdminButton />
                         <div className="h-6 w-px bg-border mx-2" />
-                        <GithubStars />
+                        <ThemeToggle />
+                        <LanguageSwitcher />
                     </div>
 
                     {/* Mobile Menu Trigger */}
@@ -122,6 +128,10 @@ function MobileNav() {
 
                     {/* Mobile Actions */}
                     <div className="flex flex-col gap-4">
+                        <div className="h-px bg-border" />
+                        <LoginButton />
+                        <AdminButton />
+                        <GithubStars />
                         <div className="flex items-center justify-between">
                             <span className="text-sm font-medium">Theme</span>
                             <ThemeToggle />
@@ -130,9 +140,6 @@ function MobileNav() {
                             <span className="text-sm font-medium">Language</span>
                             <LanguageSwitcher />
                         </div>
-                        <div className="h-px bg-border" />
-                        <LoginButton />
-                        <AdminButton />
                     </div>
                 </div>
             </SheetContent>

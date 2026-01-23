@@ -18,12 +18,8 @@ export function ThemeToggle() {
     }
 
     return (
-        <Button
-            variant="ghost"
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            icon={theme === 'dark' ? <Moon /> : <Sun />}
-            tooltip="Toggle theme"
-            size="sm"
-        />
+        <Button variant="ghost" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} size="sm">
+            {theme === 'dark' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+        </Button>
     );
 }

@@ -1,11 +1,11 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Loader2, Plus, Link as LinkIcon } from 'lucide-react';
+import { Loader2, Plus } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
@@ -18,16 +18,9 @@ import {
     DialogFooter,
     DialogHeader,
     DialogTitle,
-    DialogTrigger,
+    DialogTrigger
 } from '@/components/ui/dialog';
-import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from '@/components/ui/form';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, FormDescription } from '@/components/ui/form';
 import { api } from '@/lib/trpc/client';
 
 function generateSlug(title: string): string {
@@ -54,11 +47,9 @@ interface CreatePostDialogProps {
 export function CreatePostDialog({ children }: CreatePostDialogProps) {
     const router = useRouter();
     const [open, setOpen] = useState(false);
-    const [origin, setOrigin] = useState('');
 
-    useEffect(() => {
-        setOrigin(window.location.origin);
-    }, []);
+    // Track if slug was manually edited to prevent auto-overwrite
+    const [slugEdited, setSlugEdited] = useState(false);
 
     const form = useForm<FormData>({
         resolver: zodResolver(formSchema),
@@ -74,6 +65,7 @@ export function CreatePostDialog({ children }: CreatePostDialogProps) {
             toast.success('Draft created successfully');
             setOpen(false);
             form.reset();
+            setSlugEdited(false);
             router.push(`/admin/posts/${data.id}`);
         },
         onError: (error) => {
@@ -88,12 +80,13 @@ export function CreatePostDialog({ children }: CreatePostDialogProps) {
     const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const title = e.target.value;
         form.setValue('title', title, { shouldValidate: true });
-        
-        const generatedSlug = generateSlug(title);
-        form.setValue('slug', generatedSlug, { shouldValidate: true });
-    };
 
-    const slug = form.watch('slug');
+        // Only auto-generate if user hasn't manually touched the slug
+        if (!slugEdited) {
+            const generatedSlug = generateSlug(title);
+            form.setValue('slug', generatedSlug, { shouldValidate: true });
+        }
+    };
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
@@ -105,9 +98,9 @@ export function CreatePostDialog({ children }: CreatePostDialogProps) {
                     </Button>
                 )}
             </DialogTrigger>
-  
-            <DialogContent className="rounded-lg">
-                <DialogHeader className="text-left">
+
+            <DialogContent className="sm:max-w-[525px]">
+                <DialogHeader>
                     <DialogTitle>Create New Post</DialogTitle>
                     <DialogDescription>
                         Start writing your new article. You can edit these details later.
@@ -115,7 +108,7 @@ export function CreatePostDialog({ children }: CreatePostDialogProps) {
                 </DialogHeader>
 
                 <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 sm:space-y-5 py-2">
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-5 py-4">
                         <FormField
                             control={form.control}
                             name="title"
@@ -134,39 +127,48 @@ export function CreatePostDialog({ children }: CreatePostDialogProps) {
                             )}
                         />
 
-
-                        <div className="space-y-2">
-                            <FormLabel>Post URL</FormLabel>
-                            <div className="flex items-center gap-2 w-full rounded-md border border-input bg-gradient-to-r from-blue-50/50 to-transparent dark:from-blue-950/20 px-3 py-2.5 text-sm">
-                                <LinkIcon className="h-4 w-4 flex-shrink-0 text-blue-500 animate-pulse" />
-                                <span className="truncate text-muted-foreground">
-                                    {origin ? `${origin}/blog/` : '.../blog/'}
-                                    <span className="font-medium text-foreground">
-                                        {slug || 'your-post-slug'}
-                                    </span>
-                                </span>
-                            </div>
-
-                            <FormField
-                                control={form.control}
-                                name="slug"
-                                render={({ field }) => (
-                                    <Input type="hidden" {...field} />
-                                )}
-                            />
-                        </div>
-
+                        <FormField
+                            control={form.control}
+                            name="slug"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Slug</FormLabel>
+                                    <FormControl>
+                                        {/* Input Group Pattern */}
+                                        <div className="flex rounded-md shadow-sm ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2">
+                                            <span className="flex select-none items-center px-3 text-muted-foreground border border-r-0 rounded-l-md bg-muted/50 text-sm">
+                                                /blog/
+                                            </span>
+                                            <Input
+                                                {...field}
+                                                className="rounded-l-none shadow-none focus-visible:ring-0"
+                                                placeholder="post-url-slug"
+                                                onChange={(e) => {
+                                                    setSlugEdited(true);
+                                                    field.onChange(e);
+                                                }}
+                                            />
+                                        </div>
+                                    </FormControl>
+                                    <FormDescription>This will be the URL of your post.</FormDescription>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
 
                         <FormField
                             control={form.control}
                             name="description"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Short Description (Optional)</FormLabel>
+                                    <FormLabel>
+                                        Short Description{' '}
+                                        <span className="text-muted-foreground font-normal">(Optional)</span>
+                                    </FormLabel>
                                     <FormControl>
                                         <Textarea
                                             placeholder="A brief summary for SEO and social previews..."
-                                            className="resize-none min-h-[70px]"
+                                            className="resize-none min-h-[100px]"
                                             {...field}
                                         />
                                     </FormControl>
@@ -175,8 +177,7 @@ export function CreatePostDialog({ children }: CreatePostDialogProps) {
                             )}
                         />
 
-
-                        <DialogFooter className="flex-row justify-end space-x-2">
+                        <DialogFooter>
                             <Button
                                 type="button"
                                 variant="outline"
@@ -185,13 +186,8 @@ export function CreatePostDialog({ children }: CreatePostDialogProps) {
                             >
                                 Cancel
                             </Button>
-                            <Button 
-                                type="submit" 
-                                disabled={createPost.isPending}
-                            >
-                                {createPost.isPending && (
-                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                )}
+                            <Button type="submit" disabled={createPost.isPending}>
+                                {createPost.isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                                 Create Draft
                             </Button>
                         </DialogFooter>

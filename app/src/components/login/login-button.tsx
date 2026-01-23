@@ -11,9 +11,11 @@ export function LoginButton() {
     const t = useTranslations('Auth');
     const { data: session } = authClient.useSession();
 
+    const loginHref = `/login?callbackURL=${encodeURIComponent(LOGGED_HOME_PATH)}`;
+
     return (
         <Button asChild size="sm" className="gap-2">
-            <Link href={session ? LOGGED_HOME_PATH : '/login'}>
+            <Link href={session ? LOGGED_HOME_PATH : loginHref}>
                 <LogIn className="w-4 h-4" />
                 {session ? t('dashboard') : t('login')}
             </Link>

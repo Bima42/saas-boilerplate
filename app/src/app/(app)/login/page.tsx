@@ -16,12 +16,16 @@ import { authClient } from '@/lib/better-auth/auth-client';
 import { GoogleLogo } from '@/components/login/google-logo';
 import { Logo } from '@/components/logo';
 import { LOGGED_HOME_PATH } from '@/config/config';
+import { useSearchParams } from 'next/navigation';
 
 export default function LoginPage() {
     const t = useTranslations('Auth');
     const [isLoading, setIsLoading] = useState(false);
     const [isEmailSent, setIsEmailSent] = useState(false);
     const [email, setEmail] = useState('');
+
+    const searchParams = useSearchParams();
+    const callbackURL = searchParams.get('callbackURL') || LOGGED_HOME_PATH;
 
     const formSchema = z.object({
         email: z.string().email({ message: t('validation.email') })
@@ -41,7 +45,7 @@ export default function LoginPage() {
         await authClient.signIn.magicLink(
             {
                 email: data.email,
-                callbackURL: LOGGED_HOME_PATH
+                callbackURL: callbackURL
             },
             {
                 onSuccess: () => {
@@ -62,7 +66,7 @@ export default function LoginPage() {
         await authClient.signIn.social(
             {
                 provider: 'google',
-                callbackURL: LOGGED_HOME_PATH
+                callbackURL: callbackURL
             },
             {
                 onError: (ctx) => {

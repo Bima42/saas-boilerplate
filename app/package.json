@@ -95,6 +95,7 @@
         "node-gyp": "^12.1.0",
         "payload": "3.70",
         "postgres": "^3.4.7",
+        "radix-ui": "^1.4.3",
         "react": "19.2.1",
         "react-day-picker": "^9.13.0",
         "react-dnd": "^16.0.1",
