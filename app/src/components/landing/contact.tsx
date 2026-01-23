@@ -9,7 +9,7 @@ export default function Contact() {
         {
             icon: Mail,
             key: 'email',
-            link: 'mailto:tanpau.pro@gmail.com'
+            link: 'mailto:contact@tanguypauvret.me'
         },
         {
             icon: Github,
