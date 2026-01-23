@@ -32,18 +32,11 @@ export function PlateEditor({
         value: initialValue,
         readOnly
     });
-    
+
     return (
         <TooltipProvider>
             <div className="w-full max-w-full min-w-0 overflow-x-hidden">
-                <Plate
-                    editor={editor}
-                    onChange={({ value }) => {
-                        if (onChange) {
-                            onChange(value);
-                        }
-                    }}
-                >
+                <Plate editor={editor} onValueChange={({ value }) => onChange && onChange(value)}>
                     <EditorContainer className="w-full max-w-full">
                         <Editor className="w-full max-w-full" placeholder={placeholder} />
                     </EditorContainer>

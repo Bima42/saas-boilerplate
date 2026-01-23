@@ -2,7 +2,7 @@ import React from 'react';
 import { Metadata } from 'next';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
-import { api, trpc } from '@/lib/trpc/server';
+import { trpc } from '@/lib/trpc/server';
 import { BlogPostViewer } from '@/components/blog/blog-post-viewer';
 import { Button } from '@/components/ui/button';
 
@@ -49,7 +49,7 @@ export default async function BlogPostPage({ params }: Props) {
                     size="sm"
                     className="mb-4 gap-2 text-muted-foreground hover:text-foreground"
                 >
-                    <Link href="/">
+                    <Link href="/blog">
                         <ArrowLeft size="s" />
                         Back to all posts
                     </Link>

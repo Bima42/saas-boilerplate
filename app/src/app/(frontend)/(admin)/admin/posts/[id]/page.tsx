@@ -17,12 +17,13 @@ import { Toolbar } from '@/components/admin/post-editor/toolbar';
 import { CoverImageSection } from '@/components/admin/post-editor/cover-image-section';
 import { TitleDescriptionSection } from '@/components/admin/post-editor/title-description-section';
 import { BlogPostViewer } from '@/components/blog/blog-post-viewer';
+import { useDebouncedCallback } from 'use-debounce';
 
 const formSchema = z.object({
     title: z.string().min(1, 'Title is required'),
     slug: z.string().min(1, 'Slug is required'),
     description: z.string().optional(),
-    coverImage: z.string().url('Must be a valid URL').optional().or(z.literal(''))
+    coverImage: z.url('Must be a valid URL').optional().or(z.literal(''))
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -41,6 +42,16 @@ export default function EditPostPage() {
 
     const { data: post, isLoading } = api.post.adminGetById.useQuery({ id });
     const utils = api.useUtils();
+    const contentRef = React.useRef<Value>(initialContent);
+
+    const handleContentChange = useDebouncedCallback((newValue: Value) => {
+        setContent(newValue);
+    }, 200);
+
+    const onEditorChange = (newValue: Value) => {
+        contentRef.current = newValue;
+        handleContentChange(newValue);
+    };
 
     const form = useForm<FormData>({
         resolver: zodResolver(formSchema),
@@ -102,7 +113,7 @@ export default function EditPostPage() {
         updatePost.mutate({
             id,
             ...data,
-            content,
+            content: contentRef.current,
             published: isPublished
         });
     };
@@ -132,16 +143,13 @@ export default function EditPostPage() {
         description: form.watch('description') || null,
         content: content,
         coverImage: form.watch('coverImage') || null,
-        publishedAt: isPublished ? (post.publishedAt || new Date()) : null,
+        publishedAt: isPublished ? post.publishedAt || new Date() : null,
         author: post.author
     };
 
     return (
         <Form {...form}>
-            <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="relative w-full min-h-screen overflow-x-hidden"
-            >
+            <form onSubmit={form.handleSubmit(onSubmit)} className="relative w-full min-h-screen overflow-x-hidden">
                 <div className="fixed top-14 left-0 right-0 z-30 lg:fixed lg:top-0 lg:left-16 lg:right-0 lg:z-40 border-b bg-background">
                     <Toolbar
                         isPublished={isPublished}
@@ -173,7 +181,7 @@ export default function EditPostPage() {
                                             <PlateEditor
                                                 key={editorKey}
                                                 initialValue={content}
-                                                onChange={setContent}
+                                                onChange={onEditorChange}
                                                 placeholder="Tell your story..."
                                             />
                                         </div>
