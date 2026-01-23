@@ -39,86 +39,66 @@ const data = {
     ],
     navMain: [
         {
-            title: 'Playground',
+            title: 'Menu Item 1',
             url: '#',
             icon: SquareTerminal,
             isActive: true,
             items: [
                 {
-                    title: 'History',
+                    title: 'Sub-item 1.1',
                     url: '#'
                 },
                 {
-                    title: 'Starred',
+                    title: 'Sub-item 1.2',
                     url: '#'
                 },
                 {
-                    title: 'Settings',
+                    title: 'Sub-item 1.3',
                     url: '#'
                 }
             ]
         },
         {
-            title: 'Models',
+            title: 'Menu Item 2',
             url: '#',
             icon: Bot,
             items: [
                 {
-                    title: 'Genesis',
+                    title: 'Sub-item 2.1',
                     url: '#'
                 },
                 {
-                    title: 'Explorer',
-                    url: '#'
-                },
-                {
-                    title: 'Quantum',
+                    title: 'Sub-item 2.2',
                     url: '#'
                 }
             ]
         },
         {
-            title: 'Documentation',
+            title: 'Menu Item 3',
             url: '#',
             icon: BookOpen,
             items: [
                 {
-                    title: 'Introduction',
+                    title: 'Sub-item 3.1',
                     url: '#'
                 },
                 {
-                    title: 'Get Started',
-                    url: '#'
-                },
-                {
-                    title: 'Tutorials',
-                    url: '#'
-                },
-                {
-                    title: 'Changelog',
+                    title: 'Sub-item 3.2',
                     url: '#'
                 }
             ]
         },
         {
-            title: 'Settings',
+            title: 'Menu Item 4',
             url: '#',
             icon: Settings2,
             items: [
                 {
-                    title: 'General',
+                    title: 'Sub-item 4.1',
                     url: '#'
                 },
                 {
-                    title: 'Team',
-                    url: '#'
-                },
-                {
-                    title: 'Billing',
-                    url: '#'
-                },
-                {
-                    title: 'Limits',
+                    title: 'Sub-item 4.2',
                     url: '#'
                 }
             ]
@@ -126,17 +106,17 @@ const data = {
     ],
     projects: [
         {
-            name: 'Design Engineering',
+            name: 'Project A',
             url: '#',
             icon: Frame
         },
         {
-            name: 'Sales & Marketing',
+            name: 'Project B',
             url: '#',
             icon: PieChart
         },
         {
-            name: 'Travel',
+            name: 'Project C',
             url: '#',
             icon: Map
         }

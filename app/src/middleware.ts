@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { env } from '@/config/env';
+import { LOGGED_HOME_PATH } from '@/config/config';
 
 export async function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl;
@@ -18,7 +19,7 @@ export async function middleware(request: NextRequest) {
     // Define route types
     const isAdminRoute = pathname.includes('/admin');
     const isAuthRoute = pathname === '/login';
-    const needAuthRoute = pathname === '/dashboard';
+    const needAuthRoute = pathname === LOGGED_HOME_PATH;
 
     const cannotAccessAdmin = isAdminRoute && !isAdmin;
     if (cannotAccessAdmin) {

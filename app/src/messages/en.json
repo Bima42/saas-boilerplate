@@ -239,6 +239,7 @@
         "connecting": "Connecting..."
     },
     "UserMenu": {
+        "admin": "Blog Admin",
         "upgrade": "Upgrade to Pro",
         "account": "Account",
         "billing": "Billing",
@@ -248,5 +249,18 @@
         "themeLight": "Light",
         "language": "Language",
         "logout": "Log out"
+    },
+    "Admin": {
+        "sidebar": {
+            "home": "Home",
+            "posts": "Posts",
+            "createPost": "Create New Post",
+            "backToSite": "Back to Site",
+            "logout": "Logout"
+        },
+        "toasts": {
+            "logoutSuccess": "Logged out successfully",
+            "logoutError": "Error logging out"
+        }
     }
 }

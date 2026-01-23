@@ -85,7 +85,9 @@ export default function DashboardPage() {
                                 </div>
                                 <div className="flex justify-between text-sm">
                                     <span className="text-muted-foreground">{t('role')}</span>
-                                    <Badge variant="secondary">{t('roleUser')}</Badge>
+                                    <Badge variant="secondary">
+                                        {session?.user.role && session.user.role.toLocaleUpperCase()}
+                                    </Badge>
                                 </div>
                             </div>
                         </CardContent>

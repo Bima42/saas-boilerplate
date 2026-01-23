@@ -239,6 +239,7 @@
         "connecting": "Connexion en cours..."
     },
     "UserMenu": {
+        "admin": "Blog Admin",
         "upgrade": "Mettre à niveau",
         "billing": "Facturation",
         "account": "Compte",
@@ -248,5 +249,18 @@
         "logout": "Se déconnecter",
         "themeDark": "Sombre",
         "themeLight": "Clair"
+    },
+    "Admin": {
+        "sidebar": {
+            "home": "Accueil",
+            "posts": "Articles",
+            "createPost": "Créer un article",
+            "backToSite": "Retour au site",
+            "logout": "Se déconnecter"
+        },
+        "toasts": {
+            "logoutSuccess": "Déconnexion réussie",
+            "logoutError": "Erreur lors de la déconnexion"
+        }
     }
 }

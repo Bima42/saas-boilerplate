@@ -5,12 +5,13 @@ import { api } from '@/lib/trpc/client';
 import { toast } from 'sonner';
 import { useEffect } from 'react';
 import { useTranslations } from 'next-intl';
-import { Check, ArrowLeft, Loader2, Sparkles, CreditCard, ShieldCheck } from 'lucide-react';
+import { Check, Loader2, Sparkles, CreditCard, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
-import { BackButton } from '@/components/back-button';
+import { BackButton } from '@/components/buttons/back-button';
+import { LOGGED_HOME_PATH } from '@/config/config';
 
 export default function BillingPage() {
     const router = useRouter();
@@ -72,7 +73,7 @@ export default function BillingPage() {
             <div className="max-w-5xl mx-auto space-y-6">
                 {/* Header */}
                 <div className="flex items-center gap-4">
-                    <BackButton path={'/dashboard'} />
+                    <BackButton path={LOGGED_HOME_PATH} />
                     <div>
                         <h1 className="text-2xl font-bold tracking-tight">{t('title')}</h1>
                         <p className="text-muted-foreground text-sm">{t('subtitle')}</p>

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { LogIn } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { authClient } from '@/lib/better-auth/auth-client';
+import { LOGGED_HOME_PATH } from '@/config/config';
 
 export function LoginButton() {
     const t = useTranslations('Auth');
@@ -12,7 +13,7 @@ export function LoginButton() {
 
     return (
         <Button asChild size="sm" className="gap-2">
-            <Link href={session ? '/dashboard' : '/login'}>
+            <Link href={session ? LOGGED_HOME_PATH : '/login'}>
                 <LogIn className="w-4 h-4" />
                 {session ? t('dashboard') : t('login')}
             </Link>

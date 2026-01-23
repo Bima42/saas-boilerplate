@@ -1,17 +1,6 @@
 'use client';
 
-import {
-    BadgeCheck,
-    Bell,
-    ChevronsUpDown,
-    CreditCard,
-    LogOut,
-    Sparkles,
-    Moon,
-    Sun,
-    Languages,
-    Check
-} from 'lucide-react';
+import { ChevronsUpDown, CreditCard, LogOut, Sparkles, Moon, Sun, Languages, Check, Newspaper } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import { useTranslations } from 'next-intl';
@@ -109,17 +98,13 @@ export function NavUser({
                         </DropdownMenuGroup>
                         <DropdownMenuSeparator />
                         <DropdownMenuGroup>
-                            <DropdownMenuItem>
-                                <BadgeCheck className="mr-2 h-4 w-4" />
-                                {t('account')}
+                            <DropdownMenuItem onClick={() => router.push('/admin/posts')}>
+                                <Newspaper className="mr-2 h-4 w-4" />
+                                {t('admin')}
                             </DropdownMenuItem>
                             <DropdownMenuItem onClick={() => router.push('/dashboard/billing')}>
                                 <CreditCard className="mr-2 h-4 w-4" />
                                 {t('billing')}
-                            </DropdownMenuItem>
-                            <DropdownMenuItem>
-                                <Bell className="mr-2 h-4 w-4" />
-                                {t('notifications')}
                             </DropdownMenuItem>
                         </DropdownMenuGroup>
                         <DropdownMenuSeparator />

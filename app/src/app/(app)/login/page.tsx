@@ -15,6 +15,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { authClient } from '@/lib/better-auth/auth-client';
 import { GoogleLogo } from '@/components/login/google-logo';
 import { Logo } from '@/components/logo';
+import { LOGGED_HOME_PATH } from '@/config/config';
 
 export default function LoginPage() {
     const t = useTranslations('Auth');
@@ -40,7 +41,7 @@ export default function LoginPage() {
         await authClient.signIn.magicLink(
             {
                 email: data.email,
-                callbackURL: '/dashboard'
+                callbackURL: LOGGED_HOME_PATH
             },
             {
                 onSuccess: () => {
@@ -61,7 +62,7 @@ export default function LoginPage() {
         await authClient.signIn.social(
             {
                 provider: 'google',
-                callbackURL: '/dashboard'
+                callbackURL: LOGGED_HOME_PATH
             },
             {
                 onError: (ctx) => {
