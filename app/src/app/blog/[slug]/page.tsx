@@ -1,10 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
-import { ArrowLeft } from 'lucide-react';
-import Link from 'next/link';
 import { trpc } from '@/lib/trpc/server';
 import { BlogPostViewer } from '@/components/blog/blog-post-viewer';
-import { Button } from '@/components/ui/button';
 
 interface Props {
     params: Promise<{ slug: string }>;
@@ -28,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
                 images: post.coverImage ? [{ url: post.coverImage }] : undefined
             }
         };
-    } catch (error) {
+    } catch {
         return {
             title: 'Post Not Found'
         };
@@ -42,19 +39,6 @@ export default async function BlogPostPage({ params }: Props) {
 
     return (
         <main className="min-h-screen bg-background">
-            <div className="container mx-auto max-w-3xl px-4 pt-8 sm:px-6 lg:px-8">
-                <Button
-                    asChild
-                    variant="ghost"
-                    size="sm"
-                    className="mb-4 gap-2 text-muted-foreground hover:text-foreground"
-                >
-                    <Link href="/blog">
-                        <ArrowLeft size="s" />
-                        Back to all posts
-                    </Link>
-                </Button>
-            </div>
             <BlogPostViewer post={post} />
         </main>
     );

@@ -15,18 +15,10 @@ import { api } from '@/lib/trpc/client';
 import { PlateEditor } from '@/components/editor/editor';
 import { Toolbar } from '@/components/admin/post-editor/toolbar';
 import { CoverImageSection } from '@/components/admin/post-editor/cover-image-section';
-import { TitleDescriptionSection } from '@/components/admin/post-editor/title-description-section';
+import { BlogPostForm } from '@/components/admin/post-editor/blog-post-form';
 import { BlogPostViewer } from '@/components/blog/blog-post-viewer';
 import { useDebouncedCallback } from 'use-debounce';
-
-const formSchema = z.object({
-    title: z.string().min(1, 'Title is required'),
-    slug: z.string().min(1, 'Slug is required'),
-    description: z.string().optional(),
-    coverImage: z.url('Must be a valid URL').optional().or(z.literal(''))
-});
-
-type FormData = z.infer<typeof formSchema>;
+import { BlogPostFormData, blogPostFormSchema } from '@/server/types/Post';
 
 export default function EditPostPage() {
     const params = useParams();
@@ -53,11 +45,12 @@ export default function EditPostPage() {
         handleContentChange(newValue);
     };
 
-    const form = useForm<FormData>({
-        resolver: zodResolver(formSchema),
+    const form = useForm<BlogPostFormData>({
+        resolver: zodResolver(blogPostFormSchema),
         defaultValues: {
             title: '',
             slug: '',
+            tags: [],
             description: '',
             coverImage: ''
         }
@@ -68,6 +61,7 @@ export default function EditPostPage() {
             form.reset({
                 title: post.title,
                 slug: post.slug,
+                tags: post.tags || [],
                 description: post.description || '',
                 coverImage: post.coverImage || ''
             });
@@ -108,7 +102,7 @@ export default function EditPostPage() {
         }
     });
 
-    const onSubmit = async (data: FormData) => {
+    const onSubmit = async (data: BlogPostFormData) => {
         setIsSaving(true);
         updatePost.mutate({
             id,
@@ -142,6 +136,7 @@ export default function EditPostPage() {
         title: form.watch('title'),
         description: form.watch('description') || null,
         content: content,
+        tags: form.watch('tags') || [],
         coverImage: form.watch('coverImage') || null,
         publishedAt: isPublished ? post.publishedAt || new Date() : null,
         author: post.author
@@ -172,7 +167,7 @@ export default function EditPostPage() {
                                 </div>
 
                                 <div className="px-4 lg:px-0">
-                                    <TitleDescriptionSection form={form} />
+                                    <BlogPostForm form={form} />
                                 </div>
 
                                 <div className="lg:px-0">

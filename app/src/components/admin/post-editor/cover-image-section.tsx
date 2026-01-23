@@ -11,6 +11,7 @@ interface CoverImageSectionProps {
     form: UseFormReturn<{
         title: string;
         slug: string;
+        tags: string[];
         description?: string;
         coverImage?: string;
     }>;

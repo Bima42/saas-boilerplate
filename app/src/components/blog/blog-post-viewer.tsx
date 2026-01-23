@@ -18,7 +18,7 @@ type Post = {
 
 export function BlogPostViewer({ post }: { post: Post }) {
     return (
-        <article className="container mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
+        <article className="container p-4">
             {post.coverImage && (
                 <div className="mb-8 overflow-hidden rounded-lg">
                     <img src={post.coverImage} alt={post.title} className="w-full h-auto" />

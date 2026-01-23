@@ -11,17 +11,7 @@ import {
     updatePost,
     deletePost
 } from '@/server/services/post';
-
-const updateSchema = z.object({
-    id: z.string(),
-    title: z.string().optional(),
-    slug: z.string().optional(),
-    description: z.string().optional(),
-    content: z.any().optional(),
-    coverImage: z.string().optional(),
-    published: z.boolean().optional(),
-    publishedAt: z.date().nullable().optional()
-});
+import { BlogPostUpdateData, blogPostUpdateSchema } from '@/server/types/Post';
 
 export const postRouter = createTRPCRouter({
     getAll: publicProcedure.query(async () => {
@@ -73,11 +63,10 @@ export const postRouter = createTRPCRouter({
             });
         }),
 
-    update: adminProcedure.input(updateSchema).mutation(async ({ input }) => {
-        const updateData: any = { ...input };
+    update: adminProcedure.input(blogPostUpdateSchema).mutation(async ({ input }) => {
+        const updateData: BlogPostUpdateData = { ...input };
         delete updateData.published; // Remove virtual field before sending to DB
 
-        // Handle business logic for publishing dates in the router/controller layer
         if (input.published === true) {
             updateData.publishedAt = new Date();
         } else if (input.published === false) {

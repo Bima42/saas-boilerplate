@@ -1,10 +1,8 @@
-'use client';
-
 import React from 'react';
 import { TRPCProvider } from '@/providers/trpc-provider';
 import { AdminSidebar } from '@/components/admin/admin-sidebar';
 
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
+export default async function AdminLayout({ children }: { children: React.ReactNode }) {
     return (
         <TRPCProvider>
             <div className="flex min-h-screen w-full bg-muted/40 overflow-x-hidden">
