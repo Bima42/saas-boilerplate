@@ -11,6 +11,7 @@ export const post = pgTable(
         description: text('description'),
         content: jsonb('content'),
         coverImage: text('cover_image'),
+        tags: text('tags').array(),
 
         publishedAt: timestamp('published_at'), // Null = Draft, Date = Published
 
