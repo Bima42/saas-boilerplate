@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 import { Image as ImageIcon, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -21,15 +21,9 @@ export function CoverImageSection({ form }: CoverImageSectionProps) {
     const [showCoverInput, setShowCoverInput] = useState(false);
     const watchCoverImage = form.watch('coverImage');
 
-    useEffect(() => {
-        if (watchCoverImage) {
-            setShowCoverInput(true);
-        }
-    }, [watchCoverImage]);
-
     return (
         <div className="group relative w-full max-w-full">
-            {watchCoverImage ? (
+            {watchCoverImage && !showCoverInput ? (
                 <div className="relative aspect-video w-full overflow-hidden rounded-xl border bg-muted shadow-sm">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={watchCoverImage} alt="Cover" className="h-full w-full object-cover" />
@@ -38,9 +32,11 @@ export function CoverImageSection({ form }: CoverImageSectionProps) {
                         variant="secondary"
                         size="icon"
                         className="absolute right-3 top-3 opacity-0 transition-opacity group-hover:opacity-100 z-10"
-                        onClick={() => form.setValue('coverImage', '', { shouldDirty: true })}
+                        onClick={() => {
+                            form.setValue('coverImage', '', { shouldDirty: true });
+                        }}
                     >
-                        <X size="s" />
+                        <X size={16} />
                     </Button>
                 </div>
             ) : (
@@ -62,15 +58,29 @@ export function CoverImageSection({ form }: CoverImageSectionProps) {
                             name="coverImage"
                             render={({ field }) => (
                                 <div className="flex w-full max-w-md items-center gap-2 animate-in fade-in slide-in-from-left-2 duration-200">
-                                    <Input placeholder="https://..." {...field} className="h-8" autoFocus />
+                                    <Input
+                                        placeholder="https://..."
+                                        {...field}
+                                        className="h-8"
+                                        autoFocus
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'Enter') {
+                                                e.preventDefault();
+                                                setShowCoverInput(false);
+                                            }
+                                        }}
+                                    />
                                     <Button
                                         type="button"
                                         variant="ghost"
                                         size="icon"
                                         className="h-8 w-8 flex-shrink-0"
-                                        onClick={() => setShowCoverInput(false)}
+                                        onClick={() => {
+                                            form.setValue('coverImage', '', { shouldDirty: true });
+                                            setShowCoverInput(false);
+                                        }}
                                     >
-                                        <X size="s" />
+                                        <X size={16} />
                                     </Button>
                                 </div>
                             )}
