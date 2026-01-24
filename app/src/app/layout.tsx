@@ -10,8 +10,9 @@ import { NextIntlClientProvider } from 'next-intl';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-    title: 'Blogs',
-    description: 'A modern SaaS with TypeScript and Tailwind.'
+    title: 'Boilerplate',
+    description:
+        'A modern SaaS Boilerplate simple, easy to use. Build on top of Drizzle, tRPC, BetterAuth, Shadcn and PlateJS to quickly produce high-quality SaaS applications.'
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
