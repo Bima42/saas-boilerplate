@@ -5,6 +5,7 @@ Welcome! This is a robust, full-stack SaaS boilerplate built around **Next.js**.
 I built this because I love shipping products, but I hate configuring the same infrastructure over and over again. It’s not "the ultimate" boilerplate, it’s just a really solid foundation standing on the shoulders of giants. It combines a strictly typed backend with a **fully integrated Admin Dashboard and Blog system** in a single application.
 
 Want to see what it looks like? Click on [this link!](https://boilerplate.tanguypauvret.me)
+
 ---
 
 ## Quick Start
