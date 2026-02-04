@@ -36,7 +36,7 @@ function DotIndicator({ color, animate }: DotIndicatorProps) {
     return (
         <span
             className={cn(
-                'inline-block h-2 w-2 rounded-full flex-shrink-0',
+                'inline-block h-2 w-2 rounded-full shrink-0',
                 colorMap[color],
                 animate && 'animate-pulse'
             )}
@@ -58,12 +58,12 @@ function PublishStatusButton({ isPublished, setIsPublished, postSlug }: PublishS
     };
 
     return (
-        <div className="flex items-center gap-2 flex-shrink-0">
+        <div className="flex items-center gap-2 shrink-0">
             <Switch
                 checked={isPublished}
                 onCheckedChange={setIsPublished}
                 id="publish-mode"
-                className="data-[state=checked]:bg-green-600 flex-shrink-0"
+                className="data-[state=checked]:bg-green-600 shrink-0"
             />
             <Tooltip delayDuration={0}>
                 <TooltipTrigger asChild>
@@ -101,7 +101,7 @@ function DeleteButton({ onDelete }: DeleteButtonProps) {
                     variant="ghost"
                     size="icon"
                     onClick={onDelete}
-                    className="h-9 w-9 text-destructive hover:bg-destructive/10 flex-shrink-0"
+                    className="h-9 w-9 text-destructive hover:bg-destructive/10 shrink-0"
                 >
                     <Trash2 size="s" />
                 </Button>
@@ -122,7 +122,7 @@ function SaveButton({ isSaving, hasUnsavedChanges }: SaveButtonProps) {
             type="submit"
             disabled={isSaving || !hasUnsavedChanges}
             size="sm"
-            className="min-w-[70px] sm:min-w-[80px] h-9 flex-shrink-0"
+            className="min-w-[70px] sm:min-w-[80px] h-9 shrink-0"
         >
             {isSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
             Save
@@ -167,12 +167,12 @@ function MobileToolbar({
 }: MobileToolbarProps) {
     return (
         <header className={cn('w-full flex items-center justify-between border-b bg-background px-3 h-14', className)}>
-            <div className="flex items-center gap-2 min-w-0 flex-shrink">
+            <div className="flex items-center gap-2 min-w-0 shrink">
                 <ViewModeTabs viewMode={viewMode} onViewModeChange={onViewModeChange} />
 
                 {hasUnsavedChanges && (
                     <>
-                        <Separator orientation="vertical" className="h-6 flex-shrink-0" />
+                        <Separator orientation="vertical" className="h-6 shrink-0" />
                         <div className="flex items-center gap-2 min-w-0">
                             <DotIndicator color="amber" animate />
                             <span className="text-xs font-medium text-amber-500 whitespace-nowrap">Unsaved</span>
@@ -181,10 +181,10 @@ function MobileToolbar({
                 )}
             </div>
 
-            <div className="flex items-center gap-2 flex-shrink-0">
+            <div className="flex items-center gap-2 shrink-0">
                 <PublishStatusButton isPublished={isPublished} setIsPublished={setIsPublished} postSlug={postSlug} />
 
-                <Separator orientation="vertical" className="h-6 mx-1 flex-shrink-0" />
+                <Separator orientation="vertical" className="h-6 mx-1 shrink-0" />
 
                 <DeleteButton onDelete={onDelete} />
                 <SaveButton isSaving={isSaving} hasUnsavedChanges={hasUnsavedChanges} />
@@ -210,12 +210,12 @@ function DesktopToolbar({
 }: DesktopToolbarProps) {
     return (
         <header className={cn('w-full flex items-center justify-between border-b bg-background px-6 h-14', className)}>
-            <div className="flex items-center gap-4 min-w-0 flex-shrink">
+            <div className="flex items-center gap-4 min-w-0 shrink">
                 <ViewModeTabs viewMode={viewMode} onViewModeChange={onViewModeChange} />
 
                 {hasUnsavedChanges && (
                     <>
-                        <Separator orientation="vertical" className="h-6 flex-shrink-0" />
+                        <Separator orientation="vertical" className="h-6 shrink-0" />
                         <div className="flex items-center gap-2 min-w-0">
                             <DotIndicator color="amber" animate />
                             <span className="text-xs font-medium text-amber-500 whitespace-nowrap">
@@ -226,10 +226,10 @@ function DesktopToolbar({
                 )}
             </div>
 
-            <div className="flex items-center gap-2 flex-shrink-0">
+            <div className="flex items-center gap-2 shrink-0">
                 <PublishStatusButton isPublished={isPublished} setIsPublished={setIsPublished} postSlug={postSlug} />
 
-                <Separator orientation="vertical" className="h-6 mx-2 flex-shrink-0" />
+                <Separator orientation="vertical" className="h-6 mx-2 shrink-0" />
 
                 <DeleteButton onDelete={onDelete} />
                 <SaveButton isSaving={isSaving} hasUnsavedChanges={hasUnsavedChanges} />
