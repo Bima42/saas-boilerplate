@@ -36,7 +36,7 @@ export default function Footer() {
     ];
 
     return (
-        <footer className="border-t bg-muted/20">
+        <footer className="border-t border-border bg-muted/20">
             <div className="container mx-auto max-w-6xl px-6 py-12">
                 <div className="flex flex-col md:flex-row justify-between gap-12">
                     <div className="space-y-4">

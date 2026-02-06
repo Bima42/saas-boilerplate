@@ -13,7 +13,7 @@ export default function Testimonials() {
                 <p className="mt-4 text-xl text-center text-muted-foreground">{t('subtitle')}</p>
                 <div className="mt-14 grid md:grid-cols-3 gap-8">
                     {keys.map((key) => (
-                        <div key={key} className="bg-muted/40 rounded-xl p-6 border">
+                        <div key={key} className="bg-muted/40 rounded-xl p-6 border border-border">
                             <div className="flex items-center justify-between mb-4">
                                 <div className="flex items-center gap-3">
                                     <Avatar>

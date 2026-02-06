@@ -79,7 +79,7 @@ export default function Pricing() {
                 {plans.map((plan) => (
                     <div
                         key={plan.name}
-                        className={cn('relative border bg-background rounded-xl p-6 shadow-sm flex flex-col', {
+                        className={cn('relative border border-border bg-background rounded-xl p-6 shadow-sm flex flex-col', {
                             'border-2 border-primary shadow-md': plan.isPopular
                         })}
                     >
