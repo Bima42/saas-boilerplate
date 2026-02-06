@@ -506,7 +506,7 @@ export function TableCellElement({
                         <>
                             <ResizeHandle
                                 {...rightProps}
-                                className="-top-2 -right-1 h-[calc(100%_+_8px)] w-2"
+                                className="-top-2 -right-1 h-[calc(100%+8px)] w-2"
                                 data-col={colIndex}
                             />
                             <ResizeHandle {...bottomProps} className="-bottom-1 h-2" />

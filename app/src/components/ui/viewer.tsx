@@ -27,7 +27,7 @@ export function ViewerContainer({
 
 const viewerVariants = cva(
   cn(
-    'relative w-full overflow-x-hidden whitespace-pre-wrap break-words',
+    'relative w-full overflow-x-hidden whitespace-pre-wrap wrap-break-word',
     'text-base',
     '[&_strong]:font-bold'
   )

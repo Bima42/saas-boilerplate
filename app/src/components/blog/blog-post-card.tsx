@@ -41,7 +41,7 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
             </h2>
 
             {/* Description */}
-            <p className="text-muted-foreground mb-8 line-clamp-3 flex-grow leading-relaxed">
+            <p className="text-muted-foreground mb-8 line-clamp-3 grow leading-relaxed">
                 {description || t('noDescription')}
             </p>
 
