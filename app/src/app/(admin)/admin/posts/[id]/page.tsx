@@ -170,7 +170,7 @@ export default function EditPostPage() {
                                 </div>
 
                                 <div className="lg:px-0">
-                                    <div className="relative w-full border-t lg:border lg:rounded-xl bg-background">
+                                    <div className="relative border w-full rounded-xl bg-background">
                                         <div className="w-full min-h-[400px] sm:min-h-[500px]">
                                             <PlateEditor
                                                 key={editorKey}
