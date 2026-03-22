@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
 import { Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import type { Value } from 'platejs';
@@ -18,7 +17,7 @@ import { CoverImageSection } from '@/components/admin/post-editor/cover-image-se
 import { BlogPostForm } from '@/components/admin/post-editor/blog-post-form';
 import { BlogPostViewer } from '@/components/blog/blog-post-viewer';
 import { useDebouncedCallback } from 'use-debounce';
-import { BlogPostFormData, blogPostFormSchema } from '@/server/types/Post';
+import { type BlogPostFormData, blogPostFormSchema } from '@/server/types/Post';
 
 export default function EditPostPage() {
     const params = useParams();

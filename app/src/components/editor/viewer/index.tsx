@@ -23,7 +23,7 @@ export function PlateViewer({ value = defaultValue }: PlateViewerProps) {
         value: value,
         readOnly: true
     });
-    
+
     return (
         <Plate editor={editor}>
             <ViewerContainer>
