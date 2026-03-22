@@ -1,7 +1,5 @@
-'use client';
-
 import React from 'react';
-import { PlateViewer } from '@/components/editor/viewer';
+import { PlateStaticViewer } from '@/components/editor/viewer/plate-static-viewer';
 import type { Value } from 'platejs';
 
 type Post = {
@@ -42,7 +40,7 @@ export function BlogPostViewer({ post }: { post: Post }) {
                             <div>
                                 <div className="font-medium text-foreground">{post.author.name}</div>
                                 {post.publishedAt && (
-                                    <time dateTime={post.publishedAt.toISOString()}>
+                                    <time dateTime={new Date(post.publishedAt).toISOString()}>
                                         {new Date(post.publishedAt).toLocaleDateString('en-US', {
                                             year: 'numeric',
                                             month: 'long',
@@ -57,7 +55,7 @@ export function BlogPostViewer({ post }: { post: Post }) {
             </header>
 
             <div className="prose prose-gray dark:prose-invert max-w-none">
-                <PlateViewer value={(post.content as Value) || [{ type: 'p', children: [{ text: '' }] }]} />
+                <PlateStaticViewer value={(post.content as Value) || [{ type: 'p', children: [{ text: '' }] }]} />
             </div>
         </article>
     );
