@@ -34,13 +34,13 @@ export default function Hero() {
                 </h1>
                 <p className="mt-6 md:text-lg text-foreground/80 max-w-2xl mx-auto">{t('description')}</p>
                 <div className="mt-12 flex items-center justify-center gap-4">
-                    <Button size="lg" className="rounded-full text-base" onClick={openWindowToRepo}>
+                    <Button size="lg" className="rounded-sm text-base" onClick={openWindowToRepo}>
                         {t('cta')} <ArrowUpRight className="ml-2 h-5 w-5" />
                     </Button>
                     <Button
                         variant="outline"
                         size="lg"
-                        className="rounded-full text-base shadow-none"
+                        className="rounded-sm text-base shadow-none"
                         onClick={openWindowToRepo}
                     >
                         <CirclePlay className="mr-2 h-5 w-5" /> {t('demo')}
