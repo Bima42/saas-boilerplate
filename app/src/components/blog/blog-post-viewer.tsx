@@ -1,6 +1,6 @@
-
-import { PlateStaticViewer } from "@/components/editor/viewer/plate-static-viewer";
+import Image from "next/image";
 import type { Value } from "platejs";
+import { PlateStaticViewer } from "@/components/editor/viewer/plate-static-viewer";
 
 type Post = {
 	title: string;
@@ -18,8 +18,14 @@ export function BlogPostViewer({ post }: { post: Post }) {
 	return (
 		<article className="container p-4">
 			{post.coverImage && (
-				<div className="mb-8 overflow-hidden rounded-lg">
-					<img src={post.coverImage} alt={post.title} className="w-full h-auto" />
+				<div className="relative mb-8 aspect-video w-full overflow-hidden rounded-lg">
+					<Image
+						src={post.coverImage}
+						alt={post.title}
+						fill
+						className="object-cover"
+						unoptimized
+					/>
 				</div>
 			)}
 
@@ -35,10 +41,13 @@ export function BlogPostViewer({ post }: { post: Post }) {
 					{post.author && (
 						<>
 							{post.author.image && (
-								<img
+								<Image
 									src={post.author.image}
 									alt={post.author.name || "Author"}
-									className="h-10 w-10 rounded-full"
+									width={40}
+									height={40}
+									className="rounded-full"
+									unoptimized
 								/>
 							)}
 							<div>

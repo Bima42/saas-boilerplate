@@ -1,7 +1,7 @@
 "use client";
 
 import { Hash, X } from "lucide-react";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import type { UseFormReturn } from "react-hook-form";
 import { Badge } from "@/components/ui/badge";
 import { FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
