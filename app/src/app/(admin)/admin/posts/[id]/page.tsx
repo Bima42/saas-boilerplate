@@ -2,6 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
+import dynamic from "next/dynamic";
 import { useParams, useRouter } from "next/navigation";
 import type { Value } from "platejs";
 import React, { useEffect, useState } from "react";
@@ -11,11 +12,24 @@ import { useDebouncedCallback } from "use-debounce";
 import { BlogPostForm } from "@/components/admin/post-editor/blog-post-form";
 import { CoverImageSection } from "@/components/admin/post-editor/cover-image-section";
 import { Toolbar } from "@/components/admin/post-editor/toolbar";
-import { BlogPostViewer } from "@/components/blog/blog-post-viewer";
-import { PlateEditor } from "@/components/editor/editor";
 import { Form } from "@/components/ui/form";
 import { api } from "@/lib/trpc/client";
 import { type BlogPostFormData, blogPostFormSchema } from "@/server/types/Post";
+
+const PlateEditor = dynamic(
+	() => import("@/components/editor/editor").then((m) => ({ default: m.PlateEditor })),
+	{
+		ssr: false,
+		loading: () => (
+			<div className="min-h-[400px] sm:min-h-[500px] animate-pulse rounded-xl bg-muted" />
+		),
+	},
+);
+
+const BlogPostViewer = dynamic(
+	() => import("@/components/blog/blog-post-viewer").then((m) => ({ default: m.BlogPostViewer })),
+	{ ssr: false },
+);
 
 export default function EditPostPage() {
 	const params = useParams();
