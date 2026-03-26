@@ -1,24 +1,26 @@
-'use client';
+"use client";
 
-import { BlockSelectionPlugin } from '@platejs/selection/react';
-import { getPluginTypes, KEYS } from 'platejs';
+import { BlockSelectionPlugin } from "@platejs/selection/react";
+import { getPluginTypes, KEYS } from "platejs";
 
-import { BlockSelection } from '@/components/editor/ui/block-selection';
+import { BlockSelection } from "@/components/editor/ui/block-selection";
 
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 export const BlockSelectionKit = [
-    BlockSelectionPlugin.configure(({ editor }) => ({
-        options: {
-            enableContextMenu: true,
-            isSelectable: (element) =>
-                !getPluginTypes(editor, [KEYS.column, KEYS.codeLine, KEYS.td]).includes(element.type)
-        },
-        render: {
-            belowRootNodes: (props) => {
-                if (!props.attributes.className?.includes('slate-selectable')) return null;
+	BlockSelectionPlugin.configure(({ editor }) => ({
+		options: {
+			enableContextMenu: true,
+			isSelectable: (element) =>
+				!getPluginTypes(editor, [KEYS.column, KEYS.codeLine, KEYS.td]).includes(
+					element.type,
+				),
+		},
+		render: {
+			belowRootNodes: (props) => {
+				if (!props.attributes.className?.includes("slate-selectable")) return null;
 
-                return <BlockSelection {...(props as any)} />;
-            }
-        }
-    }))
+				return <BlockSelection {...(props as any)} />;
+			},
+		},
+	})),
 ];

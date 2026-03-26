@@ -1,273 +1,273 @@
 {
-    "Auth": {
-        "login": "Login",
-        "dashboard": "Dashboard",
-        "title": "Log in to your account",
-        "subtitle": "Welcome back! Please enter your details.",
-        "google": "Continue with Google",
-        "email": "Continue with Email",
-        "or": "OR",
-        "emailLabel": "Email",
-        "emailPlaceholder": "name@example.com",
-        "checkEmail": "Check your email",
-        "sentLink": "We sent a login link to <bold>{email}</bold>",
-        "useDifferentEmail": "Use a different email",
-        "validation": {
-            "email": "Please enter a valid email address"
-        },
-        "toast": {
-            "magicLinkSent": "Magic link sent to your email",
-            "googleError": "Failed to sign in with Google"
-        }
-    },
-    "Blog": {
-        "title": "Engineering Blog",
-        "subtitle": "Updates on architecture, features, and the roadmap.",
-        "noPosts": "No posts found.",
-        "readMore": "Read article",
-        "noImage": "No Image",
-        "noDescription": "No description available.",
-        "rawContent": "Raw Content Data (Waiting for Renderer):",
-        "minRead": "min read"
-    },
-    "Hero": {
-        "title": "The stack for <strike>vibecoders</strike> <highlight>shippers</highlight>",
-        "badge": "v1.0.0 is live",
-        "description": "Stop configuring. Start shipping now with the Next.js SaaS starter with Auth, Stripe, Drizzle, and Blog pre-built.",
-        "cta": "Start building",
-        "demo": "Live Demo"
-    },
-    "Features": {
-        "title": "Architecture, not just a template",
-        "auth": {
-            "title": "Authentication",
-            "description": "Secure session management with BetterAuth. Middleware protected routes ready to go."
-        },
-        "payments": {
-            "title": "Stripe Payments",
-            "description": "Webhooks, checkout sessions, and customer portal pre-configured."
-        },
-        "i18n": {
-            "title": "Internationalization",
-            "description": "Next-intl setup for server and client components. SEO optimized routing."
-        },
-        "db": {
-            "title": "Drizzle ORM",
-            "description": "Type-safe SQL with PostgreSQL. No cold starts, full control over your queries."
-        },
-        "ui": {
-            "title": "Shadcn UI + Tailwind",
-            "description": "The industry standard for React components. Accessible and easy to customize."
-        },
-        "emails": {
-            "title": "Transactional Emails",
-            "description": "React Email templates sent via Resend. Beautiful emails, zero HTML pain."
-        },
-        "blog": {
-            "title": "Integrated CMS",
-            "description": "No external CMS required. Write with PlateJS, store as JSON, render with SEO in mind."
-        }
-    },
-    "Pricing": {
-        "title": "Monetize your SaaS",
-        "subtitle": "This is a demo of the pricing component.",
-        "monthly": "Monthly",
-        "yearly": "Yearly (Save {discount}%)",
-        "mostPopular": "Most Popular",
-        "perMonth": "/month",
-        "cta": {
-            "start": "Start Building",
-            "advanced": "Go Pro",
-            "premium": "Scale Up"
-        },
-        "plans": {
-            "starter": {
-                "name": "Hobby",
-                "description": "Perfect for side projects and MVPs.",
-                "features": {
-                    "turnaround": "Up to 100 users",
-                    "portraits": "Basic Analytics",
-                    "styles": "Community Support",
-                    "retouch": "1 Team Member"
-                }
-            },
-            "advanced": {
-                "name": "Pro",
-                "description": "For growing businesses needing power.",
-                "features": {
-                    "turnaround": "Unlimited users",
-                    "portraits": "Advanced Analytics",
-                    "styles": "Priority Email Support",
-                    "retouch": "5 Team Members"
-                }
-            },
-            "premium": {
-                "name": "Enterprise",
-                "description": "Full control and custom integrations.",
-                "features": {
-                    "turnaround": "SSO Integration",
-                    "portraits": "Custom Contracts",
-                    "styles": "24/7 Phone Support",
-                    "retouch": "Unlimited Seats"
-                }
-            }
-        }
-    },
-    "Testimonials": {
-        "title": "Built by Engineers",
-        "subtitle": "Join the builders shipping production apps.",
-        "1": {
-            "text": "The architecture is actually clean. No hidden abstractions, just good Next.js code.",
-            "author": "Alex D.",
-            "role": "Senior Engineer"
-        },
-        "2": {
-            "text": "I stripped out the blog and had a SaaS MVP running in a weekend. Drizzle is a game changer.",
-            "author": "Sarah J.",
-            "role": "Indie Hacker"
-        },
-        "3": {
-            "text": "Finally, a boilerplate that handles i18n correctly without breaking the App Router.",
-            "author": "Marc L.",
-            "role": "Frontend Lead"
-        }
-    },
-    "FAQ": {
-        "title": "Technical FAQ",
-        "subtitle": "How it works under the hood.",
-        "items": {
-            "1": {
-                "question": "Is this boilerplate free?",
-                "answer": "Yes. MIT License. You can clone it, modify it, and sell your own SaaS products with it."
-            },
-            "2": {
-                "question": "What is the tech stack?",
-                "answer": "Next.js 15 , Tailwind CSS, Shadcn UI, Drizzle ORM (Postgres), and BetterAuth."
-            },
-            "3": {
-                "question": "How do I handle database migrations?",
-                "answer": "We use Drizzle Kit. Just run `npm run db:generate` and `npm run db:migrate`."
-            },
-            "4": {
-                "question": "Do I need an external CMS?",
-                "answer": "No. The blog system is self-hosted. Content is stored in your Postgres DB and managed via the Admin dashboard."
-            },
-            "5": {
-                "question": "Where should I deploy?",
-                "answer": "It's a standard Next.js Docker container. Deploy anywhere: Vercel, Railway, VPS (Coolify/Dokploy), or AWS."
-            }
-        }
-    },
-    "Contact": {
-        "section": "Contact",
-        "title": "Open Source & Community",
-        "subtitle": "Join the discussion on GitHub or Discord.",
-        "email": {
-            "title": "Email",
-            "desc": "Private inquiries.",
-            "label": "contact@tanguypauvret.me"
-        },
-        "github": {
-            "title": "GitHub",
-            "desc": "Issues and PRs welcome.",
-            "label": "Star the repo"
-        },
-        "community": {
-            "title": "Discord",
-            "desc": "Chat with other builders.",
-            "label": "Join Server"
-        }
-    },
-    "Footer": {
-        "brand": {
-            "desc": "The open-source SaaS starter kit for modern engineering teams."
-        },
-        "columns": {
-            "product": "Product",
-            "resources": "Resources",
-            "legal": "Legal"
-        },
-        "links": {
-            "features": "Features",
-            "pricing": "Pricing",
-            "docs": "Documentation",
-            "blog": "Blog",
-            "privacy": "Privacy",
-            "terms": "Terms"
-        },
-        "newsletter": {
-            "title": "Stay Updated",
-            "placeholder": "Enter your email",
-            "button": "Subscribe"
-        },
-        "madeWith": "Shipped with 🥜"
-    },
-    "LanguageSwitcher": {
-        "changeLanguage": "Language"
-    },
-    "NavBar": {
-        "back": "Back"
-    },
-    "Billing": {
-        "title": "Billing & Plans",
-        "subtitle": "Manage your subscription and billing information.",
-        "success": "Payment successful! Your account has been upgraded.",
-        "loading": "Loading billing information...",
-        "lifetimeAccess": "Lifetime Access",
-        "freePlan": "Free Plan",
-        "hasAccess": "You have full access to all features.",
-        "noAccess": "Upgrade to unlock all features.",
-        "unlimitedProjects": "Unlimited Projects",
-        "prioritySupport": "Priority Support",
-        "redirectingPortal": "Redirecting to billing portal...",
-        "oneTimePayment": "One-time payment",
-        "getAccess": "Get Lifetime Access",
-        "securePayment": "Secure payment via Stripe",
-        "viewInvoices": "View invoices & history",
-        "manageBilling": "Manage Billing",
-        "error": {
-            "checkout": "Failed to start checkout session.",
-            "portal": "Failed to open billing portal."
-        }
-    },
-    "Dashboard": {
-        "title": "Dashboard",
-        "subtitle": "Manage your account and view system status.",
-        "billing": "Billing",
-        "signOut": "Sign Out",
-        "signOutSuccess": "Signed out successfully",
-        "userProfile": "User Profile",
-        "userId": "User ID",
-        "role": "Role",
-        "roleUser": "User",
-        "systemHealth": "System Health (tRPC)",
-        "connectionError": "Connection Error",
-        "secureChannel": "Authenticated secure channel active",
-        "connecting": "Connecting..."
-    },
-    "UserMenu": {
-        "admin": "Blog Admin",
-        "upgrade": "Upgrade to Pro",
-        "account": "Account",
-        "billing": "Billing",
-        "notifications": "Notifications",
-        "theme": "Theme",
-        "themeDark": "Dark",
-        "themeLight": "Light",
-        "language": "Language",
-        "logout": "Log out"
-    },
-    "Admin": {
-        "sidebar": {
-            "home": "Home",
-            "posts": "Posts",
-            "createPost": "Create New Post",
-            "backToSite": "Back to Site",
-            "logout": "Logout"
-        },
-        "toasts": {
-            "logoutSuccess": "Logged out successfully",
-            "logoutError": "Error logging out"
-        }
-    }
+	"Auth": {
+		"login": "Login",
+		"dashboard": "Dashboard",
+		"title": "Log in to your account",
+		"subtitle": "Welcome back! Please enter your details.",
+		"google": "Continue with Google",
+		"email": "Continue with Email",
+		"or": "OR",
+		"emailLabel": "Email",
+		"emailPlaceholder": "name@example.com",
+		"checkEmail": "Check your email",
+		"sentLink": "We sent a login link to <bold>{email}</bold>",
+		"useDifferentEmail": "Use a different email",
+		"validation": {
+			"email": "Please enter a valid email address"
+		},
+		"toast": {
+			"magicLinkSent": "Magic link sent to your email",
+			"googleError": "Failed to sign in with Google"
+		}
+	},
+	"Blog": {
+		"title": "Engineering Blog",
+		"subtitle": "Updates on architecture, features, and the roadmap.",
+		"noPosts": "No posts found.",
+		"readMore": "Read article",
+		"noImage": "No Image",
+		"noDescription": "No description available.",
+		"rawContent": "Raw Content Data (Waiting for Renderer):",
+		"minRead": "min read"
+	},
+	"Hero": {
+		"title": "The stack for <strike>vibecoders</strike> <highlight>shippers</highlight>",
+		"badge": "v1.0.0 is live",
+		"description": "Stop configuring. Start shipping now with the Next.js SaaS starter with Auth, Stripe, Drizzle, and Blog pre-built.",
+		"cta": "Start building",
+		"demo": "Live Demo"
+	},
+	"Features": {
+		"title": "Architecture, not just a template",
+		"auth": {
+			"title": "Authentication",
+			"description": "Secure session management with BetterAuth. Middleware protected routes ready to go."
+		},
+		"payments": {
+			"title": "Stripe Payments",
+			"description": "Webhooks, checkout sessions, and customer portal pre-configured."
+		},
+		"i18n": {
+			"title": "Internationalization",
+			"description": "Next-intl setup for server and client components. SEO optimized routing."
+		},
+		"db": {
+			"title": "Drizzle ORM",
+			"description": "Type-safe SQL with PostgreSQL. No cold starts, full control over your queries."
+		},
+		"ui": {
+			"title": "Shadcn UI + Tailwind",
+			"description": "The industry standard for React components. Accessible and easy to customize."
+		},
+		"emails": {
+			"title": "Transactional Emails",
+			"description": "React Email templates sent via Resend. Beautiful emails, zero HTML pain."
+		},
+		"blog": {
+			"title": "Integrated CMS",
+			"description": "No external CMS required. Write with PlateJS, store as JSON, render with SEO in mind."
+		}
+	},
+	"Pricing": {
+		"title": "Monetize your SaaS",
+		"subtitle": "This is a demo of the pricing component.",
+		"monthly": "Monthly",
+		"yearly": "Yearly (Save {discount}%)",
+		"mostPopular": "Most Popular",
+		"perMonth": "/month",
+		"cta": {
+			"start": "Start Building",
+			"advanced": "Go Pro",
+			"premium": "Scale Up"
+		},
+		"plans": {
+			"starter": {
+				"name": "Hobby",
+				"description": "Perfect for side projects and MVPs.",
+				"features": {
+					"turnaround": "Up to 100 users",
+					"portraits": "Basic Analytics",
+					"styles": "Community Support",
+					"retouch": "1 Team Member"
+				}
+			},
+			"advanced": {
+				"name": "Pro",
+				"description": "For growing businesses needing power.",
+				"features": {
+					"turnaround": "Unlimited users",
+					"portraits": "Advanced Analytics",
+					"styles": "Priority Email Support",
+					"retouch": "5 Team Members"
+				}
+			},
+			"premium": {
+				"name": "Enterprise",
+				"description": "Full control and custom integrations.",
+				"features": {
+					"turnaround": "SSO Integration",
+					"portraits": "Custom Contracts",
+					"styles": "24/7 Phone Support",
+					"retouch": "Unlimited Seats"
+				}
+			}
+		}
+	},
+	"Testimonials": {
+		"title": "Built by Engineers",
+		"subtitle": "Join the builders shipping production apps.",
+		"1": {
+			"text": "The architecture is actually clean. No hidden abstractions, just good Next.js code.",
+			"author": "Alex D.",
+			"role": "Senior Engineer"
+		},
+		"2": {
+			"text": "I stripped out the blog and had a SaaS MVP running in a weekend. Drizzle is a game changer.",
+			"author": "Sarah J.",
+			"role": "Indie Hacker"
+		},
+		"3": {
+			"text": "Finally, a boilerplate that handles i18n correctly without breaking the App Router.",
+			"author": "Marc L.",
+			"role": "Frontend Lead"
+		}
+	},
+	"FAQ": {
+		"title": "Technical FAQ",
+		"subtitle": "How it works under the hood.",
+		"items": {
+			"1": {
+				"question": "Is this boilerplate free?",
+				"answer": "Yes. MIT License. You can clone it, modify it, and sell your own SaaS products with it."
+			},
+			"2": {
+				"question": "What is the tech stack?",
+				"answer": "Next.js 15 , Tailwind CSS, Shadcn UI, Drizzle ORM (Postgres), and BetterAuth."
+			},
+			"3": {
+				"question": "How do I handle database migrations?",
+				"answer": "We use Drizzle Kit. Just run `npm run db:generate` and `npm run db:migrate`."
+			},
+			"4": {
+				"question": "Do I need an external CMS?",
+				"answer": "No. The blog system is self-hosted. Content is stored in your Postgres DB and managed via the Admin dashboard."
+			},
+			"5": {
+				"question": "Where should I deploy?",
+				"answer": "It's a standard Next.js Docker container. Deploy anywhere: Vercel, Railway, VPS (Coolify/Dokploy), or AWS."
+			}
+		}
+	},
+	"Contact": {
+		"section": "Contact",
+		"title": "Open Source & Community",
+		"subtitle": "Join the discussion on GitHub or Discord.",
+		"email": {
+			"title": "Email",
+			"desc": "Private inquiries.",
+			"label": "contact@tanguypauvret.me"
+		},
+		"github": {
+			"title": "GitHub",
+			"desc": "Issues and PRs welcome.",
+			"label": "Star the repo"
+		},
+		"community": {
+			"title": "Discord",
+			"desc": "Chat with other builders.",
+			"label": "Join Server"
+		}
+	},
+	"Footer": {
+		"brand": {
+			"desc": "The open-source SaaS starter kit for modern engineering teams."
+		},
+		"columns": {
+			"product": "Product",
+			"resources": "Resources",
+			"legal": "Legal"
+		},
+		"links": {
+			"features": "Features",
+			"pricing": "Pricing",
+			"docs": "Documentation",
+			"blog": "Blog",
+			"privacy": "Privacy",
+			"terms": "Terms"
+		},
+		"newsletter": {
+			"title": "Stay Updated",
+			"placeholder": "Enter your email",
+			"button": "Subscribe"
+		},
+		"madeWith": "Shipped with 🥜"
+	},
+	"LanguageSwitcher": {
+		"changeLanguage": "Language"
+	},
+	"NavBar": {
+		"back": "Back"
+	},
+	"Billing": {
+		"title": "Billing & Plans",
+		"subtitle": "Manage your subscription and billing information.",
+		"success": "Payment successful! Your account has been upgraded.",
+		"loading": "Loading billing information...",
+		"lifetimeAccess": "Lifetime Access",
+		"freePlan": "Free Plan",
+		"hasAccess": "You have full access to all features.",
+		"noAccess": "Upgrade to unlock all features.",
+		"unlimitedProjects": "Unlimited Projects",
+		"prioritySupport": "Priority Support",
+		"redirectingPortal": "Redirecting to billing portal...",
+		"oneTimePayment": "One-time payment",
+		"getAccess": "Get Lifetime Access",
+		"securePayment": "Secure payment via Stripe",
+		"viewInvoices": "View invoices & history",
+		"manageBilling": "Manage Billing",
+		"error": {
+			"checkout": "Failed to start checkout session.",
+			"portal": "Failed to open billing portal."
+		}
+	},
+	"Dashboard": {
+		"title": "Dashboard",
+		"subtitle": "Manage your account and view system status.",
+		"billing": "Billing",
+		"signOut": "Sign Out",
+		"signOutSuccess": "Signed out successfully",
+		"userProfile": "User Profile",
+		"userId": "User ID",
+		"role": "Role",
+		"roleUser": "User",
+		"systemHealth": "System Health (tRPC)",
+		"connectionError": "Connection Error",
+		"secureChannel": "Authenticated secure channel active",
+		"connecting": "Connecting..."
+	},
+	"UserMenu": {
+		"admin": "Blog Admin",
+		"upgrade": "Upgrade to Pro",
+		"account": "Account",
+		"billing": "Billing",
+		"notifications": "Notifications",
+		"theme": "Theme",
+		"themeDark": "Dark",
+		"themeLight": "Light",
+		"language": "Language",
+		"logout": "Log out"
+	},
+	"Admin": {
+		"sidebar": {
+			"home": "Home",
+			"posts": "Posts",
+			"createPost": "Create New Post",
+			"backToSite": "Back to Site",
+			"logout": "Logout"
+		},
+		"toasts": {
+			"logoutSuccess": "Logged out successfully",
+			"logoutError": "Error logging out"
+		}
+	}
 }

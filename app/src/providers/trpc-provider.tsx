@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { TRPCProvider as TRPCProviderBase } from '@/lib/trpc/client';
+import { TRPCProvider as TRPCProviderBase } from "@/lib/trpc/client";
 
 export function TRPCProvider({ children }: { children: React.ReactNode }) {
-    return <TRPCProviderBase>{children}</TRPCProviderBase>;
+	return <TRPCProviderBase>{children}</TRPCProviderBase>;
 }

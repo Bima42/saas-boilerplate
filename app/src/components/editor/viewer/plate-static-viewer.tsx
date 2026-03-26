@@ -1,17 +1,17 @@
-import { createSlateEditor } from 'platejs';
-import type { Value } from 'platejs';
-import { BaseEditorKit } from '@/components/editor/editor-base-kit';
-import { EditorStatic } from '@/components/editor/ui/editor-static';
+import { createSlateEditor } from "platejs";
+import type { Value } from "platejs";
+import { BaseEditorKit } from "@/components/editor/editor-base-kit";
+import { EditorStatic } from "@/components/editor/ui/editor-static";
 
 interface PlateStaticViewerProps {
-    value: Value;
+	value: Value;
 }
 
 export function PlateStaticViewer({ value }: PlateStaticViewerProps) {
-    const editor = createSlateEditor({
-        plugins: BaseEditorKit,
-        value,
-    });
+	const editor = createSlateEditor({
+		plugins: BaseEditorKit,
+		value,
+	});
 
-    return <EditorStatic editor={editor} variant="none" />;
+	return <EditorStatic editor={editor} variant="none" />;
 }
