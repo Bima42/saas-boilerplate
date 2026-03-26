@@ -6,6 +6,8 @@ export const GoogleLogo = () => (
 		fill="none"
 		xmlns="http://www.w3.org/2000/svg"
 		className="shrink-0"
+		role="img"
+		aria-label="Google"
 	>
 		<g clipPath="url(#clip0)">
 			<path

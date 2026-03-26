@@ -5,9 +5,9 @@ import { EmojiInputPlugin, EmojiPlugin } from "@platejs/emoji/react";
 
 import { EmojiInputElement } from "@/components/editor/ui/emoji-node";
 
-/* eslint-disable  @typescript-eslint/no-explicit-any */
 export const EmojiKit = [
 	EmojiPlugin.configure({
+		// biome-ignore lint/suspicious/noExplicitAny: @emoji-mart/data type doesn't match platejs EmojiPlugin expectation
 		options: { data: emojiMartData as any },
 	}),
 	EmojiInputPlugin.withComponent(EmojiInputElement),

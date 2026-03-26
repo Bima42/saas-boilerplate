@@ -1,5 +1,5 @@
-import React from "react";
-import { Metadata } from "next";
+
+import type { Metadata } from "next";
 import { trpc } from "@/lib/trpc/server";
 import { BlogPostViewer } from "@/components/blog/blog-post-viewer";
 

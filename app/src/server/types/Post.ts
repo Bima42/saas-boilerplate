@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { post } from "@/server/db/schema";
+import type { post } from "@/server/db/schema";
 
 export type Post = typeof post.$inferSelect;
 

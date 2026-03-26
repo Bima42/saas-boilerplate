@@ -1,7 +1,7 @@
 import { db } from "@/server/db";
 import { purchase } from "@/server/db/schema";
 import { eq, and } from "drizzle-orm";
-import Stripe from "stripe";
+import type Stripe from "stripe";
 
 export async function insertCompletedPurchase(data: {
 	userId: string;

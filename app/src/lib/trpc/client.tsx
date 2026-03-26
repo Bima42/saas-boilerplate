@@ -7,7 +7,7 @@ import { useState } from "react";
 import { makeQueryClient } from "./query-client";
 import superjson from "superjson";
 import { env } from "@/config/env";
-import { AppRouter } from "@/server/api/root";
+import type { AppRouter } from "@/server/api/root";
 
 export const api = createTRPCReact<AppRouter>();
 
@@ -18,7 +18,10 @@ function getQueryClient() {
 		return makeQueryClient();
 	}
 	// Browser: use singleton pattern to keep the same query client
-	return (clientQueryClientSingleton ??= makeQueryClient());
+	if (!clientQueryClientSingleton) {
+		clientQueryClientSingleton = makeQueryClient();
+	}
+	return clientQueryClientSingleton;
 }
 
 function getUrl() {

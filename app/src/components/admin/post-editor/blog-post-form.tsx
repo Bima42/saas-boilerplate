@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
-import { UseFormReturn } from "react-hook-form";
-import { FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
-import { cn } from "@/lib/utils";
-import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
 import { Hash, X } from "lucide-react";
-import { BlogPostFormData } from "@/server/types/Post";
+import React, { useEffect, useRef, useState } from "react";
+import type { UseFormReturn } from "react-hook-form";
+import { Badge } from "@/components/ui/badge";
+import { FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
+import type { BlogPostFormData } from "@/server/types/Post";
 
 interface BlogPostProps {
 	form: UseFormReturn<BlogPostFormData>;
@@ -40,7 +40,7 @@ const AutoResizeTextarea = React.forwardRef<HTMLTextAreaElement, AutoResizeTexta
 
 		useEffect(() => {
 			adjustHeight();
-		}, [value]);
+		}, [adjustHeight, value]);
 
 		return (
 			<textarea

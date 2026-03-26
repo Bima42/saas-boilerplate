@@ -5,7 +5,6 @@ import { getPluginTypes, KEYS } from "platejs";
 
 import { BlockSelection } from "@/components/editor/ui/block-selection";
 
-/* eslint-disable  @typescript-eslint/no-explicit-any */
 export const BlockSelectionKit = [
 	BlockSelectionPlugin.configure(({ editor }) => ({
 		options: {
@@ -19,7 +18,8 @@ export const BlockSelectionKit = [
 			belowRootNodes: (props) => {
 				if (!props.attributes.className?.includes("slate-selectable")) return null;
 
-				return <BlockSelection {...(props as any)} />;
+				// biome-ignore lint/suspicious/noExplicitAny: platejs plugin props are dynamically typed
+			return <BlockSelection {...(props as any)} />;
 			},
 		},
 	})),

@@ -1,9 +1,9 @@
-import React from "react";
+
 import Link from "next/link";
 import { ArrowRightIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { format } from "date-fns";
-import { Post } from "@/server/types/Post";
+import type { Post } from "@/server/types/Post";
 
 interface BlogPostCardProps {
 	post: Post;

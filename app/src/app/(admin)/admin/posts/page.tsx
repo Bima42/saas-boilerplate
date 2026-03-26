@@ -2,7 +2,6 @@
 
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import React from "react";
 import { Badge } from "@/components/ui/badge";
 import {
 	Table,

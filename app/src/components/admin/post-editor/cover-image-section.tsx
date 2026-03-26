@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
-import { UseFormReturn } from "react-hook-form";
+import { useState } from "react";
+import NextImage from "next/image";
+import type { UseFormReturn } from "react-hook-form";
 import { Image as ImageIcon, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -25,8 +26,7 @@ export function CoverImageSection({ form }: CoverImageSectionProps) {
 		<div className="group relative w-full max-w-full">
 			{watchCoverImage && !showCoverInput ? (
 				<div className="relative aspect-video w-full overflow-hidden rounded-xl border bg-muted shadow-sm">
-					{/* eslint-disable-next-line @next/next/no-img-element */}
-					<img src={watchCoverImage} alt="Cover" className="h-full w-full object-cover" />
+					<NextImage src={watchCoverImage} alt="Cover" fill className="object-cover" unoptimized />
 					<Button
 						type="button"
 						variant="secondary"
