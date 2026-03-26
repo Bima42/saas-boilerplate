@@ -1,4 +1,4 @@
-import React from "react";
+
 import { getTranslations } from "next-intl/server";
 import { trpc } from "@/lib/trpc/server";
 import { BlogPostCard } from "@/components/blog/blog-post-card";

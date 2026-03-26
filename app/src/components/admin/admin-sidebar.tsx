@@ -10,7 +10,6 @@ import { CreatePostDialog } from "@/components/admin/admin-create-post-dialog";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { LOGGED_HOME_PATH } from "@/config/config";
 import { authClient } from "@/lib/better-auth/auth-client";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "../ui/theme-toggle";

@@ -2,7 +2,6 @@
 
 import { ArrowLeft } from "lucide-react";
 import { useRouter, useSelectedLayoutSegment } from "next/navigation";
-import React from "react";
 import { Button } from "@/components/ui/button";
 
 export function BlogHeader() {

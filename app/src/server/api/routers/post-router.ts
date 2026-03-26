@@ -11,7 +11,7 @@ import {
 	updatePost,
 	deletePost,
 } from "@/server/services/post";
-import { BlogPostUpdateData, blogPostUpdateSchema } from "@/server/types/Post";
+import { type BlogPostUpdateData, blogPostUpdateSchema } from "@/server/types/Post";
 
 export const postRouter = createTRPCRouter({
 	getAll: publicProcedure.query(async () => {

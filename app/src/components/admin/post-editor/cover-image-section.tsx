@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
-import { UseFormReturn } from "react-hook-form";
+import { useState } from "react";
+import NextImage from "next/image";
+import type { UseFormReturn } from "react-hook-form";
 import { Image as ImageIcon, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";

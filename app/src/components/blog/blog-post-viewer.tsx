@@ -1,4 +1,4 @@
-import React from "react";
+
 import { PlateStaticViewer } from "@/components/editor/viewer/plate-static-viewer";
 import type { Value } from "platejs";
 

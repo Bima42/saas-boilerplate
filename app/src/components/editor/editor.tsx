@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { Plate, usePlateEditor } from "platejs/react";
 import type { Value } from "platejs";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -36,7 +35,7 @@ export function PlateEditor({
 	return (
 		<TooltipProvider>
 			<div className="w-full max-w-full min-w-0 overflow-x-hidden">
-				<Plate editor={editor} onValueChange={({ value }) => onChange && onChange(value)}>
+				<Plate editor={editor} onValueChange={({ value }) => onChange?.(value)}>
 					<EditorContainer className="w-full max-w-full">
 						<Editor className="w-full max-w-full" placeholder={placeholder} />
 					</EditorContainer>

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import * as React from "react";
 
 export function Logo() {
 	return (
@@ -14,6 +13,7 @@ export function Logo() {
 					strokeLinecap="round"
 					strokeLinejoin="round"
 					className="h-5 w-5"
+					aria-hidden="true"
 				>
 					<path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" />
 				</svg>

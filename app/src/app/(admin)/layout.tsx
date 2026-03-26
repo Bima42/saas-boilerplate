@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 import { TRPCProvider } from "@/providers/trpc-provider";
 import { AdminSidebar } from "@/components/admin/admin-sidebar";
 

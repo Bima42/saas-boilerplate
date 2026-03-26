@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 import { BlogHeader } from "@/components/blog/blog-header";
 
 export default function BlogLayout({ children }: { children: React.ReactNode }) {
