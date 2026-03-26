@@ -1,18 +1,19 @@
 "use client";
 
-import React from "react";
+import { FileText, Globe, LogOut, Plus } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { FileText, Plus, Globe, LogOut } from "lucide-react";
+import { useTranslations } from "next-intl";
+import type React from "react";
+import { toast } from "sonner";
+import { CreatePostDialog } from "@/components/admin/admin-create-post-dialog";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { toast } from "sonner";
+import { LOGGED_HOME_PATH } from "@/config/config";
 import { authClient } from "@/lib/better-auth/auth-client";
 import { cn } from "@/lib/utils";
-import { CreatePostDialog } from "@/components/admin/admin-create-post-dialog";
-import { useTranslations } from "next-intl";
-import { LOGGED_HOME_PATH } from "@/config/config";
+import { ThemeToggle } from "../ui/theme-toggle";
 
 interface SidebarItemProps {
 	icon: React.ElementType;
@@ -157,6 +158,7 @@ function DesktopSidebar({
 
 			<div className="flex flex-col gap-2 items-center">
 				<Separator className="w-8" />
+				<ThemeToggle />
 				<SidebarItem icon={Globe} label={t("backToSite")} href={"/"} tooltipSide="right" />
 				<SidebarItem
 					icon={LogOut}

@@ -1,9 +1,9 @@
 "use client";
 
-import React from "react";
-import { useRouter, useSelectedLayoutSegment } from "next/navigation";
-import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
+import { useRouter, useSelectedLayoutSegment } from "next/navigation";
+import React from "react";
+import { Button } from "@/components/ui/button";
 
 export function BlogHeader() {
 	const router = useRouter();
@@ -12,7 +12,7 @@ export function BlogHeader() {
 	const isPost = !!segment;
 
 	return (
-		<header className="border-b border-border bg-card">
+		<header className="border-b bg-card">
 			<div className="max-w-4xl mx-auto px-4 py-6 flex items-center gap-4">
 				<Button
 					variant="outline"

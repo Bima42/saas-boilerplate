@@ -1,22 +1,20 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { useParams, useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
-import { toast } from "sonner";
+import { useParams, useRouter } from "next/navigation";
 import type { Value } from "platejs";
-
-import { Form } from "@/components/ui/form";
-
-import { api } from "@/lib/trpc/client";
-import { PlateEditor } from "@/components/editor/editor";
-import { Toolbar } from "@/components/admin/post-editor/toolbar";
-import { CoverImageSection } from "@/components/admin/post-editor/cover-image-section";
-import { BlogPostForm } from "@/components/admin/post-editor/blog-post-form";
-import { BlogPostViewer } from "@/components/blog/blog-post-viewer";
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { useDebouncedCallback } from "use-debounce";
+import { BlogPostForm } from "@/components/admin/post-editor/blog-post-form";
+import { CoverImageSection } from "@/components/admin/post-editor/cover-image-section";
+import { Toolbar } from "@/components/admin/post-editor/toolbar";
+import { BlogPostViewer } from "@/components/blog/blog-post-viewer";
+import { PlateEditor } from "@/components/editor/editor";
+import { Form } from "@/components/ui/form";
+import { api } from "@/lib/trpc/client";
 import { type BlogPostFormData, blogPostFormSchema } from "@/server/types/Post";
 
 export default function EditPostPage() {

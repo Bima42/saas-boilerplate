@@ -1,16 +1,16 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import { CheckCircle2, Loader2 } from "lucide-react";
+import { useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { Loader2, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
-import { useTranslations } from "next-intl";
-
+import { z } from "zod";
+import { GoogleLogo } from "@/components/login/google-logo";
+import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
 import {
 	Form,
 	FormControl,
@@ -19,11 +19,10 @@ import {
 	FormLabel,
 	FormMessage,
 } from "@/components/ui/form";
-import { authClient } from "@/lib/better-auth/auth-client";
-import { GoogleLogo } from "@/components/login/google-logo";
-import { Logo } from "@/components/logo";
+import { Input } from "@/components/ui/input";
+import { Separator } from "@/components/ui/separator";
 import { LOGGED_HOME_PATH } from "@/config/config";
-import { useSearchParams } from "next/navigation";
+import { authClient } from "@/lib/better-auth/auth-client";
 
 export default function LoginPage() {
 	const t = useTranslations("Auth");
@@ -197,7 +196,7 @@ export default function LoginPage() {
 				</div>
 
 				{/* Right Side: Image/Pattern */}
-				<div className="hidden lg:block bg-muted relative overflow-hidden border-l border-border">
+				<div className="hidden lg:block bg-muted relative overflow-hidden border-l">
 					<div className="absolute inset-0 bg-zinc-900/5 dark:bg-zinc-900/50" />
 				</div>
 			</div>

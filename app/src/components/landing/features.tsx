@@ -1,11 +1,11 @@
+import { CreditCard, Database, Globe, Layout, Lock, Mail, Newspaper } from "lucide-react";
+import { useTranslations } from "next-intl";
 import {
 	Accordion,
 	AccordionContent,
 	AccordionItem,
 	AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Lock, CreditCard, Globe, Database, Layout, Mail, Newspaper } from "lucide-react";
-import { useTranslations } from "next-intl";
 
 const featureKeys = [
 	{ key: "auth", icon: Lock },
@@ -49,7 +49,7 @@ export default function Features() {
 						</Accordion>
 					</div>
 					{/* Media Placeholder */}
-					<div className="hidden md:block w-full h-full min-h-[400px] bg-muted/50 rounded-xl border border-border" />
+					<div className="hidden md:block w-full h-full min-h-[400px] bg-muted/50 rounded-xl border" />
 				</div>
 			</div>
 		</div>

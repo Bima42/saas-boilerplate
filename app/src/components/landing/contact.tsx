@@ -1,4 +1,4 @@
-import { Mail, Github, MessageCircle } from "lucide-react";
+import { Github, Mail, MessageCircle } from "lucide-react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 
@@ -36,7 +36,7 @@ export default function Contact() {
 					{contactMethods.map((item) => (
 						<div
 							key={item.key}
-							className="border border-dashed border-border bg-muted/20 p-8 rounded-xl flex flex-col items-center"
+							className="border border-dashedbg-muted/20 p-8 rounded-xl flex flex-col items-center"
 						>
 							<div className="h-12 w-12 flex items-center justify-center bg-primary/10 text-primary rounded-full mb-6">
 								<item.icon className="h-6 w-6" />

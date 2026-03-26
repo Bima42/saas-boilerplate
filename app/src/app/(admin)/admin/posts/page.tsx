@@ -1,8 +1,9 @@
 "use client";
 
-import React from "react";
+import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { api } from "@/lib/trpc/client";
+import React from "react";
+import { Badge } from "@/components/ui/badge";
 import {
 	Table,
 	TableBody,
@@ -11,8 +12,7 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
-import { Loader2 } from "lucide-react";
+import { api } from "@/lib/trpc/client";
 
 export default function AdminPostsPage() {
 	const router = useRouter();
@@ -24,7 +24,7 @@ export default function AdminPostsPage() {
 
 	return (
 		<div className="flex flex-col min-h-full">
-			<div className="-mx-4 -mt-4 sm:-mx-6 sm:-mt-6 border-border border-b bg-muted/40 px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+			<div className="-mx-4 -mt-4 sm:-mx-6 sm:-mt-6 border-b bg-muted/40 px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
 				<div className="container mx-auto max-w-5xl">
 					<h1 className="text-2xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
 						Blogs

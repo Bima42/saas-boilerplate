@@ -1,13 +1,13 @@
 "use client";
 
+import { Eye, EyeOff, Loader2, Trash2 } from "lucide-react";
 import React from "react";
-import { Trash2, Eye, EyeOff, Loader2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Switch } from "@/components/ui/switch";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 
 interface ToolbarProps {
@@ -78,7 +78,7 @@ function PublishStatusButton({ isPublished, setIsPublished, postSlug }: PublishS
 						)}
 						onClick={handleBadgeClick}
 					>
-						{isPublished ? <Eye size="s" /> : <EyeOff size="s" />}
+						{isPublished ? <Eye /> : <EyeOff />}
 						<span className="text-xs whitespace-nowrap">
 							{isPublished ? "Published" : "Offline"}
 						</span>
@@ -107,7 +107,7 @@ function DeleteButton({ onDelete }: DeleteButtonProps) {
 					onClick={onDelete}
 					className="h-9 w-9 text-destructive hover:bg-destructive/10 shrink-0"
 				>
-					<Trash2 size="s" />
+					<Trash2 />
 				</Button>
 			</TooltipTrigger>
 			<TooltipContent side="bottom">Delete</TooltipContent>
