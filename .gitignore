@@ -43,4 +43,4 @@ yarn-error.log*
 *.pem
 
 
-..idea/
+.zed
