@@ -1,22 +1,17 @@
 "use client";
 
-import * as React from "react";
 import {
 	AudioWaveform,
 	BookOpen,
 	Bot,
 	Frame,
 	GalleryVerticalEnd,
-	Map,
+	Map as MapIcon,
 	PieChart,
 	Settings2,
 	SquareTerminal,
 } from "lucide-react";
-
-import { NavMain } from "./nav-main";
-import { NavProjects } from "./nav-projects";
-import { NavUser } from "./nav-user";
-import { TeamSwitcher } from "./team-switcher";
+import type * as React from "react";
 import {
 	Sidebar,
 	SidebarContent,
@@ -24,13 +19,12 @@ import {
 	SidebarHeader,
 	SidebarRail,
 } from "@/components/ui/sidebar";
+import { NavMain } from "./nav-main";
+import { NavProjects } from "./nav-projects";
+import { NavUser } from "./nav-user";
+import { TeamSwitcher } from "./team-switcher";
 
 const data = {
-	user: {
-		name: "boilerplate",
-		email: "b@example.com",
-		avatar: "/avatars/avatar.jpg",
-	},
 	teams: [
 		{
 			name: "Acme Inc",
@@ -124,7 +118,7 @@ const data = {
 		{
 			name: "Project C",
 			url: "#",
-			icon: Map,
+			icon: MapIcon,
 		},
 	],
 };
@@ -140,7 +134,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 				<NavProjects projects={data.projects} />
 			</SidebarContent>
 			<SidebarFooter>
-				<NavUser user={data.user} />
+				<NavUser />
 			</SidebarFooter>
 			<SidebarRail />
 		</Sidebar>
