@@ -4,7 +4,7 @@ import React from 'react';
 import { Plate, usePlateEditor } from 'platejs/react';
 import type { Value } from 'platejs';
 import { TooltipProvider } from '@/components/ui/tooltip';
-import { Editor, EditorContainer } from '@/components/ui/editor';
+import { Editor, EditorContainer } from '@/components/editor/ui/editor';
 import { EditorKit } from './editor-kit';
 
 interface PlateEditorProps {

@@ -3,14 +3,7 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { api } from '@/lib/trpc/client';
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from '@/components/ui/table';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import { Loader2 } from 'lucide-react';
 
@@ -24,8 +17,7 @@ export default function AdminPostsPage() {
 
     return (
         <div className="flex flex-col min-h-full">
-            
-            <div className="-mx-4 -mt-4 sm:-mx-6 sm:-mt-6 border-b bg-muted/40 px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+            <div className="-mx-4 -mt-4 sm:-mx-6 sm:-mt-6 border-border border-b bg-muted/40 px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
                 <div className="container mx-auto max-w-5xl">
                     <h1 className="text-2xl font-bold tracking-tight sm:text-4xl lg:text-5xl">Blogs</h1>
                     <p className="mt-2 sm:mt-4 text-base sm:text-lg text-muted-foreground">
@@ -40,7 +32,9 @@ export default function AdminPostsPage() {
                     <Table>
                         <TableHeader>
                             <TableRow className="hover:bg-transparent">
-                                <TableHead className="w-[50%] sm:w-[450px] pl-4 sm:pl-6 h-10 sm:h-12">Article</TableHead>
+                                <TableHead className="w-[50%] sm:w-[450px] pl-4 sm:pl-6 h-10 sm:h-12">
+                                    Article
+                                </TableHead>
                                 <TableHead className="h-10 sm:h-12 hidden sm:table-cell">Status</TableHead>
                                 <TableHead className="text-right pr-4 sm:pr-6 h-10 sm:h-12">Date</TableHead>
                             </TableRow>
@@ -91,15 +85,15 @@ export default function AdminPostsPage() {
                                         </TableCell>
                                         <TableCell className="py-3 align-middle hidden sm:table-cell">
                                             {post.publishedAt ? (
-                                                <Badge 
-                                                    variant="secondary" 
+                                                <Badge
+                                                    variant="secondary"
                                                     className="bg-green-500/15 text-green-600 hover:bg-green-500/25 border-0 rounded-full font-medium"
                                                 >
                                                     Published
                                                 </Badge>
                                             ) : (
-                                                <Badge 
-                                                    variant="secondary" 
+                                                <Badge
+                                                    variant="secondary"
                                                     className="bg-yellow-500/15 text-yellow-600 hover:bg-yellow-500/25 border-0 rounded-full font-medium"
                                                 >
                                                     Draft
@@ -107,9 +101,7 @@ export default function AdminPostsPage() {
                                             )}
                                         </TableCell>
                                         <TableCell className="text-right pr-4 sm:pr-6 py-3 align-middle text-sm text-muted-foreground">
-                                            {post.publishedAt
-                                                ? new Date(post.publishedAt).toLocaleDateString()
-                                                : '-'}
+                                            {post.publishedAt ? new Date(post.publishedAt).toLocaleDateString() : '-'}
                                         </TableCell>
                                     </TableRow>
                                 ))

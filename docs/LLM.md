@@ -59,7 +59,7 @@ src/
 We do not use an external CMS. Content is managed via the `(admin)` route group.
 *   **Rich Text:** Stored as `jsonb` in Postgres.
 *   **Editor:** Uses **PlateJS**.
-*   **Rendering:** Use `<PlateViewer value={post.content} />` for display.
+*   **Rendering:** Use `<PlateStaticViewer value={post.content} />` from `@/components/editor/viewer/plate-static-viewer` for SSR-optimised display.
 *   **Media:** Uploaded to S3 via Presigned URLs or Server Actions, URL stored in DB.
 
 ### C. tRPC (API Layer)

@@ -35,11 +35,7 @@ function DotIndicator({ color, animate }: DotIndicatorProps) {
 
     return (
         <span
-            className={cn(
-                'inline-block h-2 w-2 rounded-full shrink-0',
-                colorMap[color],
-                animate && 'animate-pulse'
-            )}
+            className={cn('inline-block h-2 w-2 rounded-full shrink-0', colorMap[color], animate && 'animate-pulse')}
         />
     );
 }
@@ -166,7 +162,7 @@ function MobileToolbar({
     className
 }: MobileToolbarProps) {
     return (
-        <header className={cn('w-full flex items-center justify-between border-b bg-background px-3 h-14', className)}>
+        <header className={cn('w-full flex items-center justify-between bg-background px-3 h-14', className)}>
             <div className="flex items-center gap-2 min-w-0 shrink">
                 <ViewModeTabs viewMode={viewMode} onViewModeChange={onViewModeChange} />
 
@@ -209,7 +205,7 @@ function DesktopToolbar({
     className
 }: DesktopToolbarProps) {
     return (
-        <header className={cn('w-full flex items-center justify-between border-b bg-background px-6 h-14', className)}>
+        <header className={cn('w-full flex items-center justify-between bg-background px-6 h-14', className)}>
             <div className="flex items-center gap-4 min-w-0 shrink">
                 <ViewModeTabs viewMode={viewMode} onViewModeChange={onViewModeChange} />
 

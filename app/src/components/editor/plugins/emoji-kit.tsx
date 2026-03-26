@@ -3,7 +3,7 @@
 import emojiMartData from '@emoji-mart/data';
 import { EmojiInputPlugin, EmojiPlugin } from '@platejs/emoji/react';
 
-import { EmojiInputElement } from '@/components/ui/emoji-node';
+import { EmojiInputElement } from '@/components/editor/ui/emoji-node';
 
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 export const EmojiKit = [
